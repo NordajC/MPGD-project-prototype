@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{1D10B3D4-781B-490B-8F71-40EEA1A70326}</ProjectGuid>
+    <ProjectGuid>{FE268976-6D21-E2DB-8B84-696231AB1D7A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -58,8 +58,43 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2023.1.15f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ThridPersonCam.cs" />
+    <Compile Include="Assets\Inventory\UI\ItemInteraction.cs" />
+    <Compile Include="Assets\Inventory\PlayerInventory.cs" />
+    <Compile Include="Assets\Scripts\ThirdPersonCam.cs" />
+    <Compile Include="Assets\Inventory\Pickups\PickupItem.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Inventory\ItemTemplates\WeaponryItem.cs" />
+    <Compile Include="Assets\Inventory\ItemTemplates\ConsumableItem.cs" />
+    <Compile Include="Assets\Inventory\UI\DragAndDrop.cs" />
+    <Compile Include="Assets\Inventory\ItemTemplates\ItemTemplate.cs" />
+    <Compile Include="Assets\Inventory\ItemTemplates\DefaultItem.cs" />
+    <Compile Include="Assets\Inventory\ItemTemplates\ArmourItem.cs" />
+    <Compile Include="Assets\Inventory\UI\RotatePlayerUI.cs" />
+    <Compile Include="Assets\Inventory\ItemTemplates\InventoryItem.cs" />
+    <Compile Include="Assets\Inventory\ItemTemplates\ResourceItem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
