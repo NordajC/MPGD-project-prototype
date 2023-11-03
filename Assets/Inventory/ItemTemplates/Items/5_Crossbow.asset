@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56afa41a62497754da667d06ad6aa42f, type: 3}
+  m_Name: 5_Crossbow
+  m_EditorClassIdentifier: 
+  ItemId: 5
+  ItemName: Crossbow
+  ItemType: 3
+  ItemIcon: {fileID: 0}
+  ItemDescription: 'Powerful ranged weapon to defeat enemies from a distance.
+
+'
+  IsStackable: 0
+  maxItemCount: 1
+  canUse: 1
+  inventorySlot: 0
+  itemAmount: 1
+  pickupPrefab: {fileID: 8122295990871955653, guid: 5f5f7ad73e78c6845beb61d7e2a423dc, type: 3}
+  minDamageAmount: 15
+  maxDamageAmount: 25
+  weaponType: 1
