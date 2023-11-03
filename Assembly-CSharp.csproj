@@ -59,13 +59,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Inventory\UI\ItemInteraction.cs" />
+    <Compile Include="Assets\DayNightCycle.cs" />
     <Compile Include="Assets\Inventory\PlayerInventory.cs" />
     <Compile Include="Assets\Scripts\ThirdPersonCam.cs" />
     <Compile Include="Assets\Inventory\Pickups\PickupItem.cs" />
+    <Compile Include="Assets\Scripts\PlayerAttributes.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Inventory\ItemTemplates\WeaponryItem.cs" />
     <Compile Include="Assets\Inventory\ItemTemplates\ConsumableItem.cs" />
     <Compile Include="Assets\Inventory\UI\DragAndDrop.cs" />
+    <Compile Include="Assets\Scripts\MeleeAttack.cs" />
     <Compile Include="Assets\Inventory\ItemTemplates\ItemTemplate.cs" />
     <Compile Include="Assets\Inventory\ItemTemplates\DefaultItem.cs" />
     <Compile Include="Assets\Inventory\ItemTemplates\ArmourItem.cs" />
