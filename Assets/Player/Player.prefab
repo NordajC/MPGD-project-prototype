@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3353648460930740955}
   - component: {fileID: 3115172080722749088}
   - component: {fileID: 6894396482493098262}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Backpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 5201035816909631554}
   - component: {fileID: 1672551779494603837}
   - component: {fileID: 8891993475599213242}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Arms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 8208780375755575204}
   - component: {fileID: 7172467023537965410}
   - component: {fileID: 575343542621474387}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Backpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -858,7 +858,7 @@ GameObject:
   - component: {fileID: 7265028867571082477}
   - component: {fileID: 2626383265868824801}
   - component: {fileID: 3930685829030489311}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Arms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
