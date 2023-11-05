@@ -1,7 +1,7 @@
 # MPGD-group-project <br>
 Group F Game <br>
 
-<h2>Welcome to The Survivalist! Here's a quick guide on how to control your character within the game world. </h2>
+<b>Welcome to The Survivalist! Here's a quick guide on how to control your character within the game world. </b>
 
 <h3><ins>Player controls</ins></h3>
 <ins><b>Movement</b></ins> <br>
