@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c89d738e9bf3a4f8b85a855137c928, type: 3}
+  m_Name: 2_Apple
+  m_EditorClassIdentifier: 
+  ItemId: 2
+  ItemName: Apple
+  ItemType: 1
+  ItemIcon: {fileID: 0}
+  ItemDescription: 'Slightly replenishes health and hunger.
+
+    <i><color=green>+5
+    hp
+
+    +5 hunger</color></i>'
+  IsStackable: 1
+  maxItemCount: 16
+  canUse: 1
+  inventorySlot: 0
+  itemAmount: 1
+  pickupPrefab: {fileID: 3396418440854930928, guid: a634740566e81b44f9e3ad8edcf86301, type: 3}
+  MinRestoreHealth: 4
+  MaxRestoreHealth: 5
+  MinRestoreHunger: 4
+  MaxRestoreHunger: 6

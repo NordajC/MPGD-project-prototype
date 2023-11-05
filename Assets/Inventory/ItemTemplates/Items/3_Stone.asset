@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d587fae374b65549a054fcd71a0b897, type: 3}
+  m_Name: 3_Stone
+  m_EditorClassIdentifier: 
+  ItemId: 3
+  ItemName: Stone
+  ItemType: 2
+  ItemIcon: {fileID: 0}
+  ItemDescription: Useful for crafting various items.
+  IsStackable: 1
+  maxItemCount: 32
+  canUse: 0
+  inventorySlot: 0
+  itemAmount: 1
+  pickupPrefab: {fileID: 8122295990871955653, guid: a484f69640c7b8e4d8e0bf6337f7ac26, type: 3}
