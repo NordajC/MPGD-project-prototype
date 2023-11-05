@@ -14,6 +14,14 @@ public enum Type
     Armour
 }
 
+//A class used so that the scriptable object can have crafting requirements. An item can have a list of crafting items needed and the amount of that item needed.
+[System.Serializable]
+public class CraftableItem
+{
+    public ItemTemplate item;
+    public int requiredAmount;
+}
+
 public abstract class ItemTemplate : ScriptableObject
 {
     //All uniue attributes the item can have
@@ -31,4 +39,6 @@ public abstract class ItemTemplate : ScriptableObject
     [HideInInspector] public int itemAmount = 1;
 
     public GameObject pickupPrefab;
+
+    public CraftableItem[] craftingRequirements;
 }

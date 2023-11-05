@@ -7,6 +7,13 @@ using TMPro;
 
 using Cinemachine;
 
+//Enum used to keep track of the currently opened ui screen. This is so different screens can't be opened while another one is.
+public enum CurrentScreen
+{
+    None,
+    Inventory,
+    Crafting
+}
 public class PlayerInventory : MonoBehaviour
 {
     [Header("Inventory UI")]
@@ -18,14 +25,21 @@ public class PlayerInventory : MonoBehaviour
 
     [HideInInspector] public bool isDragDrop = false;
 
-    [Header("Inventory List")]
+    [Header("Inventory list")]
     [HideInInspector] public List<InventoryItem> playerInventory = new List<InventoryItem>();
-    private int InventoryAmount;
+    [HideInInspector] public int InventoryAmount;
     public ItemTemplate emptyItemTemplate;
     [HideInInspector] public int DropFromSlot;
 
     [Header("Inventory interaction")]
     public ItemInteraction interactSection;
+
+    [Header("Crafting")]
+    public GameObject craftScreen;
+    [HideInInspector] public bool canCraft = false;
+    private bool craftOpen;
+
+    [HideInInspector] public CurrentScreen currentScreen;
 
     void Awake()
     {
@@ -78,26 +92,25 @@ public class PlayerInventory : MonoBehaviour
         }
         textRef.text = debugText;
         */
-
+        
         //Player can toggle the inventory using the E key
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && (currentScreen == CurrentScreen.None || currentScreen == CurrentScreen.Inventory))
         {
             //To toggle the inventory open, simply get the not operator of the current value.
             inventoryOpen = !inventoryOpen;
+            if(inventoryOpen)
+            {
+                currentScreen = CurrentScreen.Inventory;
+            } else {
+                currentScreen = CurrentScreen.None;
+            }
 
             //If inventory open or closed, then it is shown or hidden by setting the canvas group settings.
             CanvasGroup playerUI = GameObject.Find("PlayerInventoryUI").GetComponent<CanvasGroup>();
             playerUI.alpha = inventoryOpen ? 1 : 0;
             playerUI.interactable = inventoryOpen;
 
-            //If inventory open, then the cursor should be visible and unlocked so it can be moved.
-            Cursor.visible = inventoryOpen;
-            Cursor.lockState = inventoryOpen ? CursorLockMode.None : CursorLockMode.Locked;
-
-            //To disable camera movement while inventory open the x and y speed is changed to 0 if open, and back to their default values if closed.
-            CinemachineFreeLook gameCamera = GameObject.Find("ThirdPersonCam").GetComponent<CinemachineFreeLook>();
-            gameCamera.m_YAxis.m_MaxSpeed = inventoryOpen ? 0 : 2;
-            gameCamera.m_XAxis.m_MaxSpeed = inventoryOpen ? 0 : 300;
+            disableInput(inventoryOpen);
 
             //Reset the UI character model rotation back to default.
             GameObject.Find("UICharacter").transform.rotation = new Quaternion(0,0,0,0);
@@ -111,7 +124,28 @@ public class PlayerInventory : MonoBehaviour
             {
                 targetOutline.SetActive(false);
             }
-        }        
+        }
+
+        //If player is in range of crafting box, then if they press F it will open the crafting screen.
+        if(canCraft && Input.GetKeyDown(KeyCode.F) && currentScreen == CurrentScreen.None)
+        {
+            currentScreen = CurrentScreen.Crafting;
+            Instantiate(craftScreen);
+            craftOpen = true;
+            disableInput(craftOpen);
+        }    
+    }
+
+    public void disableInput(bool checkVariable)
+    {
+        //If inventory open, then the cursor should be visible and unlocked so it can be moved.
+        Cursor.visible = checkVariable;
+        Cursor.lockState = checkVariable ? CursorLockMode.None : CursorLockMode.Locked;
+
+        //To disable camera movement while inventory open the x and y speed is changed to 0 if open, and back to their default values if closed.
+        CinemachineFreeLook gameCamera = GameObject.Find("ThirdPersonCam").GetComponent<CinemachineFreeLook>();
+        gameCamera.m_YAxis.m_MaxSpeed = checkVariable ? 0 : 2;
+        gameCamera.m_XAxis.m_MaxSpeed = checkVariable ? 0 : 300;
     }
 
     public void setSlotVisuals(int index, InventoryItem item)
@@ -242,14 +276,31 @@ public class PlayerInventory : MonoBehaviour
                 playerInventory[index].itemAmount --;
             } else {
                 playerInventory[index].itemTemplate = emptyItemTemplate;
+                playerInventory[index].itemAmount = 0;
                 interactSection.SetDefault();
             }
         } else {
             playerInventory[index].itemTemplate = emptyItemTemplate;
+            playerInventory[index].itemAmount = 0;
             interactSection.SetDefault();
         }
 
         setInventorySlots(); //Update slot visuals.
+    }
+
+    public void removeEmptyItems()
+    {
+        //If any items in inventory have a quantity of 0, they are removed.
+        //Used after crafting an item as it will set the quantity of used items to 0 but the item template will still remain.
+        for(int i = 0; i < InventoryAmount; i++)
+        {
+            if(playerInventory[i].itemAmount == 0)
+            {
+                var emptyItem = new InventoryItem();
+                emptyItem.itemTemplate = emptyItemTemplate;
+                playerInventory[i] = emptyItem;
+            }
+        }
     }
 }
 
