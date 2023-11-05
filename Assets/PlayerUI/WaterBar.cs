@@ -18,7 +18,7 @@ public class WaterBar : MonoBehaviour
         waterSlider.value = maxWater;
     }
 
-    public void SetStam(int water)
+    public void SetWater(int water)
     {
         waterSlider.value = water;
     }
