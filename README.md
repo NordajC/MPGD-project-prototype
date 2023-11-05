@@ -21,6 +21,7 @@ Drag and Drop: Click and hold an item to move it to a different slot. <br>
 Swap Items: Drag an item onto another to swap their positions. <br>
 View Item Information: Right-click on an item to display its details. <br>
 Drop Item: Select the 'Drop' option to remove the item from your inventory and place it into the game world. <br>
+Rotate player model: Right-click & Drag. <br>
 
 <ins><b>Crafting</b></ins> <br>
 *Stand in front of a crafting object and press F to begin crafting:* <br>
