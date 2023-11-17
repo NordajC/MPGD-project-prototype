@@ -15,7 +15,7 @@ public class WalkState : MovementBaseState
         {
             ExitState(movement, movement.run);
         }
-        else if (Input.GetKey(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             ExitState(movement, movement.crouch);
         }

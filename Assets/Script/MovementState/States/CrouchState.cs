@@ -15,7 +15,7 @@ public class CrouchState : MovementBaseState
         {
             ExitState(movement, movement.run);
         }
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             if(movement.dir.magnitude < 0.1)
             {

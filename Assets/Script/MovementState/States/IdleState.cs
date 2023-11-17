@@ -22,7 +22,7 @@ public class IdleState : MovementBaseState
                 movement.SwitchState(movement.walk);
             }
         }
-        if (Input.GetKey(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C))
         {
             movement.SwitchState(movement.crouch);
         }
