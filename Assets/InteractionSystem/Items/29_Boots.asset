@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 567a38150f6de524d968dd99b6e5b7a8, type: 3}
+  m_Name: 29_Boots
+  m_EditorClassIdentifier: 
+  ItemId: 29
+  ItemName: Boots
+  ItemType: 5
+  ItemIcon: {fileID: 1740248017, guid: ff378469a5a0f47419c2bb65d73196a2, type: 3}
+  ItemDescription: Slightly protects you from damage.
+  IsStackable: 0
+  maxItemCount: 1
+  canUse: 1
+  pickupPrefab: {fileID: 0}
+  craftingRequirements:
+  - item: {fileID: 11400000, guid: 0d6f5ec1aa9c9c84891dd094c53a5814, type: 2}
+    requiredAmount: 7
+  armourType: 4
+  armourMesh: {fileID: 7554398705201763711, guid: 45f944a4396b0a54398eb1abe6743296, type: 3}
+  DefenceFactor: 0.05
+  AttackFactor: 0
