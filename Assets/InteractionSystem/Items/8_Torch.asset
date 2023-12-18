@@ -16,13 +16,9 @@ MonoBehaviour:
   ItemName: Torch
   ItemType: 3
   ItemIcon: {fileID: 548957586, guid: ff378469a5a0f47419c2bb65d73196a2, type: 3}
-  ItemModel: {fileID: 0}
   ItemDescription: Helps you to see. Very useful during night and in dark areas.
   IsStackable: 0
   maxItemCount: 1
   canUse: 1
-  inventorySlot: 0
-  itemAmount: 1
-  pickupPrefab: {fileID: 0}
+  pickupPrefab: {fileID: 8735415533478434179, guid: 429c359d03790ea4ab533d2ee9af3192, type: 3}
   craftingRequirements: []
-  inspectFOV: 12

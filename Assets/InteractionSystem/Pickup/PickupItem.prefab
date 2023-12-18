@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6015373560253385068}
   - component: {fileID: 2776932182412438817}
-  - component: {fileID: 5300393125855515964}
   - component: {fileID: 1272096818381709471}
   - component: {fileID: 6991352601416715684}
   - component: {fileID: 3334718419065775684}
   - component: {fileID: 6565763492218370829}
+  - component: {fileID: 5300393125855515964}
   - component: {fileID: 7423454878204681389}
   m_Layer: 12
   m_Name: PickupItem
@@ -57,27 +57,7 @@ MonoBehaviour:
   outline: {fileID: 0}
   item: {fileID: 11400000, guid: e8d2993c3f6cc8c48a378be36215de29, type: 2}
   inspectScreen: {fileID: 3392345841185919549, guid: a4efd766ba5ea884abc4d70616f518c6, type: 3}
---- !u!135 &5300393125855515964
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3474980515916749369}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.75
-  m_Center: {x: 0, y: 0, z: 0}
+  inspectFOV: 12
 --- !u!54 &1272096818381709471
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -177,6 +157,27 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!135 &5300393125855515964
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3474980515916749369}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7423454878204681389
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,9 +4,10 @@ using UnityEngine;
 
 using UnityEngine.EventSystems;
 
+using UnityEngine.UI;
 using TMPro;
 
-public class InspectItem : MonoBehaviour, IBeginDragHandler, IDragHandler
+public class InspectItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     [Header("Prefabs")]
     public GameObject defaultPanel;
@@ -14,6 +15,9 @@ public class InspectItem : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     [Header("Default")]
     public Transform descriptionPanel;
+    private PlayerInventory playerInventory;
+    public Button addItemButton;
+    public Button removeItemButton;
     
     [Header("Colours")]
     public string consumableColour = "#FF0000";
@@ -58,7 +62,10 @@ public class InspectItem : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     public void initialise(ItemTemplate item, float FOV)
     {
+        playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
+        
         inspectMesh = GameObject.Find("InspectMesh"); // Set inspect mesh reference.
+        inspectMesh.transform.eulerAngles = new Vector3(20, 0 , 0);
 
         switch (item.ItemType)
         {
@@ -112,8 +119,31 @@ public class InspectItem : MonoBehaviour, IBeginDragHandler, IDragHandler
         GameObject.Find("PickupUICamera").GetComponent<Camera>().fieldOfView = FOV; // Set field of view of the UI camera so it fits for every object.
 
         // Setting the item mesh using the prefab mesh. Also assigning the correct materials.
+    
         inspectMesh.GetComponent<MeshFilter>().sharedMesh = item.pickupPrefab.GetComponent<MeshFilter>().sharedMesh;
-        inspectMesh.GetComponent<MeshRenderer>().sharedMaterial = item.pickupPrefab.GetComponent<MeshRenderer>().sharedMaterial;
+
+        Material[] meshMaterials = item.pickupPrefab.GetComponent<MeshRenderer>().sharedMaterials;
+        Material[] setMaterials = new Material[meshMaterials.Length];
+        
+        for(int i = 0; i < meshMaterials.Length; i++)
+        {
+            setMaterials[i] = new Material(meshMaterials[i]);
+        }
+
+        inspectMesh.GetComponent<MeshRenderer>().materials = setMaterials;
+    }
+
+    public void collectItem()
+    {
+        GameObject.FindWithTag("Player").GetComponent<Interaction>().closestItem.onInteractPrimary();
+        cancelInspect();
+    }
+
+    public void cancelInspect()
+    {
+        playerInventory.currentScreen = CurrentScreen.None;
+        playerInventory.disableInput(false, false);
+        Destroy(gameObject);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -135,6 +165,15 @@ public class InspectItem : MonoBehaviour, IBeginDragHandler, IDragHandler
 
             // Update the mouse position while dragging
             lastMousePosition = eventData.position;
+
+            addItemButton.interactable = false;
+            removeItemButton.interactable = false;
         }
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        addItemButton.interactable = true;
+        removeItemButton.interactable = true; 
     }
 }

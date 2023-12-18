@@ -16,13 +16,9 @@ MonoBehaviour:
   ItemName: Metal
   ItemType: 2
   ItemIcon: {fileID: 904623771, guid: ff378469a5a0f47419c2bb65d73196a2, type: 3}
-  ItemModel: {fileID: 0}
   ItemDescription: Useful for <b>crafting</b> various items.
   IsStackable: 1
   maxItemCount: 8
   canUse: 0
-  inventorySlot: 0
-  itemAmount: 1
-  pickupPrefab: {fileID: 0}
+  pickupPrefab: {fileID: 8735415533478434179, guid: 176c1f08e44bf2a48af34bc4cb3b6cde, type: 3}
   craftingRequirements: []
-  inspectFOV: 12

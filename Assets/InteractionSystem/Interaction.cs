@@ -18,7 +18,7 @@ public class Interaction : MonoBehaviour
     public float minAngle = 15f;
     private List<BaseInteraction> itemsInRange = new List<BaseInteraction>();
     private BaseInteraction previousClosestItem;
-    private BaseInteraction closestItem;
+    public BaseInteraction closestItem;
     
     [Header("References")]
     public GameObject interactUI;

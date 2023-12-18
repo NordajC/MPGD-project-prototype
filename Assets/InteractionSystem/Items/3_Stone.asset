@@ -16,13 +16,9 @@ MonoBehaviour:
   ItemName: Stone
   ItemType: 2
   ItemIcon: {fileID: 1967545975, guid: ff378469a5a0f47419c2bb65d73196a2, type: 3}
-  ItemModel: {fileID: 0}
   ItemDescription: Useful for <b>crafting</b> various items.
   IsStackable: 1
   maxItemCount: 8
   canUse: 0
-  inventorySlot: 0
-  itemAmount: 1
-  pickupPrefab: {fileID: 8122295990871955653, guid: dc07c3cc6d7f6844eb4bc9a2aec12024, type: 3}
+  pickupPrefab: {fileID: 8735415533478434179, guid: fd4213c0f298f4348b7cb0fc7f72d0ae, type: 3}
   craftingRequirements: []
-  inspectFOV: 12

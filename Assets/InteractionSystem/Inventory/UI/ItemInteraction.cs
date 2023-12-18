@@ -256,7 +256,7 @@ public class ItemInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler
             // Checks if the item is stackable as only stackable items can be merged. Also checks if that item has reached the max item count.
             if(inventory[i].itemTemplate.IsStackable && inventory[i].itemAmount < inventory[i].itemTemplate.maxItemCount)
             {
-                for (int j = i + 1; j < inventory.Count; j++)
+                for(int j = i + 1; j < inventory.Count; j++)
                 {
                     if(inventory[i].itemTemplate.ItemId == inventory[j].itemTemplate.ItemId &&
                     inventory[i].itemAmount < inventory[i].itemTemplate.maxItemCount &&

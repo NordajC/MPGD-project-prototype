@@ -17,7 +17,7 @@ public class PickupItem : BaseInteraction
         
         // Item only picked up if slot available.
         int? hasFreeSlot = playerInventory.getAvailableSlotIndex();
-        if(hasFreeSlot != null && playerInventory.currentScreen == CurrentScreen.None)
+        if(hasFreeSlot != null && (playerInventory.currentScreen == CurrentScreen.None || playerInventory.currentScreen == CurrentScreen.Inspect))
         {
             playerInventory.AddToInventory(item);
             interaction.removeItem(this);
