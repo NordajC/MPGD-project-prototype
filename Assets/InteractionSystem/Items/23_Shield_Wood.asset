@@ -16,13 +16,10 @@ MonoBehaviour:
   ItemName: Wooden Shield
   ItemType: 4
   ItemIcon: {fileID: 467919128, guid: ff378469a5a0f47419c2bb65d73196a2, type: 3}
-  ItemModel: {fileID: 0}
   ItemDescription: Protects you from enemy attacks.
   IsStackable: 0
   maxItemCount: 1
   canUse: 1
-  inventorySlot: 0
-  itemAmount: 1
   pickupPrefab: {fileID: 0}
   craftingRequirements:
   - item: {fileID: 11400000, guid: f437ae50dc9b9b7438725b1e79c9a7be, type: 2}
@@ -31,8 +28,8 @@ MonoBehaviour:
     requiredAmount: 7
   - item: {fileID: 11400000, guid: a30226687d2993f43b26acbf1c37942b, type: 2}
     requiredAmount: 4
-  inspectFOV: 12
+  weaponType: 2
+  armourMesh: {fileID: 0}
   minDamageAmount: 0
   maxDamageAmount: 0
-  DefenceFactor: 0.1
-  weaponType: 2
+  defenceFactor: 0.2

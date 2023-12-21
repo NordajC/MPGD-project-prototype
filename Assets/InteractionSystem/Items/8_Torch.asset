@@ -21,4 +21,10 @@ MonoBehaviour:
   maxItemCount: 1
   canUse: 1
   pickupPrefab: {fileID: 8735415533478434179, guid: 429c359d03790ea4ab533d2ee9af3192, type: 3}
-  craftingRequirements: []
+  craftingRequirements:
+  - item: {fileID: 11400000, guid: c6abc9e539e43e04882afb0f93959aec, type: 2}
+    requiredAmount: 2
+  - item: {fileID: 11400000, guid: 0d6f5ec1aa9c9c84891dd094c53a5814, type: 2}
+    requiredAmount: 1
+  - item: {fileID: 11400000, guid: 5a5e7b43ccb777b4b984aa22d95ccc94, type: 2}
+    requiredAmount: 2

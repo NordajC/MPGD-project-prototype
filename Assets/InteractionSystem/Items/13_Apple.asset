@@ -20,7 +20,7 @@ MonoBehaviour:
   IsStackable: 1
   maxItemCount: 8
   canUse: 1
-  pickupPrefab: {fileID: 3396418440854930928, guid: a634740566e81b44f9e3ad8edcf86301, type: 3}
+  pickupPrefab: {fileID: 8735415533478434179, guid: e4c21d7e5b739514088a4a74211e72f0, type: 3}
   craftingRequirements: []
   restoreHealth: 5
   restoreHunger: 15

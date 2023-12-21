@@ -20,11 +20,11 @@ MonoBehaviour:
   IsStackable: 0
   maxItemCount: 1
   canUse: 1
-  pickupPrefab: {fileID: 0}
+  pickupPrefab: {fileID: 8735415533478434179, guid: e244b5432cfde8a459f943a5cf0f3f02, type: 3}
   craftingRequirements:
   - item: {fileID: 11400000, guid: 0d6f5ec1aa9c9c84891dd094c53a5814, type: 2}
     requiredAmount: 7
   armourType: 3
   armourMesh: {fileID: 4172649862315779155, guid: 45f944a4396b0a54398eb1abe6743296, type: 3}
-  DefenceFactor: 0.1
-  AttackFactor: 0
+  defenceFactor: 0.4
+  attackFactor: 0

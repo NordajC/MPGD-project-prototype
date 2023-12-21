@@ -16,17 +16,13 @@ MonoBehaviour:
   ItemName: Pickaxe
   ItemType: 3
   ItemIcon: {fileID: 144154148, guid: ff378469a5a0f47419c2bb65d73196a2, type: 3}
-  ItemModel: {fileID: 0}
   ItemDescription: An important tool to quickly gather <b>rocks</b> and <b>ores</b>.
   IsStackable: 0
   maxItemCount: 1
   canUse: 1
-  inventorySlot: 0
-  itemAmount: 1
-  pickupPrefab: {fileID: 0}
+  pickupPrefab: {fileID: 8735415533478434179, guid: 191f2033d19d86a4c87af66d28d8244a, type: 3}
   craftingRequirements:
   - item: {fileID: 11400000, guid: c6abc9e539e43e04882afb0f93959aec, type: 2}
     requiredAmount: 1
   - item: {fileID: 11400000, guid: 0d6f5ec1aa9c9c84891dd094c53a5814, type: 2}
     requiredAmount: 7
-  inspectFOV: 12
