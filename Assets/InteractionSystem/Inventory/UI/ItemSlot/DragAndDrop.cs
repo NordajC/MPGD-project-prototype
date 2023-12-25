@@ -85,13 +85,19 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
                     bool equippedItemDetected = false;
 
                     // Checks if the equipped item slot is not empty.
+                    var droppedSlot = eventData.pointerEnter.transform.parent;
                     switch(occupiedBy.itemTemplate.ItemType)
                     {
                         default:
                             break;
                         case Type.Weaponry:
                             WeaponryItem weaponryItem = occupiedBy.itemTemplate as WeaponryItem;
-                            equippedItemDetected = GameObject.Find(weaponryItem.weaponType + "Slot").GetComponent<DragAndDrop>().occupiedBy.itemTemplate.ItemId != 0;
+                            if(weaponryItem.weaponType != WeaponType.Shield)
+                            {
+                                equippedItemDetected = GameObject.Find(droppedSlot.name).GetComponent<DragAndDrop>().occupiedBy.itemTemplate.ItemId != 0;
+                            } else {
+                                equippedItemDetected = GameObject.Find(weaponryItem.weaponType + "Slot").GetComponent<DragAndDrop>().occupiedBy.itemTemplate.ItemId != 0;
+                            }
                             break;
                         case Type.Armour:
                             ArmourItem armourItem = occupiedBy.itemTemplate as ArmourItem;
@@ -105,6 +111,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
                     {
                         itemInteraction.setItemInteraction(occupiedBy.itemTemplate, dragItemPosition, false);
                         itemInteraction.setEquipState(UseState.Unequip);
+                        playerInventoryRef.DropFromSlotName = eventData.pointerEnter.transform.parent.transform.name;
                     }
                 }
             }
@@ -202,15 +209,23 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
                 // Checks if dropped on weapon or armour slot to equip.
                 WeaponryItem weaponryItem = itemRef.itemTemplate as WeaponryItem;
                 ArmourItem armourItem = itemRef.itemTemplate as ArmourItem;
-
-                if(itemRef.itemTemplate.ItemType == Type.Weaponry && droppedSlot.name == weaponryItem.weaponType + "Slot"||
-                itemRef.itemTemplate.ItemType == Type.Armour && droppedSlot.name == armourItem.armourType + "Slot")
+                if(itemRef.itemTemplate.ItemType == Type.Weaponry &&
+                    (playerInventoryRef.DropFromSlotName == "" || playerInventoryRef.DropFromSlotName == null) &&
+                    (droppedSlot.name == "PrimaryWeaponSlot" || droppedSlot.name == "SecondaryWeaponSlot" || droppedSlot.name == "ShieldWeaponSlot" || droppedSlot.name == weaponryItem.weaponType + "Slot") ||
+                    (itemRef.itemTemplate.ItemType == Type.Armour && droppedSlot.name == armourItem.armourType + "Slot"))
                 {
-                    playerInventoryRef.equipItem(playerInventoryRef.DropFromSlot);
+                    playerInventoryRef.equipItem(playerInventoryRef.DropFromSlot, droppedSlot.name);
                 } else {
                     if(!playerInventoryRef.DropFromInventory)
                     {
                         bool isInventoryItem = eventData.pointerEnter.transform.parent.transform.IsChildOf(playerInventoryRef.InventorySlots.transform);
+                        
+                        if(playerInventoryRef.DropFromSlotName != eventData.pointerEnter.transform.parent.transform.name && 
+                            (eventData.pointerEnter.transform.parent.transform.name == "PrimaryWeaponSlot" || eventData.pointerEnter.transform.parent.transform.name == "SecondaryWeaponSlot"))
+                        {
+                            playerInventoryRef.swapPrimarySecondaryWeapon();
+                        }
+                        
                         playerInventoryRef.unequipItem(dragItemPosition, isInventoryItem);
                     } else {
                         DragAndDrop targetSlot = eventData.pointerEnter.transform.parent.GetComponent<DragAndDrop>();
@@ -241,6 +256,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
             dragItemPosition = 0;
 
             playerInventoryRef.isDragDrop = false;
+            playerInventoryRef.DropFromSlotName = null;
             canDragDrop = false;
 
             itemInteraction.setEquippableHighlight(null);

@@ -30,6 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4071765201679925819}
+  - {fileID: 8974782047678153207}
   m_Father: {fileID: 1782823708068522584}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &111121504903313452
@@ -42,7 +43,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8484762875585284835}
   m_Layer: 0
-  m_Name: PT_Right_Accessories_slot
+  m_Name: Male_Weapon_Secondary_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 111121504903313452}
   serializedVersion: 2
   m_LocalRotation: {x: 0.99899477, y: -0.044826724, z: -0.00000002996028, w: 0.0000006676857}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.066, y: -0.006, z: -0.165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -869,6 +870,37 @@ Transform:
   - {fileID: 4247451236964291849}
   m_Father: {fileID: 6245141264985416013}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2511952157967841124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8974782047678153207}
+  m_Layer: 0
+  m_Name: Male_Weapon_Secondary_Back
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8974782047678153207
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2511952157967841124}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.99899477, y: -0.044826724, z: -0.00000002996028, w: 0.0000006676857}
+  m_LocalPosition: {x: -0.041, y: -0.157, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 245920017502111660}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2541849255253008942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1295,7 +1327,7 @@ GameObject:
   m_Component:
   - component: {fileID: 814805656745960485}
   m_Layer: 0
-  m_Name: PT_Left_Accessories_slot
+  m_Name: Male_Weapon_Secondary_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1310,7 +1342,7 @@ Transform:
   m_GameObject: {fileID: 3306768469810028947}
   serializedVersion: 2
   m_LocalRotation: {x: 0.99899477, y: -0.044826724, z: -0.00000002996028, w: 0.0000006676857}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.066, y: -0.006, z: 0.165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2040,7 +2072,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2981880295158492423}
   m_Layer: 0
-  m_Name: PT_Right_Hand_Weapon_slot
+  m_Name: Male_Weapon_Primary_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2054,8 +2086,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4557456960659199523}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.361796, y: 0.92281795, z: 0.09285333, w: 0.09428143}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.07619022, y: 0.56332195, z: 0.7671213, w: -0.2973018}
+  m_LocalPosition: {x: -0.0810118, y: -0.033470888, z: 0.023863925}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2261,7 +2293,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4603963185723914910}
   m_Layer: 0
-  m_Name: PT_Left_Hand_Weapon_slot
+  m_Name: Male_Weapon_Primary_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2275,8 +2307,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5580210274127735245}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.9228179, y: 0.3617962, z: -0.094281346, w: 0.0928531}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.15911098, y: -0.2606952, z: -0.37997797, w: 0.87311995}
+  m_LocalPosition: {x: -0.08287567, y: -0.030011058, z: -0.024298033}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3032,7 +3064,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 9477970c8e28084458aec64eb18321fa, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -3060,22 +3092,22 @@ MonoBehaviour:
   crouchBackSpeed: 1
   runSpeed: 6
   runBackSpeed: 5
-  airSpeed: 1.5
   canMove: 0
+  airSpeed: 1.5
+  gravity: -9.81
+  jumpForce: 7
+  jumped: 0
   dir: {x: 0, y: 0, z: 0}
-  hzInput: 0
-  vInput: 0
+  horizontalInput: 0
+  verticalInput: 0
   groundYOffset: 0.6
   groundMask:
     serializedVersion: 2
     m_Bits: 5185
-  gravity: -9.81
-  jumpForce: 7
-  jumped: 0
-  anim: {fileID: 0}
   rotationMode: 0
   aimCamera: {fileID: 0}
   canAim: 0
+  anim: {fileID: 0}
 --- !u!114 &7989574708730512105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3103,18 +3135,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   healthBar: {fileID: 0}
   screenDamage: {fileID: 0}
   maxHunger: 100
+  currentHunger: 0
   hungerBar: {fileID: 0}
-  maxThirst: 100
-  waterBar: {fileID: 0}
   hungerDecreaseTime: 15
   hungerDecreaseAmount: 1
-  thirstDecreaseTime: 10
-  thirstDecreaseAmount: 1
   starvationDamageTime: 10
   starvationDamageAmount: 2
+  maxThirst: 100
+  currentThirst: 0
+  waterBar: {fileID: 0}
+  thirstDecreaseTime: 10
+  thirstDecreaseAmount: 1
 --- !u!114 &8868754679602417761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3133,6 +3168,7 @@ MonoBehaviour:
   emptyItemTemplate: {fileID: 11400000, guid: e8d2993c3f6cc8c48a378be36215de29, type: 2}
   inventoryRowSize: 4
   InventoryAmount: 20
+  inventoryDOF: {fileID: 0}
   defaultBGColour: {r: 0.55, g: 0.35, b: 0.1, a: 1}
   consumableBGColour: {r: 1, g: 0, b: 0, a: 1}
   resourceBGColour: {r: 0, g: 1, b: 1, a: 1}
@@ -3140,10 +3176,10 @@ MonoBehaviour:
   weaponryBGColour: {r: 1, g: 0.74509805, b: 0, a: 1}
   armourBGColour: {r: 0.53706837, g: 0.69402856, b: 0.764151, a: 1}
   playerInventory: []
-  playerMelee:
+  playerWeaponPrimary:
     itemTemplate: {fileID: 0}
     itemAmount: 0
-  playerRanged:
+  playerWeaponSecondary:
     itemTemplate: {fileID: 0}
     itemAmount: 0
   playerShield:
@@ -3170,10 +3206,13 @@ MonoBehaviour:
     itemAmount: 0
   defaultBoots: {fileID: -4393862864273879462, guid: 45f944a4396b0a54398eb1abe6743296, type: 3}
   DropFromSlot: 0
+  DropFromSlotName: 
   DropFromInventory: 0
   lastDraggedItem:
     itemTemplate: {fileID: 0}
     itemAmount: 0
+  splitStack: 0
+  splitAmount: 0
   currentScreen: 0
   InventoryScreen: {fileID: 0}
   interactSection: {fileID: 0}
@@ -3193,6 +3232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detectMode: 0
   minAngle: 15
+  closestItem: {fileID: 0}
   interactUI: {fileID: 0}
 --- !u!135 &6130331522462745167
 SphereCollider:
@@ -3802,7 +3842,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1489700650290404176}
-  - component: {fileID: 6325554025665882356}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -3834,28 +3873,6 @@ Transform:
   - {fileID: 2299464848341384367}
   m_Father: {fileID: 364224383666248727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6325554025665882356
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7822538275635438662}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 45f944a4396b0a54398eb1abe6743296, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7869019981582947806
 GameObject:
   m_ObjectHideFlags: 0

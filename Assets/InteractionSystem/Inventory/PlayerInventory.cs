@@ -20,6 +20,13 @@ public enum CurrentScreen
     Inspect
 }
 
+public enum EquippedWeaponType
+{
+    Primary,
+    Secondary,
+    Shield
+}
+
 [System.Serializable]
 [SerializeField]
 public class PlayerInventory : MonoBehaviour
@@ -44,8 +51,8 @@ public class PlayerInventory : MonoBehaviour
 
     [Header("Inventory List")]
     public List<InventoryItem> playerInventory = new List<InventoryItem>();
-    public InventoryItem playerMelee = new InventoryItem();
-    public InventoryItem playerRanged = new InventoryItem();
+    public InventoryItem playerWeaponPrimary = new InventoryItem();
+    public InventoryItem playerWeaponSecondary = new InventoryItem();
     public InventoryItem playerShield = new InventoryItem();
     public InventoryItem playerHelmet = new InventoryItem();
     public Mesh defaultHelmet;
@@ -58,6 +65,7 @@ public class PlayerInventory : MonoBehaviour
     public InventoryItem playerBoots = new InventoryItem();
     public Mesh defaultBoots;
     [HideInInspector] public int DropFromSlot;
+    [HideInInspector] public string DropFromSlotName;
     [HideInInspector] public bool DropFromInventory;
     [HideInInspector] public InventoryItem lastDraggedItem = new InventoryItem();
     [HideInInspector] public bool splitStack;
@@ -73,8 +81,6 @@ public class PlayerInventory : MonoBehaviour
 
     [Header("Crafting")]
     public GameObject craftScreen;
-
-    public Material material;
     
     public InventoryItem getEmptyItem()
     {
@@ -155,6 +161,49 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
+    public void updateWeapon(string typeName, ref InventoryItem itemToCheck, EquippedWeaponType equippedWeaponType)
+    {
+        // Function to set weapon visuals by adding mesh.
+        setSlotVisuals(GameObject.Find(typeName + "WeaponSlot").transform, itemToCheck);
+
+        WeaponryItem weaponryItem = itemToCheck.itemTemplate as WeaponryItem;
+
+        if(itemToCheck.itemTemplate.ItemId != 0)
+        {
+            GameObject spawnedVisual;
+            GameObject UIWeaponVisual;
+
+            switch (equippedWeaponType)
+            {
+                case EquippedWeaponType.Primary:
+                    spawnedVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("Male_Weapon_Primary_Right").transform);
+                    UIWeaponVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("UI_Male_Weapon_Primary_Right").transform);
+                    UIWeaponVisual.layer = LayerMask.NameToLayer("UICamera");
+                    break;
+                case EquippedWeaponType.Secondary:
+                        spawnedVisual = Instantiate(weaponryItem.equipWeapon);
+                        spawnedVisual.GetComponent<Weapon>().setWeaponSecondary(false);
+                        UIWeaponVisual = Instantiate(weaponryItem.equipWeapon);
+                        UIWeaponVisual.GetComponent<Weapon>().setWeaponSecondary(true);
+                        UIWeaponVisual.layer = LayerMask.NameToLayer("UICamera");
+                    break;
+                case EquippedWeaponType.Shield:
+                        spawnedVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("Male_Weapon_Primary_Left").transform);
+                        UIWeaponVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("UI_Male_Weapon_Primary_Left").transform);
+                        UIWeaponVisual.layer = LayerMask.NameToLayer("UICamera");
+                    break;
+            }
+        }
+    }
+
+    public void destroyAttachedObjects(string parentObj)
+    {
+        foreach(Transform attachedObj in GameObject.Find(parentObj).transform)
+        {
+            Destroy(attachedObj.gameObject);
+        }
+    }
+
     public void setInventorySlots()
     {
         // Function that is called when the inventory is updated so that the visuals of it are updated as well.
@@ -163,10 +212,21 @@ public class PlayerInventory : MonoBehaviour
             setSlotVisuals(obj, playerInventory[obj.GetSiblingIndex()]);
         }
 
+        destroyAttachedObjects("Male_Weapon_Primary_Right");
+        destroyAttachedObjects("UI_Male_Weapon_Primary_Right");
+
+        destroyAttachedObjects("Male_Weapon_Secondary_Left");
+        destroyAttachedObjects("UI_Male_Weapon_Secondary_Left");
+        destroyAttachedObjects("Male_Weapon_Secondary_Back");
+        destroyAttachedObjects("UI_Male_Weapon_Secondary_Back");
+
+        destroyAttachedObjects("Male_Weapon_Primary_Left");
+        destroyAttachedObjects("UI_Male_Weapon_Primary_Left");
+
         // For weapons.
-        setSlotVisuals(GameObject.Find("MeleeSlot").transform, playerMelee);
-        setSlotVisuals(GameObject.Find("RangedSlot").transform, playerRanged);
-        setSlotVisuals(GameObject.Find("ShieldSlot").transform, playerShield);
+        updateWeapon("Primary", ref playerWeaponPrimary, EquippedWeaponType.Primary);
+        updateWeapon("Secondary", ref playerWeaponSecondary, EquippedWeaponType.Secondary);
+        updateWeapon("Shield", ref playerShield, EquippedWeaponType.Shield);
         
         // For armour.
         updateArmour("Helmet", ref playerHelmet, defaultHelmet, new string[] {"Hair", "Beard"});
@@ -192,8 +252,8 @@ public class PlayerInventory : MonoBehaviour
         }
 
         // Each weapon and armour needs to be empty by default. Also the last dragged item.
-        playerMelee = getEmptyItem();
-        playerRanged = getEmptyItem();
+        playerWeaponPrimary = getEmptyItem();
+        playerWeaponSecondary = getEmptyItem();
         playerShield = getEmptyItem();
         playerHelmet = getEmptyItem();
         playerVest = getEmptyItem();
@@ -216,8 +276,8 @@ public class PlayerInventory : MonoBehaviour
         {
             debugText += "\n" + "   " + item.itemTemplate.ItemName + "| " + item.itemAmount + "|< " + item.itemTemplate.ItemId + ">";
         }
-        debugText += "\n" + "\n" + "   Melee: " + playerMelee.itemTemplate.ItemName + "| < " + playerMelee.itemTemplate.ItemId + ">";
-        debugText += "\n" + "   Ranged:" + playerRanged.itemTemplate.ItemName + "|< " + playerRanged.itemTemplate.ItemId + ">";
+        debugText += "\n" + "\n" + "   Primary: " + playerWeaponPrimary.itemTemplate.ItemName + "| < " + playerWeaponPrimary.itemTemplate.ItemId + ">";
+        debugText += "\n" + "   Secondary:" + playerWeaponSecondary.itemTemplate.ItemName + "|< " + playerWeaponSecondary.itemTemplate.ItemId + ">";
         debugText += "\n" + "   Shield:" + playerShield.itemTemplate.ItemName + "|< " + playerShield.itemTemplate.ItemId + ">";
         debugText += "\n" + "   Helmet:" + playerHelmet.itemTemplate.ItemName + "|< " + playerHelmet.itemTemplate.ItemId + ">";
         debugText += "\n" + "   Vest:" + playerVest.itemTemplate.ItemName + "|< " + playerVest.itemTemplate.ItemId + ">";
@@ -470,7 +530,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if(interactSection.useState == UseState.Equip)
         {
-            equipItem(DropFromSlot);
+            equipItem(DropFromSlot, null);
         } else {
             // If the current selected item is an equipped item, then call the unequip item function if there is an available slot.
             int? unequipTargetSlot = getAvailableSlotIndex();
@@ -485,7 +545,7 @@ public class PlayerInventory : MonoBehaviour
         }  
     }
 
-    public void equipItem(int movedFromSlot)
+    public void equipItem(int movedFromSlot, string droppedSlotName)
     {
         // To equip item, the item type is checked and then the corresponding variable for that type is set.
         InventoryItem inventoryItem = playerInventory[movedFromSlot];
@@ -495,11 +555,13 @@ public class PlayerInventory : MonoBehaviour
                 WeaponryItem weaponryItem = inventoryItem.itemTemplate as WeaponryItem;
                 switch (weaponryItem.weaponType)
                 {
-                    case WeaponType.Melee:
-                        (playerInventory[movedFromSlot], playerMelee) = (playerMelee, inventoryItem);
-                        break;
-                    case WeaponType.Ranged:
-                        (playerInventory[movedFromSlot], playerRanged) = (playerRanged, inventoryItem);
+                    default:
+                        if(droppedSlotName == "PrimaryWeaponSlot")
+                        {
+                            (playerInventory[movedFromSlot], playerWeaponPrimary) = (playerWeaponPrimary, inventoryItem);
+                        } else {
+                            (playerInventory[movedFromSlot], playerWeaponSecondary) = (playerWeaponSecondary, inventoryItem);
+                        }
                         break;
                     case WeaponType.Shield:
                         (playerInventory[movedFromSlot], playerShield) = (playerShield, inventoryItem);
@@ -547,11 +609,13 @@ public class PlayerInventory : MonoBehaviour
                         WeaponryItem weaponryItem = lastDraggedItem.itemTemplate as WeaponryItem;
                         switch (weaponryItem.weaponType)
                         {
-                            case WeaponType.Melee:
-                                unequipItemValue(ref playerMelee, targetSlot, itemType, WeaponType.Melee);
-                                break;
-                            case WeaponType.Ranged:
-                                unequipItemValue(ref playerRanged, targetSlot, itemType, WeaponType.Ranged);
+                            default:
+                                if(DropFromSlotName == "PrimaryWeaponSlot")
+                                {
+                                    unequipItemValue(ref playerWeaponPrimary, targetSlot, itemType, null);
+                                } else {
+                                    unequipItemValue(ref playerWeaponSecondary, targetSlot, itemType, null);
+                                }
                                 break;
                             case WeaponType.Shield:
                                 unequipItemValue(ref playerShield, targetSlot, itemType, WeaponType.Shield);
@@ -601,7 +665,7 @@ public class PlayerInventory : MonoBehaviour
             if(itemType == Type.Weaponry)
             {
                 WeaponryItem weaponryItem = itemCompare as WeaponryItem;
-                if (itemCompare != null && itemCompare.ItemType == itemType && weaponryItem.weaponType == (WeaponType)classType)
+                if (itemCompare != null && ((itemCompare.ItemType == itemType && weaponryItem.weaponType == (WeaponType)classType) || classType != null))
                 {
                     var temp = item;
                     item = playerInventory[targetSlot];
@@ -631,8 +695,23 @@ public class PlayerInventory : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void swapPrimarySecondaryWeapon()
+    {
+        var temp = playerWeaponPrimary;
+        playerWeaponPrimary = playerWeaponSecondary;
+        playerWeaponSecondary = temp;
 
         setInventorySlots();
+    }
+
+    private void OnChangeWeapon(InputValue value)
+    {
+        if(value.Get<float>() != 0)
+        {
+            swapPrimarySecondaryWeapon();
+        }
     }
 
     public void OnToggleCrafting()

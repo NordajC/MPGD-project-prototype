@@ -172,8 +172,16 @@ public class ItemInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler
                 case Type.Weaponry:
                     setArmourWeaponSlots(true);
                     WeaponryItem weaponryItem = selectedItemType as WeaponryItem;
-                    GameObject.Find(weaponryItem.weaponType + "Slot").GetComponent<DragAndDrop>().darkenImage.enabled = false;
-                    GameObject.Find(weaponryItem.weaponType + "Slot").GetComponent<Button>().interactable = true;
+                    if(weaponryItem.weaponType != WeaponType.Shield)
+                    {
+                        GameObject.Find("PrimaryWeaponSlot").GetComponent<DragAndDrop>().darkenImage.enabled = false;
+                        GameObject.Find("PrimaryWeaponSlot").GetComponent<Button>().interactable = true;
+                        GameObject.Find("SecondaryWeaponSlot").GetComponent<DragAndDrop>().darkenImage.enabled = false;
+                        GameObject.Find("SecondaryWeaponSlot").GetComponent<Button>().interactable = true;
+                    } else {
+                        GameObject.Find(weaponryItem.weaponType + "WeaponSlot").GetComponent<DragAndDrop>().darkenImage.enabled = false;
+                        GameObject.Find(weaponryItem.weaponType + "WeaponSlot").GetComponent<Button>().interactable = true;
+                    }
                     break;
                 case Type.Armour:
                     setArmourWeaponSlots(true);

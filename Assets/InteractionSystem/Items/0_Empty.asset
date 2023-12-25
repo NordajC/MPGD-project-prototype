@@ -16,12 +16,9 @@ MonoBehaviour:
   ItemName: 
   ItemType: 0
   ItemIcon: {fileID: 21300000, guid: 89fff50994301b14a805c15aeb0be823, type: 3}
-  ItemModel: {fileID: 0}
   ItemDescription: 
   IsStackable: 0
   maxItemCount: 0
   canUse: 0
-  inventorySlot: 0
-  itemAmount: 1
   pickupPrefab: {fileID: 0}
   craftingRequirements: []

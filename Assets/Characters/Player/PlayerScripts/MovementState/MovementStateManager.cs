@@ -29,7 +29,7 @@ public class MovementStateManager : MonoBehaviour
 
     [Header("Character Controller")]
     [HideInInspector] public Vector3 dir;
-    [HideInInspector] public float hzInput, vInput;
+    [HideInInspector] public float horizontalInput, verticalInput;
     CharacterController controller;
 
     [Header("Ground check")]
@@ -73,16 +73,16 @@ public class MovementStateManager : MonoBehaviour
         {
             GetDirectionAndMove();
         } else {
-            hzInput = Mathf.Lerp(hzInput, 0f, 5f * Time.deltaTime);
-            vInput = Mathf.Lerp(vInput, 0f, 5f * Time.deltaTime);
+            horizontalInput = Mathf.Lerp(horizontalInput, 0f, 5f * Time.deltaTime);
+            verticalInput = Mathf.Lerp(verticalInput, 0f, 5f * Time.deltaTime);
         }    
 
         Gravity();
         Falling();
 
         // Setting animation properties.
-        anim.SetFloat("hzInput", hzInput);
-        anim.SetFloat("vInput", vInput);
+        anim.SetFloat("horizontalInput", horizontalInput);
+        anim.SetFloat("verticalInput", verticalInput);
         anim.SetFloat("RotationMode", (int)rotationMode);
 
         currentState.UpdateState(this); // Setting the current movement state.
@@ -114,15 +114,15 @@ public class MovementStateManager : MonoBehaviour
     void GetDirectionAndMove()
     {
         // Get input values.
-        hzInput = Input.GetAxis("Horizontal");
-        vInput = Input.GetAxis("Vertical");
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
         
         Vector3 airDir = Vector3.zero;
 
         // Sets direction variable based on if grounded or not.
         if (!IsGrounded())
         {
-            airDir = transform.forward * vInput + transform.right * hzInput;
+            airDir = transform.forward * verticalInput + transform.right * horizontalInput;
         } else {
             // Forward and right components of camera used so player moves in that direction.
             Vector3 cameraForward = Camera.main.transform.forward;
@@ -130,7 +130,7 @@ public class MovementStateManager : MonoBehaviour
             Vector3 cameraRight = Camera.main.transform.right;
             cameraRight.y = 0;
 
-            dir = cameraForward * vInput + cameraRight * hzInput; // Combines horizontal and vertical components.
+            dir = cameraForward * verticalInput + cameraRight * horizontalInput; // Combines horizontal and vertical components.
         }
 
         controller.Move((dir.normalized * currentMoveSpeed + airDir.normalized * airSpeed) * Time.deltaTime); // Moves the player.
@@ -138,14 +138,10 @@ public class MovementStateManager : MonoBehaviour
         if(rotationMode == RotationMode.Default && dir != Vector3.zero)
         {
             // If rotation mode is default, rotate to face movement direction.
-            Vector3 rotateDirection = new Vector3(dir.x, 0f, dir.z).normalized;
-            Quaternion toRotation = Quaternion.LookRotation(rotateDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 500f * Time.deltaTime);
+
         } else if(rotationMode == RotationMode.Aiming) {
             // If rotation mode is aiming, rotate to face camera forward direction so player rotates with mouse movement.
-            Vector3 rotateDirection = new Vector3(Camera.main.transform.forward.x, 0f, Camera.main.transform.forward.z).normalized;
-            Quaternion toRotation = Quaternion.LookRotation(rotateDirection, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 500f * Time.deltaTime);
+
         }        
     }
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemId: 5
   ItemName: Silk
   ItemType: 2
-  ItemIcon: {fileID: -106884979, guid: ff378469a5a0f47419c2bb65d73196a2, type: 3}
+  ItemIcon: {fileID: -1845127104, guid: e7cea53c0cd0d114bb4814faf69bf9fd, type: 3}
   ItemDescription: Useful for <b>crafting</b> various items.
   IsStackable: 1
   maxItemCount: 32

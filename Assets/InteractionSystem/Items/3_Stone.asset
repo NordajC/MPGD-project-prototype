@@ -15,7 +15,7 @@ MonoBehaviour:
   ItemId: 3
   ItemName: Stone
   ItemType: 2
-  ItemIcon: {fileID: 1967545975, guid: ff378469a5a0f47419c2bb65d73196a2, type: 3}
+  ItemIcon: {fileID: 969464310, guid: e7cea53c0cd0d114bb4814faf69bf9fd, type: 3}
   ItemDescription: Useful for <b>crafting</b> various items.
   IsStackable: 1
   maxItemCount: 8

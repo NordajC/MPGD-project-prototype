@@ -1267,7 +1267,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: melee
+  m_text: primary
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1ce51629ec467648a490368e24c2fd3, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: b1ce51629ec467648a490368e24c2fd3, type: 2}
@@ -3050,7 +3050,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ranged
+  m_text: 'secondary
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b1ce51629ec467648a490368e24c2fd3, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: b1ce51629ec467648a490368e24c2fd3, type: 2}
@@ -3077,8 +3079,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 10.5
+  m_fontSizeBase: 10.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -6318,7 +6320,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 590173894306573568, guid: 47a5d4275a68d8949805db379df4453e, type: 3}
       propertyPath: m_Name
-      value: RangedSlot
+      value: SecondaryWeaponSlot
       objectReference: {fileID: 0}
     - target: {fileID: 2327896423975075658, guid: 47a5d4275a68d8949805db379df4453e, type: 3}
       propertyPath: m_Name
@@ -6459,7 +6461,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 590173894306573568, guid: 47a5d4275a68d8949805db379df4453e, type: 3}
       propertyPath: m_Name
-      value: MeleeSlot
+      value: PrimaryWeaponSlot
       objectReference: {fileID: 0}
     - target: {fileID: 2327896423975075658, guid: 47a5d4275a68d8949805db379df4453e, type: 3}
       propertyPath: m_Name
@@ -6600,7 +6602,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 590173894306573568, guid: 47a5d4275a68d8949805db379df4453e, type: 3}
       propertyPath: m_Name
-      value: ShieldSlot
+      value: ShieldWeaponSlot
       objectReference: {fileID: 0}
     - target: {fileID: 2327896423975075658, guid: 47a5d4275a68d8949805db379df4453e, type: 3}
       propertyPath: m_Name
