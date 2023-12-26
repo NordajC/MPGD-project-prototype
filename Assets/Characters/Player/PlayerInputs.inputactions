@@ -52,9 +52,9 @@
                 },
                 {
                     "name": "ChangeWeapon",
-                    "type": "PassThrough",
+                    "type": "Button",
                     "id": "f316d24b-ffda-43b5-9d3d-66875344f7e0",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -164,17 +164,6 @@
                     "name": "",
                     "id": "635a4239-b5bc-4023-b440-2e2f155c22b5",
                     "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "90cea0d5-7916-4f00-8565-1705b2f13704",
-                    "path": "<Mouse>/scroll/y",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

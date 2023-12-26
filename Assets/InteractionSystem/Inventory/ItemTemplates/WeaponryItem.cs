@@ -17,8 +17,8 @@ public class WeaponryItem : ItemTemplate
     // Min and max damage variables used so there is chance of critical hit and not the same damage amount each hit.
     public WeaponType weaponType;
     public GameObject equipWeapon;
-    public int minDamageAmount;
-    public int maxDamageAmount;
+    public float minDamageAmount;
+    public float maxDamageAmount;
     public float defenceFactor; // For shield.
 
     public void Awake()
@@ -26,8 +26,18 @@ public class WeaponryItem : ItemTemplate
         ItemType = Type.Weaponry;
     }
 
+    public override float getAttackValue()
+    {
+        return maxDamageAmount/100;
+    }
+
+    public override float getDefenceValue()
+    {
+        return defenceFactor;
+    }
+    
     public override void onItemUsed()
     {
         GameObject.FindWithTag("Player").GetComponent<PlayerInventory>().equipUnequipItem();
-    } 
+    }
 }

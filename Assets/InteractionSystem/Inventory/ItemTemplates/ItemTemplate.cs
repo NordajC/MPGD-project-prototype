@@ -51,6 +51,17 @@ public abstract class ItemTemplate : ScriptableObject
         return null;
     }
 
+    // To get attack/defence values.
+    public virtual float getAttackValue()
+    {
+        return 0;
+    }
+    
+    public virtual float getDefenceValue()
+    {
+        return 0;
+    }
+    
     // For interacting with the UI use button.
     public virtual void onItemUsed()
     {

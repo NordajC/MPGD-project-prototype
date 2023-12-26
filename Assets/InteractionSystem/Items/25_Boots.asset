@@ -26,5 +26,5 @@ MonoBehaviour:
     requiredAmount: 7
   armourType: 4
   armourMesh: {fileID: 7554398705201763711, guid: 45f944a4396b0a54398eb1abe6743296, type: 3}
-  defenceFactor: 0.2
+  defenceFactor: 0.1
   attackFactor: 0.1

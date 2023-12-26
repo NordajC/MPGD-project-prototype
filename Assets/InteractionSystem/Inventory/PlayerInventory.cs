@@ -81,6 +81,22 @@ public class PlayerInventory : MonoBehaviour
 
     [Header("Crafting")]
     public GameObject craftScreen;
+
+    [Header("Weapon handling")]
+    public GameObject primaryWeaponImage;
+    public GameObject secondaryWeaponImage;
+    public GameObject shieldWeaponImage;
+
+    [Header("Stats bars")]
+    public float lagSpeed = 1f;
+    public float maxAttackValue;
+    private float currentAttackValue;
+    public Image attackBarImage;
+    public TextMeshProUGUI attackBarText;
+    public float maxDefenceValue;
+    private float currentDefenceValue;
+    public Image defenceBarImage;
+    public TextMeshProUGUI defenceBarText;
     
     public InventoryItem getEmptyItem()
     {
@@ -105,6 +121,14 @@ public class PlayerInventory : MonoBehaviour
         };
         
         return itemTypeColourMap[itemType];
+    }
+
+    public void destroyAttachedObjects(string parentObj)
+    {
+        foreach(Transform attachedObj in GameObject.Find(parentObj).transform)
+        {
+            Destroy(attachedObj.gameObject);
+        }
     }
     
     public void setSlotVisuals(Transform slotRef, InventoryItem item)
@@ -161,7 +185,7 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void updateWeapon(string typeName, ref InventoryItem itemToCheck, EquippedWeaponType equippedWeaponType)
+    public void updateWeapon(string typeName, ref InventoryItem itemToCheck, EquippedWeaponType equippedWeaponType, ref GameObject iconRef)
     {
         // Function to set weapon visuals by adding mesh.
         setSlotVisuals(GameObject.Find(typeName + "WeaponSlot").transform, itemToCheck);
@@ -173,12 +197,13 @@ public class PlayerInventory : MonoBehaviour
             GameObject spawnedVisual;
             GameObject UIWeaponVisual;
 
+            // Different functionality if primary, secondary or shield item.
             switch (equippedWeaponType)
             {
                 case EquippedWeaponType.Primary:
                     spawnedVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("Male_Weapon_Primary_Right").transform);
                     UIWeaponVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("UI_Male_Weapon_Primary_Right").transform);
-                    UIWeaponVisual.layer = LayerMask.NameToLayer("UICamera");
+                    UIWeaponVisual.layer = LayerMask.NameToLayer("UICamera"); // Need to set layer so the UI one is only seen by the UI camera.
                     break;
                 case EquippedWeaponType.Secondary:
                         spawnedVisual = Instantiate(weaponryItem.equipWeapon);
@@ -186,21 +211,26 @@ public class PlayerInventory : MonoBehaviour
                         UIWeaponVisual = Instantiate(weaponryItem.equipWeapon);
                         UIWeaponVisual.GetComponent<Weapon>().setWeaponSecondary(true);
                         UIWeaponVisual.layer = LayerMask.NameToLayer("UICamera");
+                        iconRef.SetActive(true);
                     break;
                 case EquippedWeaponType.Shield:
                         spawnedVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("Male_Weapon_Primary_Left").transform);
                         UIWeaponVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("UI_Male_Weapon_Primary_Left").transform);
                         UIWeaponVisual.layer = LayerMask.NameToLayer("UICamera");
+                        iconRef.SetActive(true);
                     break;
             }
-        }
-    }
 
-    public void destroyAttachedObjects(string parentObj)
-    {
-        foreach(Transform attachedObj in GameObject.Find(parentObj).transform)
-        {
-            Destroy(attachedObj.gameObject);
+            iconRef.transform.Find("Icon").GetComponent<Image>().sprite = itemToCheck.itemTemplate.ItemIcon;
+            iconRef.transform.Find("DefaultIcon").GetComponent<Image>().enabled = false; // If item not empty then default tooltip image hidden.
+        } else {
+            iconRef.transform.Find("Icon").GetComponent<Image>().sprite = getEmptyItem().itemTemplate.ItemIcon; // To set image to the empty icon image.
+            iconRef.transform.Find("DefaultIcon").GetComponent<Image>().enabled = true;
+
+            // If secondary or shield item is empty, then hide the icon gameobject.
+            if(equippedWeaponType == EquippedWeaponType.Secondary || equippedWeaponType == EquippedWeaponType.Shield)
+                iconRef.SetActive(false);
+            
         }
     }
 
@@ -212,6 +242,7 @@ public class PlayerInventory : MonoBehaviour
             setSlotVisuals(obj, playerInventory[obj.GetSiblingIndex()]);
         }
 
+        // Destroy any attached objects when called so only currently equipped ones are shown.
         destroyAttachedObjects("Male_Weapon_Primary_Right");
         destroyAttachedObjects("UI_Male_Weapon_Primary_Right");
 
@@ -224,9 +255,9 @@ public class PlayerInventory : MonoBehaviour
         destroyAttachedObjects("UI_Male_Weapon_Primary_Left");
 
         // For weapons.
-        updateWeapon("Primary", ref playerWeaponPrimary, EquippedWeaponType.Primary);
-        updateWeapon("Secondary", ref playerWeaponSecondary, EquippedWeaponType.Secondary);
-        updateWeapon("Shield", ref playerShield, EquippedWeaponType.Shield);
+        updateWeapon("Primary", ref playerWeaponPrimary, EquippedWeaponType.Primary, ref primaryWeaponImage);
+        updateWeapon("Secondary", ref playerWeaponSecondary, EquippedWeaponType.Secondary, ref secondaryWeaponImage);
+        updateWeapon("Shield", ref playerShield, EquippedWeaponType.Shield, ref shieldWeaponImage);
         
         // For armour.
         updateArmour("Helmet", ref playerHelmet, defaultHelmet, new string[] {"Hair", "Beard"});
@@ -234,6 +265,18 @@ public class PlayerInventory : MonoBehaviour
         updateArmour("Gauntlets", ref playerGauntlets, defaultGauntlets, null);
         updateArmour("Trousers", ref playerTrousers, defaultTrousers, null);
         updateArmour("Boots", ref playerBoots, defaultBoots, null);
+
+        // Calculate value in range of 0 and 1 by dividing it by the max
+        currentAttackValue = (playerWeaponPrimary.itemTemplate.getAttackValue() + playerWeaponSecondary.itemTemplate.getAttackValue() + playerShield.itemTemplate.getAttackValue() +
+                            playerGauntlets.itemTemplate.getAttackValue() + playerBoots.itemTemplate.getAttackValue()) /
+                            maxAttackValue;
+        currentAttackValue = Mathf.Round(currentAttackValue * 20)/20; // Values are rounded to nearest 0.05 for better readability.
+
+        currentDefenceValue = (playerShield.itemTemplate.getDefenceValue() +
+                            playerHelmet.itemTemplate.getDefenceValue() + playerVest.itemTemplate.getDefenceValue() + playerGauntlets.itemTemplate.getDefenceValue() + playerTrousers.itemTemplate.getDefenceValue() + playerBoots.itemTemplate.getDefenceValue()) /
+                            maxDefenceValue;
+
+        currentDefenceValue = Mathf.Round(currentDefenceValue * 20)/20;
     }
     
     void Awake()
@@ -286,6 +329,25 @@ public class PlayerInventory : MonoBehaviour
         debugText += "\n" + "   Boots:" + playerBoots.itemTemplate.ItemName + "|< " + playerBoots.itemTemplate.ItemId + ">";
         textRef.text = debugText;
         */
+        
+        // Smoothly interpolate the attack and defence bars and text.
+        if(attackBarImage.fillAmount != currentAttackValue)
+        {
+            attackBarImage.fillAmount = Mathf.MoveTowards(attackBarImage.fillAmount, currentAttackValue, lagSpeed * Time.deltaTime);
+            attackBarText.text = (attackBarImage.fillAmount + 1).ToString("0.00"); // To format to 2dp.
+            Color originalAttackColour = attackBarText.color;
+            originalAttackColour.a = 0.2f + (attackBarImage.fillAmount) * (0.8f)/(1.0f); // Maps the range between 0.2 and 1.0 for opacity. Higher value has more visible text colour.
+            attackBarText.color = originalAttackColour;
+        }
+
+        if(defenceBarImage.fillAmount != currentDefenceValue)
+        {
+            defenceBarImage.fillAmount = Mathf.MoveTowards(defenceBarImage.fillAmount, currentDefenceValue, lagSpeed * Time.deltaTime);
+            defenceBarText.text = (defenceBarImage.fillAmount + 1).ToString("0.00");
+            Color originalDefenceColour = defenceBarText.color;
+            originalDefenceColour.a = 0.2f + (defenceBarImage.fillAmount) * (0.8f)/(1.0f);
+            defenceBarText.color = originalDefenceColour;
+        }
     }
 
     public void disableInput(bool disableCamera, bool disableMovement)
@@ -530,7 +592,7 @@ public class PlayerInventory : MonoBehaviour
     {
         if(interactSection.useState == UseState.Equip)
         {
-            equipItem(DropFromSlot, null);
+            equipItem(DropFromSlot, "PrimaryWeaponSlot");
         } else {
             // If the current selected item is an equipped item, then call the unequip item function if there is an available slot.
             int? unequipTargetSlot = getAvailableSlotIndex();
@@ -549,6 +611,7 @@ public class PlayerInventory : MonoBehaviour
     {
         // To equip item, the item type is checked and then the corresponding variable for that type is set.
         InventoryItem inventoryItem = playerInventory[movedFromSlot];
+        DropFromSlotName = droppedSlotName;
         switch (inventoryItem.itemTemplate.ItemType)
         {
             case Type.Weaponry:
@@ -665,7 +728,7 @@ public class PlayerInventory : MonoBehaviour
             if(itemType == Type.Weaponry)
             {
                 WeaponryItem weaponryItem = itemCompare as WeaponryItem;
-                if (itemCompare != null && ((itemCompare.ItemType == itemType && weaponryItem.weaponType == (WeaponType)classType) || classType != null))
+                if (itemCompare != null && (itemCompare.ItemType == itemType || classType != null))
                 {
                     var temp = item;
                     item = playerInventory[targetSlot];
@@ -699,6 +762,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void swapPrimarySecondaryWeapon()
     {
+        // Swap primary and secondary weapons using a temp variable.
         var temp = playerWeaponPrimary;
         playerWeaponPrimary = playerWeaponSecondary;
         playerWeaponSecondary = temp;
@@ -708,10 +772,7 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnChangeWeapon(InputValue value)
     {
-        if(value.Get<float>() != 0)
-        {
-            swapPrimarySecondaryWeapon();
-        }
+        swapPrimarySecondaryWeapon();
     }
 
     public void OnToggleCrafting()

@@ -133,8 +133,9 @@ public class ItemInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler
         useText.text = useState.ToString();
         isEquippedText.SetActive(equipState == UseState.Unequip);
         
-        // If equipped item, the colour of the interact panel should be different.
+        // If equipped item, the colour of the interact panel should be different. Drop button should also be disabled.
         interactSectionCanvas.GetComponent<Image>().color = equipState == UseState.Unequip ? new Color(0.1f, 0.25f, 0.35f, 1f) : new Color(0.35f, 0.25f, 0.1f, 1f);
+        dropButton.interactable = equipState != UseState.Unequip;
     }
 
     public void SetDefault()

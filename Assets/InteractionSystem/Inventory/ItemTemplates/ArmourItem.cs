@@ -32,6 +32,16 @@ public class ArmourItem : ItemTemplate
         return armourMesh;
     }
 
+    public override float getAttackValue()
+    {
+        return attackFactor;
+    }
+
+    public override float getDefenceValue()
+    {
+        return defenceFactor;
+    }
+
     public override void onItemUsed()
     {
         GameObject.FindWithTag("Player").GetComponent<PlayerInventory>().equipUnequipItem();

@@ -92,11 +92,11 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
                             break;
                         case Type.Weaponry:
                             WeaponryItem weaponryItem = occupiedBy.itemTemplate as WeaponryItem;
-                            if(weaponryItem.weaponType != WeaponType.Shield)
+                            if(weaponryItem.weaponType != WeaponType.Shield && GameObject.Find(droppedSlot.name).GetComponent<DragAndDrop>() != null)
                             {
                                 equippedItemDetected = GameObject.Find(droppedSlot.name).GetComponent<DragAndDrop>().occupiedBy.itemTemplate.ItemId != 0;
                             } else {
-                                equippedItemDetected = GameObject.Find(weaponryItem.weaponType + "Slot").GetComponent<DragAndDrop>().occupiedBy.itemTemplate.ItemId != 0;
+                                equippedItemDetected = GameObject.Find("ShieldWeaponSlot").GetComponent<DragAndDrop>().occupiedBy.itemTemplate.ItemId != 0;
                             }
                             break;
                         case Type.Armour:
@@ -198,7 +198,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
             var droppedSlot = eventData.pointerEnter.transform.parent; // Find which slot the player dropped on.
             GameObject inventorySlots = playerRef.GetComponent<PlayerInventory>().InventorySlots;
 
-            if(playerInventoryRef.isDragDrop && droppedSlot.GetComponent<Button>().interactable)
+            if(playerInventoryRef.isDragDrop && droppedSlot.GetComponent<Button>() != null && droppedSlot.GetComponent<Button>().interactable)
             {
                 // Can only drop if currently dragging item and the dropped button is interactable (can't equip items of mistmatching type)
                 
@@ -210,7 +210,6 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
                 WeaponryItem weaponryItem = itemRef.itemTemplate as WeaponryItem;
                 ArmourItem armourItem = itemRef.itemTemplate as ArmourItem;
                 if(itemRef.itemTemplate.ItemType == Type.Weaponry &&
-                    (playerInventoryRef.DropFromSlotName == "" || playerInventoryRef.DropFromSlotName == null) &&
                     (droppedSlot.name == "PrimaryWeaponSlot" || droppedSlot.name == "SecondaryWeaponSlot" || droppedSlot.name == "ShieldWeaponSlot" || droppedSlot.name == weaponryItem.weaponType + "Slot") ||
                     (itemRef.itemTemplate.ItemType == Type.Armour && droppedSlot.name == armourItem.armourType + "Slot"))
                 {
@@ -256,12 +255,12 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
             dragItemPosition = 0;
 
             playerInventoryRef.isDragDrop = false;
-            playerInventoryRef.DropFromSlotName = null;
             canDragDrop = false;
 
             itemInteraction.setEquippableHighlight(null);
 
             itemInteraction.setButtonsInteractable(true);
+            itemInteraction.setEquipState(itemInteraction.useState);
 
             itemInteraction.dragInput = DragInput.None; // Resets drag state enum.
 
