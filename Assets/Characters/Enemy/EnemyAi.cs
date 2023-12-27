@@ -10,6 +10,9 @@ public class EnemyAi : MonoBehaviour
     public NavMeshAgent agent;
     private Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
+    public Transform moveToPosition;
+    public float moveToFactor = 1;
+    public float minMoveDistance = 1.4f;
     
     [Header("Patrolling")]
     public Vector3 walkPoint;

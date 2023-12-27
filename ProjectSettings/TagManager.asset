@@ -19,7 +19,7 @@ TagManager:
   - Post Process
   - 
   - whatIsGround
-  - enemyLayers
+  - Enemy
   - pickUps
   - UI Inspect
   - 

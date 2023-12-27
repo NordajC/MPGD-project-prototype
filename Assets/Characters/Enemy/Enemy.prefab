@@ -571,6 +571,37 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &6492338491407213853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1682476284674047556}
+  m_Layer: 0
+  m_Name: MoveToPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1682476284674047556
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6492338491407213853}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4216178102328158539}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7311961591144420476
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +704,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d371835eada4e14698eee6e043e6f9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxValue: 0
+  slider: {fileID: 0}
+  lagBar: {fileID: 0}
+  lagSpeed: 0.08
 --- !u!1 &7367475516647796398
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +749,7 @@ Transform:
   - {fileID: 8241389763164422317}
   - {fileID: 267993408777538611}
   - {fileID: 4977817629656839992}
+  - {fileID: 1682476284674047556}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4692739608491670492
@@ -804,18 +840,19 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 1559616569153421860}
+  screenDamage: {fileID: 0}
   maxHunger: 100
   currentHunger: 0
   hungerBar: {fileID: 0}
+  hungerDecreaseTime: 15
+  hungerDecreaseAmount: 0
+  starvationDamageTime: 10
+  starvationDamageAmount: 0
   maxThirst: 100
   currentThirst: 0
   waterBar: {fileID: 0}
-  hungerDecreaseTime: 15
-  hungerDecreaseAmount: 0
   thirstDecreaseTime: 10
   thirstDecreaseAmount: 0
-  starvationDamageTime: 10
-  starvationDamageAmount: 0
 --- !u!195 &6498868766857340600
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -851,13 +888,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 6498868766857340600}
-  player: {fileID: 0}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 1024
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 128
+  moveToPosition: {fileID: 1682476284674047556}
+  moveToFactor: 1
+  minMoveDistance: 1.4
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
   sightRange: 20
