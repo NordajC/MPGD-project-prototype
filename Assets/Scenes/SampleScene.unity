@@ -10758,6 +10758,34 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4c21d7e5b739514088a4a74211e72f0, type: 3}
+--- !u!1 &1227383628 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6868983217113750715, guid: 646a07391bd45974ea30db50bd02034b, type: 3}
+  m_PrefabInstance: {fileID: 1737905454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1227383636 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9004973770611389749, guid: 646a07391bd45974ea30db50bd02034b, type: 3}
+  m_PrefabInstance: {fileID: 1737905454}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1227383638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227383628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7d4c1c9ff9eb74dbbb48d038120cd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1227383636}
+  defaultController: {fileID: 22100000, guid: e845867c010d5094284af789065e483b, type: 2}
+  SwordShieldOverride: {fileID: 22100000, guid: fd6c2228000625247a4206ed7b2de16d, type: 2}
+  CrossbowOverride: {fileID: 22100000, guid: 4be265ce6ff8f2e4391791423001a8fd, type: 2}
+  TorchOverride: {fileID: 22100000, guid: 361518477a852f84ab4e99da6f3b7a6c, type: 2}
+  SingleHandedOverride: {fileID: 22100000, guid: 714e9a6457c20a44d86ee537db8222ce, type: 2}
 --- !u!1001 &1227536095
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17576,7 +17604,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6868983217113750715, guid: 646a07391bd45974ea30db50bd02034b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1227383638}
   m_SourcePrefab: {fileID: 100100000, guid: 646a07391bd45974ea30db50bd02034b, type: 3}
 --- !u!1001 &1738273881
 PrefabInstance:

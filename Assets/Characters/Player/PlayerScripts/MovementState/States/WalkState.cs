@@ -24,7 +24,7 @@ public class WalkState : MovementBaseState
             ExitState(movement, movement.idle);
         }
 
-        if(movement.verticalInput < 0 && movement.rotationMode == RotationMode.Aiming)
+        if(movement.vInput < 0 && movement.rotationMode == RotationMode.Aiming)
         {
             movement.currentMoveSpeed = movement.walkBackSpeed;
         }
@@ -33,12 +33,20 @@ public class WalkState : MovementBaseState
             movement.currentMoveSpeed = movement.walkSpeed;
         }
 
+        UpdateMagnitude(movement);
+
         //if jump
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButtonDown("Jump"))
         {
             movement.previousState = this;
             ExitState(movement, movement.jump);
         }
+    }
+    void UpdateMagnitude(MovementStateManager movement)
+    {
+        float magnitude = Mathf.Abs(movement.dir.magnitude);
+        magnitude = Mathf.Clamp(magnitude, 0f, 1f); // Ensures the magnitude is within the 0-1 range
+        movement.anim.SetFloat("magnitude", magnitude); // Sets the magnitude parameter in the Animator
     }
 
     void ExitState(MovementStateManager movement, MovementBaseState state)

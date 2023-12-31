@@ -20,7 +20,7 @@ public class RunState : MovementBaseState
             ExitState(movement, movement.idle);
         }
 
-        if (movement.verticalInput < 0 && movement.rotationMode == RotationMode.Aiming)
+        if (movement.vInput < 0 && movement.rotationMode == RotationMode.Aiming)
         {
             movement.currentMoveSpeed = movement.runBackSpeed;
         }
@@ -29,7 +29,7 @@ public class RunState : MovementBaseState
             movement.currentMoveSpeed = movement.runSpeed;
         }
         //if jump
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetButtonDown("Jump"))
         {
             movement.previousState = this;
             ExitState(movement, movement.jump);

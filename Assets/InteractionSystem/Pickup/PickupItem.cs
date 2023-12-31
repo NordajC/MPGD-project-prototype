@@ -10,6 +10,14 @@ public class PickupItem : BaseInteraction
     public GameObject inspectScreen;
     public float inspectFOV = 12;
 
+    private Animator playerAnimator;
+
+    void Start()
+    {
+        // Find the Animator component on the player
+        playerAnimator = GameObject.FindWithTag("Player").GetComponent<Animator>();
+    }
+
     public override void onInteractPrimary()
     {
         PlayerInventory playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
@@ -22,6 +30,12 @@ public class PickupItem : BaseInteraction
             playerInventory.AddToInventory(item);
             interaction.removeItem(this);
             Destroy(gameObject);
+
+            // Set the trigger to start the pickup animation
+            if (playerAnimator != null)
+            {
+                playerAnimator.SetTrigger("itemPickUp");
+            }
         }
     }
 

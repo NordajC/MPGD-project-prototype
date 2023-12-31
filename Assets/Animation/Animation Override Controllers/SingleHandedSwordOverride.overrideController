@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SingleHandedSwordOverride
+  m_Controller: {fileID: 9100000, guid: 9477970c8e28084458aec64eb18321fa, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 2085a52de71ff804b9f7ac98379235d1, type: 2}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 3eafafc4c74a617458e3d6af44b6099e, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 32feab87d8b4e82458de0a8b6a20a95b, type: 2}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 665a3bb2760467a4aa9b8221977f5fb4, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: bae0a3373567d0245b4011b06ed36047, type: 2}
+    m_OverrideClip: {fileID: -203655887218126122, guid: dc53664b0e0918c4e842b8742ae88d05, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: d2e257bdf96799c44aa506c02261fd48, type: 2}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 2f60e3a05b953e741958accb7ae09e53, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: 3309b602e36ecbf488db981b87893068, type: 2}
+    m_OverrideClip: {fileID: -203655887218126122, guid: 2f60e3a05b953e741958accb7ae09e53, type: 3}
