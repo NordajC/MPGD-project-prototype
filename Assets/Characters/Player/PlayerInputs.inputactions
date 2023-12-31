@@ -60,9 +60,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "2c03f0b7-0f52-4be2-83b1-6c638b3555d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Attack",
                     "type": "Button",
-                    "id": "9f1e72a5-3b86-408b-a0dc-025a57481cc9",
+                    "id": "7c8ca0f1-5957-45ee-af41-e357dabc6743",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RightMB",
+                    "type": "PassThrough",
+                    "id": "37d5779f-cdc8-403f-a0bf-9f5a2d5e7686",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -182,12 +200,34 @@
                 },
                 {
                     "name": "",
-                    "id": "a8896f67-0d50-4eba-8dea-f13a84536a8b",
+                    "id": "3b340e3a-6347-42e9-baef-8150cd23a172",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ffa31449-548a-4223-8ec9-5c01ecf89ba4",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66410e03-421c-4d80-978b-4580b69e4946",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightMB",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

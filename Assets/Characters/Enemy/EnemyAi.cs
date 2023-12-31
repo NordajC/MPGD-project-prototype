@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyAi : MonoBehaviour
+public class EnemyAi : MonoBehaviour, ICombat
 {
     [Header("References")]
     public NavMeshAgent agent;
@@ -30,17 +30,30 @@ public class EnemyAi : MonoBehaviour
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     
-    [Header("UI")]    
-    public GameObject HPBar;
+    [Header("Health")]
+    public float maxHealth = 100;
+    private float currentHealth;
+    public StatsBar HPBar;
     private Transform cameraRotation;
+
+    [Header("Animations")]
+    private Animator animator;
+
+    [Header("Effects")]
+    private GameObject hitParticle;
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
 
-        HPBar.SetActive(false);
+        // HPBar.SetActive(false);
         cameraRotation = Camera.main.transform;
+        
+        animator = GetComponent<Animator>();
+
+        currentHealth = maxHealth;
+        HPBar.maxValue = maxHealth;
     }
 
     private void Update()
@@ -62,13 +75,12 @@ public class EnemyAi : MonoBehaviour
         {   
             ChasePlayer();
             
-            HPBar.SetActive(true); // Only show enemys HP bar if locked on to player.
-            HPBar.transform.LookAt(cameraRotation);
-            HPBar.transform.Rotate(0f, 180f, 0f);
+            // HPBar.SetActive(true); // Only show enemys HP bar if locked on to player.
+            // HPBar.transform.LookAt(cameraRotation);
+            // HPBar.transform.Rotate(0f, 180f, 0f);
         } else {
             Patrolling();
-
-            HPBar.SetActive(false);
+            // HPBar.SetActive(false);
         }
     }
 
@@ -142,5 +154,39 @@ public class EnemyAi : MonoBehaviour
             walkPointSet = false;
             Patrolling();
         }
+    }
+
+    public void updateHealth(float amount)
+    {
+        currentHealth -= amount;
+        HPBar.updateStatBarValue(currentHealth);
+    }
+
+    public void onHitReaction(bool heavyAttack, Vector3 hitLocation, HitDirection hitDirection, HitHeight hitHeight, GameObject receivedFrom, float damage)
+    {
+        // Play hit reaction based on direction and height.
+        if(heavyAttack)
+        {
+            // animator.Play("Heavy" + hitDirection.ToString(), 0, 0);
+        } else {
+            if(hitDirection == HitDirection.Front)
+            {
+                // Only front reaction animations have varying ones for lower and upper.
+                // animator.Play("Light" + hitDirection.ToString() + hitHeight.ToString(), 0, 0);
+            } else {
+                // animator.Play("Light" + hitDirection.ToString(), 0, 0);
+            }
+        }
+        
+        //Instantiate(hitParticle, hitLocation, Quaternion.identity);
+        
+        // Add knockback to enemy by adding force.
+        Rigidbody rb = GetComponent<Rigidbody>();
+        Vector3 direction = transform.position - receivedFrom.transform.position;
+        direction.Normalize();
+        direction.y = 0; // Don't want to push enemy vertically.
+        rb.AddForce(direction * 100);
+
+        updateHealth(damage);
     }
 }

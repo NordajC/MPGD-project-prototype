@@ -24,6 +24,11 @@ public class StatsBar : MonoBehaviour
             lagBar.fillAmount = Mathf.MoveTowards(lagBar.fillAmount, slider.value, lagSpeed * Time.deltaTime);
     }
 
+    public void updateStatBarValue(float value)
+    {
+        slider.value = value/maxValue;
+    }
+    
     public void updateStatBar(float value, bool regen)
     {
         slider.value = value/maxValue; // Sets the bar. Value is divided so it is in range from 0 - 1 for the progress slider.

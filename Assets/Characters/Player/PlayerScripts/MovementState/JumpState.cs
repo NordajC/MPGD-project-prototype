@@ -21,7 +21,7 @@ public class JumpState : MovementBaseState
         if(movement.jumped && movement.IsGrounded())
         {
             movement.jumped = false;
-            if (movement.horizontalInput == 0 && movement.verticalInput == 0)
+            if (movement.hzInput == 0 && movement.vInput == 0)
             {
                 movement.SwitchState(movement.idle);
             }

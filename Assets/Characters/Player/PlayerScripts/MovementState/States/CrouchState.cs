@@ -27,7 +27,7 @@ public class CrouchState : MovementBaseState
             }
         }
 
-        if (movement.verticalInput < 0 && movement.rotationMode == RotationMode.Aiming)
+        if (movement.vInput < 0 && movement.rotationMode == RotationMode.Aiming)
         {
             movement.currentMoveSpeed = movement.crouchBackSpeed;
         }

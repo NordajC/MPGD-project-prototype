@@ -267,7 +267,7 @@ public class PlayerInventory : MonoBehaviour
         updateArmour("Boots", ref playerBoots, defaultBoots, null);
 
         // Calculate value in range of 0 and 1 by dividing it by the max
-        currentAttackValue = (playerWeaponPrimary.itemTemplate.getAttackValue() + playerWeaponSecondary.itemTemplate.getAttackValue() + playerShield.itemTemplate.getAttackValue() +
+        currentAttackValue = (playerWeaponPrimary.itemTemplate.getAttackValue() + playerShield.itemTemplate.getAttackValue() +
                             playerGauntlets.itemTemplate.getAttackValue() + playerBoots.itemTemplate.getAttackValue()) /
                             maxAttackValue;
         currentAttackValue = Mathf.Round(currentAttackValue * 20)/20; // Values are rounded to nearest 0.05 for better readability.
@@ -277,6 +277,15 @@ public class PlayerInventory : MonoBehaviour
                             maxDefenceValue;
 
         currentDefenceValue = Mathf.Round(currentDefenceValue * 20)/20;
+        
+        // Setting animation override based on equipped weapon.
+        Animator animator = GetComponent<Animator>();
+        if(playerShield.itemTemplate.ItemId != 0 && playerWeaponPrimary.itemTemplate.ItemId != 0)
+        {
+            animator.runtimeAnimatorController = playerShield.itemTemplate.getEquipOverride();
+        } else if (playerWeaponPrimary.itemTemplate.ItemId != 0) {
+            animator.runtimeAnimatorController = playerWeaponPrimary.itemTemplate.getEquipOverride();
+        }
     }
     
     void Awake()
@@ -348,6 +357,8 @@ public class PlayerInventory : MonoBehaviour
             originalDefenceColour.a = 0.2f + (defenceBarImage.fillAmount) * (0.8f)/(1.0f);
             defenceBarText.color = originalDefenceColour;
         }
+
+        Camera uiCamera = GameObject.Find("UICamera").GetComponent<Camera>();
     }
 
     public void disableInput(bool disableCamera, bool disableMovement)
@@ -661,6 +672,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void unequipItem(int targetSlot, bool shouldUnequip)
     {
+        DropFromSlot = targetSlot;
         // Should only be able to unequip if the item is dragged onto an empty slot or the same weapon/armour type.
         if(shouldUnequip)
         {
@@ -708,6 +720,8 @@ public class PlayerInventory : MonoBehaviour
                         break;
                 }
 
+                interactSection.setItemInteraction(playerInventory[targetSlot].itemTemplate, targetSlot, true);
+                
                 setInventorySlots();
         }
     }

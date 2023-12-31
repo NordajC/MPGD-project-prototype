@@ -206,10 +206,15 @@ public class ItemInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler
     public void onDropPressed()
     {
         // If drop item button is pressed, it will drop one of that item by calling the function created in PlayerInventory script.
-        var dropItemObject = playerRef.GetComponent<PlayerInventory>().playerInventory[selectedInventorySlot].itemTemplate.pickupPrefab;
-        var playerLocation = playerRef.transform;
-        var spawnPosition = playerLocation.position - (playerLocation.right * 1); // Spawns the drop object to the right of the player with an offset.
-        Instantiate(dropItemObject, spawnPosition, Quaternion.identity);
+        GameObject dropItemObject = playerRef.GetComponent<PlayerInventory>().playerInventory[selectedInventorySlot].itemTemplate.pickupPrefab;
+        
+        Vector3 playerLocation = playerRef.transform.position;
+        Vector2 spawnPointRadius = Random.insideUnitCircle.normalized * Random.Range(0.8f, 1f); // For random direction spawning. Random magnitude between 0.8 and 1.2.
+        var spawnPosition = playerLocation + new Vector3(spawnPointRadius.x, 0, spawnPointRadius.y) + new Vector3(0, Random.Range(0.4f, 1f), 0); // Add a small random z offset.
+
+        Quaternion rotation = Quaternion.Euler(0, Random.Range(0f, 360f), 0);
+
+        Instantiate(dropItemObject, spawnPosition, rotation);
 
         playerRef.GetComponent<PlayerInventory>().RemoveFromInventory(selectedInventorySlot); // Function called to update the actual inventory list after dropping.
     }

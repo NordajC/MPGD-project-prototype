@@ -29,7 +29,7 @@ public class MovementStateManager : MonoBehaviour
 
     [Header("Character Controller")]
     [HideInInspector] public Vector3 dir;
-    [HideInInspector] public float horizontalInput, verticalInput;
+    [HideInInspector] public float hzInput, vInput, magnitude;
     CharacterController controller;
 
     [Header("Ground check")]
@@ -72,18 +72,20 @@ public class MovementStateManager : MonoBehaviour
         if(canMove)
         {
             GetDirectionAndMove();
+            magnitude = Mathf.MoveTowards(magnitude, new Vector3(hzInput, 0, vInput).normalized.magnitude, 5f * Time.deltaTime);
         } else {
-            horizontalInput = Mathf.Lerp(horizontalInput, 0f, 5f * Time.deltaTime);
-            verticalInput = Mathf.Lerp(verticalInput, 0f, 5f * Time.deltaTime);
+            hzInput = Mathf.Lerp(hzInput, 0f, 5f * Time.deltaTime);
+            vInput = Mathf.Lerp(vInput, 0f, 5f * Time.deltaTime);
         }    
 
         Gravity();
         Falling();
 
         // Setting animation properties.
-        anim.SetFloat("horizontalInput", horizontalInput);
-        anim.SetFloat("verticalInput", verticalInput);
+        anim.SetFloat("hzInput", hzInput);
+        anim.SetFloat("vInput", vInput);
         anim.SetFloat("RotationMode", (int)rotationMode);
+        anim.SetFloat("magnitude", magnitude);
 
         currentState.UpdateState(this); // Setting the current movement state.
     }
@@ -100,8 +102,17 @@ public class MovementStateManager : MonoBehaviour
         // Called when right mouse button pressed. Switches to aiming mode.
 
         bool hasCameraInput = gameObject.GetComponent<AimStateManager>().enabled;
-
-        if(value.isPressed && canAim && hasCameraInput)
+        
+        // Can only aim if a ranged weapon is equipped.
+        PlayerInventory playerInventory = GetComponent<PlayerInventory>();
+        WeaponryItem weaponryItem = playerInventory.playerWeaponPrimary.itemTemplate as WeaponryItem;
+        bool isRangedWeapon = false;
+        if(weaponryItem != null)
+        {
+            isRangedWeapon = weaponryItem.weaponType == WeaponType.Ranged;
+        }
+        
+        if(value.isPressed && canAim && hasCameraInput && isRangedWeapon)
         {
             rotationMode = RotationMode.Aiming;
             aimCamera.SetActive(true); // Sets the aim camera to be active which has higher priority than the default. Smoothly switches.
@@ -114,15 +125,15 @@ public class MovementStateManager : MonoBehaviour
     void GetDirectionAndMove()
     {
         // Get input values.
-        horizontalInput = Input.GetAxis("Horizontal");
-        verticalInput = Input.GetAxis("Vertical");
+        hzInput = Input.GetAxis("Horizontal");
+        vInput = Input.GetAxis("Vertical");
         
         Vector3 airDir = Vector3.zero;
 
         // Sets direction variable based on if grounded or not.
         if (!IsGrounded())
         {
-            airDir = transform.forward * verticalInput + transform.right * horizontalInput;
+            airDir = transform.forward * vInput + transform.right * hzInput;
         } else {
             // Forward and right components of camera used so player moves in that direction.
             Vector3 cameraForward = Camera.main.transform.forward;
@@ -130,7 +141,7 @@ public class MovementStateManager : MonoBehaviour
             Vector3 cameraRight = Camera.main.transform.right;
             cameraRight.y = 0;
 
-            dir = cameraForward * verticalInput + cameraRight * horizontalInput; // Combines horizontal and vertical components.
+            dir = cameraForward * vInput + cameraRight * hzInput; // Combines horizontal and vertical components.
         }
 
         controller.Move((dir.normalized * currentMoveSpeed + airDir.normalized * airSpeed) * Time.deltaTime); // Moves the player.
@@ -138,10 +149,14 @@ public class MovementStateManager : MonoBehaviour
         if(rotationMode == RotationMode.Default && dir != Vector3.zero)
         {
             // If rotation mode is default, rotate to face movement direction.
-
+            var targetRotation = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15f);
         } else if(rotationMode == RotationMode.Aiming) {
             // If rotation mode is aiming, rotate to face camera forward direction so player rotates with mouse movement.
-
+            var targetRotation = Quaternion.LookRotation(Camera.main.transform.forward);
+            targetRotation.x = 0;
+            targetRotation.z = 0;
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15f);
         }        
     }
 

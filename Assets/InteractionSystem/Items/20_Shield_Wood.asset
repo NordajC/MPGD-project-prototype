@@ -30,6 +30,7 @@ MonoBehaviour:
     requiredAmount: 4
   weaponType: 2
   equipWeapon: {fileID: 6027967466017808991, guid: 7333488779a769c4db90ab92173382c8, type: 3}
+  overrideController: {fileID: 22100000, guid: fd6c2228000625247a4206ed7b2de16d, type: 2}
   minDamageAmount: 0
   maxDamageAmount: 0
   defenceFactor: 0.2

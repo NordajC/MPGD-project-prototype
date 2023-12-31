@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: -8408854050225431795, guid: a545d849d6d17094583c4d37a8dae405, type: 3}
     - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
       propertyPath: equippedLocation.x
-      value: -0.07
+      value: -0.065
       objectReference: {fileID: 0}
     - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
       propertyPath: equippedLocation.y
@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
       propertyPath: equippedLocation.z
-      value: 0.08
+      value: -0.06
       objectReference: {fileID: 0}
     - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
       propertyPath: equippedRotation.w
@@ -86,15 +86,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
       propertyPath: equippedRotation.x
-      value: 19
+      value: 2.28
       objectReference: {fileID: 0}
     - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
       propertyPath: equippedRotation.y
-      value: 112
+      value: 131
       objectReference: {fileID: 0}
     - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
       propertyPath: equippedRotation.z
-      value: 260
+      value: 287
       objectReference: {fileID: 0}
     - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
       propertyPath: secondaryEquipPoint

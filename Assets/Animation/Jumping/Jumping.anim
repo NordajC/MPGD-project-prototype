@@ -40701,17 +40701,17 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.51666665
+  - time: 0.083333336
     functionName: JumpForce
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: e11091c53a261eb4fb8089dbfc7b5fa2, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.65
+  - time: 0.5
     functionName: Jumped
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 11500000, guid: e11091c53a261eb4fb8089dbfc7b5fa2, type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
