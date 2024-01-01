@@ -22,6 +22,8 @@ public class WeaponryItem : ItemTemplate
     public float minDamageAmount;
     public float maxDamageAmount;
     public float defenceFactor; // For shield.
+    public int maxCombo = 4;
+    public float[] animationMoveToMultipliers;
 
     public void Awake()
     {
@@ -46,5 +48,10 @@ public class WeaponryItem : ItemTemplate
     public override AnimatorOverrideController getEquipOverride()
     {
         return overrideController;
+    }
+    
+    public override float[] getAnimationMoveToMultipliers()
+    {
+        return animationMoveToMultipliers;
     }
 }

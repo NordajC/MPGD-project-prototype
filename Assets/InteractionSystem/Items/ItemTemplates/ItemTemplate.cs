@@ -72,4 +72,10 @@ public abstract class ItemTemplate : ScriptableObject
     {
         return null;
     }
+
+    // Different attack animations have different ranges so need different move to factors.
+    public virtual float[] getAnimationMoveToMultipliers()
+    {
+        return null;
+    }
 }

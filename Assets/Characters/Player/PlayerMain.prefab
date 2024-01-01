@@ -2602,7 +2602,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1.5, z: 0.6}
+  m_Size: {x: 1, y: 1.5, z: 1.6}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5445778246108314084
 GameObject:
@@ -3626,6 +3626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMain: {fileID: 3632645971483741803}
+  animator: {fileID: 0}
   attackableLayers:
     serializedVersion: 2
     m_Bits: 2048
@@ -3633,6 +3634,9 @@ MonoBehaviour:
   maxCombo: 4
   animationTriggerName: attack
   animationIntegerName: attackCount
+  unarmedMinDamage: 8
+  unarmedMaxDamage: 10
+  doMinDistanceCheck: 0
   moveToEnemySpeed: 0.2
   hitDetection: {fileID: 8114125606547107622}
 --- !u!135 &6130331522462745167

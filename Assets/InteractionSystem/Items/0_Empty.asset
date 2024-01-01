@@ -22,3 +22,8 @@ MonoBehaviour:
   canUse: 0
   pickupPrefab: {fileID: 0}
   craftingRequirements: []
+  animationMoveToMultipliers:
+  - 1
+  - 1
+  - 1.5
+  - 1

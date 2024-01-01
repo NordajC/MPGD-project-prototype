@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using TMPro;
-using UnityEngine.InputSystem;
 
 // Enum used to determine where hit from.
 public enum HitBone
@@ -36,7 +35,7 @@ public class PlayerCombat : MonoBehaviour
 {
     [Header("Defaults")]
     public GameObject playerMain;
-    private Animator animator;
+    [HideInInspector] public Animator animator;
     public LayerMask attackableLayers;
     
     [Header("Combat system")]
@@ -50,6 +49,7 @@ public class PlayerCombat : MonoBehaviour
     public float unarmedMaxDamage = 10;
 
     [Header("Enemy detection")]
+    public bool doMinDistanceCheck;
     public float moveToEnemySpeed = 0.2f;
     private GameObject closestEnemy;
     public BoxCollider hitDetection;
@@ -59,36 +59,51 @@ public class PlayerCombat : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    void Update()
-    {
-    }
-
     public void OnAttack()
     {
-        closestEnemy = GetNearestEnemy(2);
-
-        if(closestEnemy != null && canAttack)
+        PlayerInventory playerInventory = GetComponent<PlayerInventory>();
+        WeaponryItem weaponryItem = playerInventory.playerWeaponPrimary.itemTemplate as WeaponryItem;
+        if(playerInventory.playerWeaponPrimary.itemTemplate.ItemId == 0 || weaponryItem.weaponType == WeaponType.Melee)
         {
-            Transform moveToPosition = closestEnemy.GetComponent<EnemyAi>().moveToPosition; // Gets the move to position based on the enemy.
-            Vector3 direction = moveToPosition.transform.position - playerMain.transform.position; // Gets unit direction between player and enemy.
-            direction.Normalize(); // Normalized as only direction needed, not magnitude.
-            float moveToFactor = closestEnemy.GetComponent<EnemyAi>().moveToFactor; // Different enemies may be different sizes so the move to closeness needs to be different.
-            Vector3 targetPosition = moveToPosition.transform.position + (direction * moveToFactor * -1); // Find final move to position.
+            closestEnemy = GetNearestEnemy(2);
             
-            // Only if player is above a certain distance from the enemy should they move to them.
-            if(Vector3.Distance(playerMain.transform.position, closestEnemy.transform.position) > closestEnemy.GetComponent<EnemyAi>().minMoveDistance)
+            if(GetComponent<PlayerInventory>().currentScreen == CurrentScreen.None)
             {
-                StartCoroutine(SmoothMoveTo(playerMain, targetPosition, moveToEnemySpeed));
+                if(closestEnemy != null && canAttack)
+                {
+                    Transform moveToPosition = closestEnemy.GetComponent<EnemyAi>().moveToPosition; // Gets the move to position based on the enemy.
+                    Vector3 direction = moveToPosition.transform.position - playerMain.transform.position; // Gets unit direction between player and enemy.
+                    direction.Normalize(); // Normalized as only direction needed, not magnitude.
+                    float moveToFactor = closestEnemy.GetComponent<EnemyAi>().moveToFactor; // Different enemies may be different sizes so the move to closeness needs to be different.
+                    float moveToFactorMultiplier = GetComponent<PlayerInventory>().playerWeaponPrimary.itemTemplate.getAnimationMoveToMultipliers()[attackCounter]; // Extra multiplier based on animation.
+                    Vector3 targetPosition = moveToPosition.transform.position + (direction * moveToFactor * moveToFactorMultiplier * -1); // Find final move to position.
+                    
+                    // Only if player is above a certain distance from the enemy should they move to them.
+                    if((Vector3.Distance(playerMain.transform.position, closestEnemy.transform.position) > closestEnemy.GetComponent<EnemyAi>().minMoveDistance && doMinDistanceCheck) || !doMinDistanceCheck)
+                    {
+                        StartCoroutine(SmoothMoveTo(playerMain, targetPosition, moveToEnemySpeed));
+                    }
+                    
+                    direction.y = 0f; // Zero out y before calling rotate coroutine.
+
+                    Quaternion targetRotation = Quaternion.LookRotation(direction); // Get the rotation for player to face the enemy.
+                    StartCoroutine(SmoothRotateTo(gameObject, targetRotation, moveToEnemySpeed));
+                }
+
+                if(canAttack)
+                {
+                    if(weaponryItem == null)
+                    {
+                        maxCombo = 4;
+                    } else {
+                        maxCombo = weaponryItem.maxCombo;
+                    }
+                    
+                    startAttack();
+                }
+                
             }
-            
-            direction.y = 0f; // Zero out y before calling rotate coroutine.
-
-            Quaternion targetRotation = Quaternion.LookRotation(direction); // Get the rotation for player to face the enemy.
-            StartCoroutine(SmoothRotateTo(gameObject, targetRotation, moveToEnemySpeed));
         }
-
-        if(canAttack)
-            startAttack();
     }
     
     public GameObject GetNearestEnemy(float traceRadius)
@@ -159,16 +174,12 @@ public class PlayerCombat : MonoBehaviour
     public void startAttack()
     {
         // Play attack animation.
-        animator.SetTrigger(animationTriggerName);
-        animator.SetInteger(animationIntegerName, attackCounter);
+        // animator.SetTrigger(animationTriggerName);
+        // animator.SetInteger(animationIntegerName, attackCounter);
+        animator.CrossFade("Attack" + (attackCounter + 1).ToString(), 0.1f);
         
         canAttack = false; // Attack disabled to prevent spam.
         movementStateManager.enabled = false; // Disable movement while attacking.
-        
-        attackCounter++; // After hit, increment attack counter for next combo.
-
-        if(attackCounter >= maxCombo)
-            resetCombo(); // Reset attack counter if all combo animations have been cycled through.
     }
 
     public void attackEvent(string eventData)
@@ -205,13 +216,15 @@ public class PlayerCombat : MonoBehaviour
     {
         // Called when next combo attack should be triggerable.
         canAttack = true;
-        movementStateManager.enabled = true;
+
     }
 
     public void resetCombo()
     {
         // Called when the combo should reset.
         attackCounter = 0;
+        resetAttack();
+        animator.SetTrigger("resetState");
         movementStateManager.enabled = true;
     }
 
@@ -254,11 +267,16 @@ public class PlayerCombat : MonoBehaviour
                 enemyAi.onHitReaction(heavyAttack, hitLocation, hitDirection, hitHeight, gameObject, damageAmount);
             }
         }
+        
+        attackCounter++; // After hit, increment attack counter for next combo.
+
+        if(attackCounter >= maxCombo)
+            resetCombo(); // Reset attack counter if all combo animations have been cycled through.
     }
 
     public float getDamageAmount(HitBone hitBone, bool heavyAttack)
     {
-        PlayerInventory playerInventory = GetComponent<PlayerInventory>();;
+        PlayerInventory playerInventory = GetComponent<PlayerInventory>();
         float dealDamage = 0f;
         float multiplier = 1f; // Multipliers for extra damage.
         if(playerInventory.playerWeaponPrimary.itemTemplate.ItemId == 0)

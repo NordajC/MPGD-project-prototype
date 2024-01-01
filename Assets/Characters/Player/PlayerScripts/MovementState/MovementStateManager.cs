@@ -101,24 +101,30 @@ public class MovementStateManager : MonoBehaviour
     {
         // Called when right mouse button pressed. Switches to aiming mode.
 
-        bool hasCameraInput = gameObject.GetComponent<AimStateManager>().enabled;
+        // bool hasCameraInput = gameObject.GetComponent<AimStateManager>().enabled;
         
-        // Can only aim if a ranged weapon is equipped.
-        PlayerInventory playerInventory = GetComponent<PlayerInventory>();
-        WeaponryItem weaponryItem = playerInventory.playerWeaponPrimary.itemTemplate as WeaponryItem;
-        bool isRangedWeapon = false;
-        if(weaponryItem != null)
-        {
-            isRangedWeapon = weaponryItem.weaponType == WeaponType.Ranged;
-        }
+        // // Can only aim if a ranged weapon is equipped.
+        // PlayerInventory playerInventory = GetComponent<PlayerInventory>();
+        // WeaponryItem weaponryItem = playerInventory.playerWeaponPrimary.itemTemplate as WeaponryItem;
+        // bool isRangedWeapon = false;
+        // if(weaponryItem != null)
+        // {
+        //     isRangedWeapon = weaponryItem.weaponType == WeaponType.Ranged;
+        // }
         
-        if(value.isPressed && canAim && hasCameraInput && isRangedWeapon)
+        // if(value.isPressed && canAim && hasCameraInput && isRangedWeapon)
+        // {
+        //     rotationMode = RotationMode.Aiming;
+        //     aimCamera.SetActive(true); // Sets the aim camera to be active which has higher priority than the default. Smoothly switches.
+        // } else {
+        //     rotationMode = RotationMode.Default;
+        //     aimCamera.SetActive(false);
+        // }
+        if(value.isPressed)
         {
-            rotationMode = RotationMode.Aiming;
-            aimCamera.SetActive(true); // Sets the aim camera to be active which has higher priority than the default. Smoothly switches.
+            Time.timeScale = 0.2f;
         } else {
-            rotationMode = RotationMode.Default;
-            aimCamera.SetActive(false);
+            Time.timeScale = 1f;
         }
     }
 

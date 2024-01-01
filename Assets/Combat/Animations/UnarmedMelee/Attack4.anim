@@ -32148,14 +32148,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 1
   m_Events:
-  - time: 0.23333333
+  - time: 0.2
     functionName: attackEvent
     data: PT_RightHand,False,Upper
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.3
+  - time: 0.26666668
     functionName: resetAttack
     data: 
     objectReferenceParameter: {fileID: 0}

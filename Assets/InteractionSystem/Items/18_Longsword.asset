@@ -34,3 +34,5 @@ MonoBehaviour:
   minDamageAmount: 30
   maxDamageAmount: 50
   defenceFactor: 0
+  maxCombo: 4
+  animationMoveToMultipliers: []

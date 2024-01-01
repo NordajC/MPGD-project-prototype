@@ -5,8 +5,16 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Default Item", menuName = "Inventory/Item/Default")]
 public class DefaultItem : ItemTemplate
 {
+    [Header("Animations")]
+    public float[] animationMoveToMultipliers;
+    
     public void Awake()
     {
         ItemType = Type.Default;
+    }
+    
+    public override float[] getAnimationMoveToMultipliers()
+    {
+        return animationMoveToMultipliers;
     }
 }
