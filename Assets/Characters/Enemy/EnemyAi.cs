@@ -1,11 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.Rendering.RayTracingAccelerationStructure;
 
 public class EnemyAi : MonoBehaviour, ICombat
 {
+    //delete this if not working
+    public enum Difficulty
+    {
+        Easy,
+        Medium,
+        Hard
+    }
+
     [Header("References")]
     public NavMeshAgent agent;
     private Transform player;
@@ -32,7 +42,7 @@ public class EnemyAi : MonoBehaviour, ICombat
     
     [Header("Health")]
     public float maxHealth = 100;
-    private float currentHealth;
+    public float currentHealth;
     public StatsBar HPBar;
     private Transform cameraRotation;
 
@@ -41,6 +51,43 @@ public class EnemyAi : MonoBehaviour, ICombat
 
     [Header("Effects")]
     private GameObject hitParticle;
+
+    //delete difficulty settings if not working
+    [System.Serializable]
+    public class DifficultySettings
+    {
+        public float maxHealth;
+        public int attackDamage;
+        public float sightRange;
+        public float attackSpeed;
+        // Add other relevant parameters here
+    }
+
+    [Header("Difficulty Settings")]
+    public Difficulty currentDifficulty;
+    public DifficultySettings easySettings;
+    public DifficultySettings mediumSettings;
+    public DifficultySettings hardSettings;
+
+    [Header("Idle Behaviour")]
+    public float idleTime = 2f; // Time for which the enemy idles
+    private bool isIdling = false;
+    private float idleTimer = 0;
+
+
+    //delete this start function if not working
+    void Start()
+    {
+        player = GameObject.FindWithTag("Player").transform;
+        agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        cameraRotation = Camera.main.transform;
+
+        ApplyDifficulty(currentDifficulty); // Apply difficulty settings
+        currentHealth = maxHealth; // Initialize current health based on difficulty
+        HPBar.maxValue = maxHealth;
+    }
+
 
     private void Awake()
     {
@@ -82,27 +129,53 @@ public class EnemyAi : MonoBehaviour, ICombat
             Patrolling();
             // HPBar.SetActive(false);
         }
+
+        float speed = agent.velocity.magnitude;
+        animator.SetFloat("magnitude", speed);
     }
 
     private void Patrolling()
     {
-        // Select patrol state and destination.
-        if (!walkPointSet)
-            SearchWalkPoint();
+        if (isIdling)
+        {
+            animator.SetBool("IsIdling", true);
+            // Increase the idle timer
+            idleTimer += Time.deltaTime;
 
-        if (walkPointSet)
-            agent.SetDestination(walkPoint);
+            // Check if idle time is over
+            if (idleTimer >= idleTime)
+            {
+                isIdling = false;
+                idleTimer = 0;
+            }
+        }
+        else
+        {
+            animator.SetBool("IsIdling", false);
+            // Select patrol state and destination
+            if (!walkPointSet)
+                SearchWalkPoint();
 
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;
-        if (distanceToWalkPoint.magnitude < 1f)
-            walkPointSet = false;
+            if (walkPointSet)
+                agent.SetDestination(walkPoint);
+
+            Vector3 distanceToWalkPoint = transform.position - walkPoint;
+
+            // Check if the enemy has reached near the walk point
+            if (distanceToWalkPoint.magnitude < 1f)
+            {
+                walkPointSet = false;
+                isIdling = true; // Start idling
+            }
+        }
     }
+
 
     private void SearchWalkPoint()
     {
         // Random floats set for random move to destination.
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);
-        float randomX = Random.Range(-walkPointRange, walkPointRange);
+        float randomZ = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
+        float randomX = UnityEngine.Random.Range(-walkPointRange, walkPointRange);
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
@@ -120,19 +193,22 @@ public class EnemyAi : MonoBehaviour, ICombat
     private void AttackPlayer()
     {
         // Stop the enemy from moving while attacking
+        
         agent.SetDestination(transform.position);
+        agent.isStopped = true;
 
         // Ensure the enemy is facing the player when attacking
         transform.LookAt(player);
 
         if (!alreadyAttacked)
         {
-            PlayerAttributes playerHealth = player.GetComponent<PlayerAttributes>();
+            //Deal damage
+/*            PlayerAttributes playerHealth = player.GetComponent<PlayerAttributes>();
             if (playerHealth != null)
-                playerHealth.adjustHealth(attackDamage, false);
+                playerHealth.adjustHealth(attackDamage, false);*/
 
             // If there's an animator, you'd play your attack animation here.
-            // animator.SetTrigger("Attack");
+            animator.SetTrigger("Attack");
 
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
@@ -189,4 +265,42 @@ public class EnemyAi : MonoBehaviour, ICombat
 
         updateHealth(damage);
     }
+
+    public void DealDamageToPlayer()
+    {
+        if (playerInAttackRange) {
+            PlayerAttributes playerHealth = player.GetComponent<PlayerAttributes>();
+            if (playerHealth != null)
+                playerHealth.adjustHealth(attackDamage, false);
+        }
+
+    }
+
+    //delete this if not working
+    private void ApplyDifficulty(Difficulty difficulty)
+    {
+        DifficultySettings settings;
+        switch (difficulty)
+        {
+            case Difficulty.Easy:
+                settings = easySettings;
+                break;
+            case Difficulty.Medium:
+                settings = mediumSettings;
+                break;
+            case Difficulty.Hard:
+                settings = hardSettings;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        maxHealth = settings.maxHealth;
+        attackDamage = settings.attackDamage;
+        sightRange = settings.sightRange;
+        timeBetweenAttacks = settings.attackSpeed;
+
+        // Apply other settings as necessary
+    }
 }
+
