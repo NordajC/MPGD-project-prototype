@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56afa41a62497754da667d06ad6aa42f, type: 3}
+  m_Name: 16_StoneClub
+  m_EditorClassIdentifier: 
+  ItemId: 16
+  ItemName: Stone Club
+  ItemType: 4
+  ItemIcon: {fileID: -977237143, guid: e7cea53c0cd0d114bb4814faf69bf9fd, type: 3}
+  ItemDescription: Weapon to slay your enemies. Not the strongest.
+  IsStackable: 0
+  maxItemCount: 1
+  canUse: 1
+  pickupPrefab: {fileID: 8735415533478434179, guid: d6a860e32d644b742b36da52ba4edc4a, type: 3}
+  craftingRequirements:
+  - item: {fileID: 11400000, guid: c6abc9e539e43e04882afb0f93959aec, type: 2}
+    requiredAmount: 2
+  - item: {fileID: 11400000, guid: a30226687d2993f43b26acbf1c37942b, type: 2}
+    requiredAmount: 8
+  weaponType: 0
+  equipWeapon: {fileID: 6027967466017808991, guid: 4e87e17ce11b8ca439ad7698364d91c1, type: 3}
+  overrideController: {fileID: 22100000, guid: 714e9a6457c20a44d86ee537db8222ce, type: 2}
+  minDamageAmount: 10
+  maxDamageAmount: 15
+  defenceFactor: 0
+  maxCombo: 7
+  animationMoveToMultipliers:
+  - 1
+  - 1.5
+  - 1.2
+  - 1
