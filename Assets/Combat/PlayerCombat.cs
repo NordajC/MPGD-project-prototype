@@ -70,6 +70,7 @@ public class PlayerCombat : MonoBehaviour
         if(playerInventory.playerWeaponPrimary.itemTemplate.ItemId == 0 || weaponryItem.weaponType == WeaponType.Melee)
         {
             closestEnemy = GetNearestEnemy(2);
+            // Debug.Log(closestEnemy);
             
             if(GetComponent<PlayerInventory>().currentScreen == CurrentScreen.None)
             {

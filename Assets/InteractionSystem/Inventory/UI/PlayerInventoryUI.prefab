@@ -6292,7 +6292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6621401681003325496}
   - component: {fileID: 3597289023489256417}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: DOF_PostProcessVolume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
