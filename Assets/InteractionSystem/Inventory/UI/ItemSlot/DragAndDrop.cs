@@ -24,10 +24,15 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
     [Header("Button visuals")]
     public Image darkenImage;
 
+    [Header("Sounds")]
+    private AudioSource audioSource;
+    public AudioClip itemSelectedSound;
+
     public void Start()
     {
         playerRef = GameObject.FindWithTag("Player");
         playerInventoryRef = playerRef.GetComponent<PlayerInventory>();
+        audioSource = GetComponent<AudioSource>();
         itemInteraction = playerInventoryRef.InventoryScreen.GetComponent<ItemInteraction>();
         
         // By default, each button should not be interactable and not darkened
@@ -76,6 +81,8 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
                     itemInteraction.setItemInteraction(playerInventoryRef.playerInventory[dragItemPosition].itemTemplate, dragItemPosition, true);
 
                 playerInventoryRef.splitStack = checkSplit && isInventoryItem && item.itemTemplate.ItemId != 0 && item.itemAmount > 1;
+                
+                Manager.playSound(ref audioSource, itemSelectedSound, 0.1f);
                     
             } else {
                 if(!checkSplit)
@@ -112,6 +119,8 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
                         itemInteraction.setItemInteraction(occupiedBy.itemTemplate, dragItemPosition, false);
                         itemInteraction.setEquipState(UseState.Unequip);
                         playerInventoryRef.DropFromSlotName = eventData.pointerEnter.transform.parent.transform.name;
+                        
+                        Manager.playSound(ref audioSource, itemSelectedSound, 0.1f);
                     }
                 }
             }

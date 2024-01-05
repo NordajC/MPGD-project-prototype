@@ -54,7 +54,9 @@ MonoBehaviour:
 
     <color="orange">F</color>
     | Inspect item'
+  interactBar: {fileID: 0}
   outline: {fileID: 0}
+  playerRef: {fileID: 0}
   item: {fileID: 11400000, guid: e8d2993c3f6cc8c48a378be36215de29, type: 2}
   inspectScreen: {fileID: 3392345841185919549, guid: a4efd766ba5ea884abc4d70616f518c6, type: 3}
   inspectFOV: 12
@@ -176,7 +178,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7423454878204681389
 MonoBehaviour:

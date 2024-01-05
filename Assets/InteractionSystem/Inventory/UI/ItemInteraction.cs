@@ -56,9 +56,15 @@ public class ItemInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler
     public float rotateSpeed = 0.1f;
     private Vector3 lastMousePosition;
 
+    [Header("Sounds")]
+    private AudioSource audioSource;
+    public AudioClip inventoryOpen;
+    public AudioClip inventoryClose;
+
     public void Start()
     {
         playerRef = GameObject.FindWithTag("Player");
+        audioSource = GetComponent<AudioSource>();
         GameObject.FindWithTag("InventoryScreen").GetComponent<CanvasGroup>().alpha = 0f; // Inventory screen disabled by default.
         
         // Add a listener to the drop button so it can be managed in script.
@@ -66,6 +72,11 @@ public class ItemInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler
         dropButton.onClick.AddListener(onDropPressed);
     }
 
+    public void onInventoryToggle(bool opened)
+    {
+        Manager.playSound(ref audioSource, opened ? inventoryOpen : inventoryClose, 0.2f);
+    }
+    
     public void Update()
     {
         // If an item is selected, then the outline position is moved to the selected slots.

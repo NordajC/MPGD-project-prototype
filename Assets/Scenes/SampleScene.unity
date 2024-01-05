@@ -17415,6 +17415,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.68248636
       objectReference: {fileID: 0}
+    - target: {fileID: 759984708237269306, guid: 646a07391bd45974ea30db50bd02034b, type: 3}
+      propertyPath: m_Name
+      value: Male_Weapon_Ammo_Left
+      objectReference: {fileID: 0}
     - target: {fileID: 903260201963028772, guid: 646a07391bd45974ea30db50bd02034b, type: 3}
       propertyPath: m_Enabled
       value: 0

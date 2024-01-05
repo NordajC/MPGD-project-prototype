@@ -330,7 +330,7 @@ public class PlayerCombat : MonoBehaviour
     public void placeArrowVisual()
     {
         // Places the arrow in the crossbow chamber.
-        Destroy(GameObject.Find("Male_Weapon_Ammo_Left ").transform.GetChild(0).gameObject);
+        Destroy(GameObject.Find("Male_Weapon_Ammo_Left").transform.GetChild(0).gameObject);
         RangedWeapon rangedWeapon = (RangedWeapon)GetComponent<PlayerInventory>().equippedPrimary;
         rangedWeapon.toggleAmmoVisibility(true);
         GetComponent<PlayerInventory>().reduceAmmo();

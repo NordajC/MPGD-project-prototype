@@ -22,10 +22,17 @@ public class RangedWeapon : Weapon
     private bool shooting = false;
     public GameObject arrowPrefab;
     public Transform projectileSpawnPoint;
+    
+    [Header("Sounds")]
+    private AudioSource audioSource;
+    public AudioClip reloadSound;
+    public AudioClip[] fireSounds;
+    
 
     void Start()
     {
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         playerInventory = GameObject.FindWithTag("Player").GetComponent<PlayerInventory>();
         playerCombat = GameObject.FindWithTag("Player").GetComponent<PlayerCombat>();
     }
@@ -66,6 +73,8 @@ public class RangedWeapon : Weapon
             GameObject.FindWithTag("Player").GetComponent<Animator>().CrossFade("Reloading", 0.1f);
             GameObject.FindWithTag("Player").GetComponent<PlayerCombat>().canAttack = false;
             reloading = true;
+            
+            Manager.playSound(ref audioSource, reloadSound, 0.2f);
         }
     }
 
@@ -96,6 +105,7 @@ public class RangedWeapon : Weapon
             
             shooting = true;
             
+            Manager.playRandomSound(ref audioSource, fireSounds, 0.2f);
         }
     }
 }

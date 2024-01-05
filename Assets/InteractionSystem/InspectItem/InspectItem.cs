@@ -145,6 +145,7 @@ public class InspectItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
         // To close inspect screen if button pressed.
         playerInventory.currentScreen = CurrentScreen.None;
         playerInventory.disableInput(false, false);
+        GameObject.FindWithTag("Player").GetComponent<Animator>().SetTrigger("resetState");
         Destroy(gameObject);
     }
 

@@ -213,7 +213,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6208170725536569412}
   m_Layer: 0
-  m_Name: 'Male_Weapon_Ammo_Left '
+  m_Name: Male_Weapon_Ammo_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

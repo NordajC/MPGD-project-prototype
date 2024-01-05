@@ -79,7 +79,7 @@ public abstract class BaseInteraction : MonoBehaviour, IInteractable
         Vector3 targetPosition = moveToPosition.transform.position + (direction * moveToFactor);
 
         StartCoroutine(SmoothMoveTo(GameObject.Find("PlayerMain"), targetPosition, 0.2f));
-        StartCoroutine(SmoothRotateTo(GameObject.FindWithTag("Player"), Quaternion.LookRotation(direction), 0.2f));
+        StartCoroutine(SmoothRotateTo(playerRef, Quaternion.LookRotation(direction), 0.2f));
     }
     
     public void interactionAnimation(string animationName, string progressText)

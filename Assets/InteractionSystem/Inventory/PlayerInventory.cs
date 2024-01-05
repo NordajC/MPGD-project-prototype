@@ -298,7 +298,6 @@ public class PlayerInventory : MonoBehaviour
             if(equippedWeaponType == EquippedWeaponType.Secondary && playerWeaponPrimary.itemTemplate.ItemId == 0 || equippedWeaponType == EquippedWeaponType.Shield)
             {
                 iconRef.SetActive(false);
-                Debug.Log("Test");
             } else if (equippedWeaponType == EquippedWeaponType.Secondary) {
                 iconRef.SetActive(true);
             }
@@ -488,6 +487,7 @@ public class PlayerInventory : MonoBehaviour
             // Set the default values of the items in the interact panel. This is so no data is saved on what was clicked last when inventory is closed.
             interactSection.SetDefault();
             interactSection.disableOutline();
+            interactSection.onInventoryToggle(inventoryOpen);
         }
     }
 

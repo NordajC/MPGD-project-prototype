@@ -32,6 +32,15 @@ public class PickupItem : BaseInteraction
         // Initiate inspect item.
         if(playerInventory.currentScreen == CurrentScreen.None)
         {
+            if(transform.position.y - playerRef.transform.position.y < 0.45f)
+            {
+                Vector3 direction = transform.position - playerRef.transform.position;
+                direction.Normalize();
+                direction.y = 0f;
+                playerRef.GetComponent<Animator>().CrossFade("Kneeling", 0.1f);
+                StartCoroutine(SmoothRotateTo(playerRef, Quaternion.LookRotation(direction), 0.2f));
+            }
+
             var inspect = Instantiate(inspectScreen);
             inspect.GetComponent<InspectItem>().initialise(item, inspectFOV);
 
