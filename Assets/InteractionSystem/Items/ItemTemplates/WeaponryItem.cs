@@ -17,13 +17,14 @@ public class WeaponryItem : ItemTemplate
     public WeaponType weaponType;
     public GameObject equipWeapon;
     public AnimatorOverrideController overrideController; // So that the animations can be changed based on current weapon.
+    public ItemTemplate weaponAmmo;
     
+    [Header("Weapon attack")]
     // Min and max damage variables used so there is chance of critical hit and not the same damage amount each hit.
     public float minDamageAmount;
     public float maxDamageAmount;
     public float defenceFactor; // For shield.
     public int maxCombo = 4;
-    public float[] animationMoveToMultipliers;
 
     public void Awake()
     {
@@ -48,10 +49,5 @@ public class WeaponryItem : ItemTemplate
     public override AnimatorOverrideController getEquipOverride()
     {
         return overrideController;
-    }
-    
-    public override float[] getAnimationMoveToMultipliers()
-    {
-        return animationMoveToMultipliers;
     }
 }

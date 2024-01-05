@@ -101,6 +101,7 @@ public class ItemInteraction : MonoBehaviour, IBeginDragHandler, IDragHandler
         SetInfo(interactItem.ItemName, interactItem.ItemIcon, interactItem.ItemDescription, interactItem.canUse, useState);
         
         selectedInventorySlot = itemPosition;
+        
         if(itemSelected)
         {
             selectedOutline.SetActive(true);

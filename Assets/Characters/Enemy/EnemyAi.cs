@@ -67,21 +67,21 @@ public class EnemyAi : MonoBehaviour, ICombat
             Patrolling();
         if (playerInSightRange && !playerInAttackRange)
             ChasePlayer();
-        if (playerInSightRange && playerInAttackRange)
-            AttackPlayer();
+        // if (playerInSightRange && playerInAttackRange)
+        //     AttackPlayer();
 
         // Chase player if in sight.
-        if (playerInSightRange)
-        {   
-            ChasePlayer();
+        // if (playerInSightRange)
+        // {   
+        //     ChasePlayer();
             
-            // HPBar.SetActive(true); // Only show enemys HP bar if locked on to player.
-            // HPBar.transform.LookAt(cameraRotation);
-            // HPBar.transform.Rotate(0f, 180f, 0f);
-        } else {
-            Patrolling();
-            // HPBar.SetActive(false);
-        }
+        //     HPBar.gameObject.SetActive(true); // Only show enemys HP bar if locked on to player.
+        //     HPBar.gameObject.transform.LookAt(cameraRotation);
+        //     HPBar.gameObject.transform.Rotate(0f, 180f, 0f);
+        // } else {
+        //     Patrolling();
+        //     HPBar.SetActive(false);
+        // }
     }
 
     private void Patrolling()

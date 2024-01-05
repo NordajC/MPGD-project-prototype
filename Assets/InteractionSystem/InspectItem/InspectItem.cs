@@ -135,12 +135,14 @@ public class InspectItem : MonoBehaviour, IBeginDragHandler, IEndDragHandler, ID
 
     public void collectItem()
     {
+        // To collect item if button pressed.
         GameObject.FindWithTag("Player").GetComponent<Interaction>().closestItem.onInteractPrimary();
         cancelInspect();
     }
 
     public void cancelInspect()
     {
+        // To close inspect screen if button pressed.
         playerInventory.currentScreen = CurrentScreen.None;
         playerInventory.disableInput(false, false);
         Destroy(gameObject);

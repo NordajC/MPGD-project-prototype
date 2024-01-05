@@ -7,6 +7,7 @@ public class CrouchState : MovementBaseState
     public override void EnterState(MovementStateManager movement)
     {
         movement.anim.SetBool("Crouching", true);
+        movement.cameraFollowPos.localPosition = new Vector3(0, movement.crouchHeight, 0);
     }
 
     public override void UpdateState(MovementStateManager movement)
@@ -40,6 +41,6 @@ public class CrouchState : MovementBaseState
     {
         movement.anim.SetBool("Crouching", false);
         movement.SwitchState(state);
-
+        movement.cameraFollowPos.localPosition = new Vector3(0, movement.defaultHeight, 0);
     }
 }

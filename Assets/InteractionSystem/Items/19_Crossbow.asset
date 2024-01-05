@@ -34,6 +34,8 @@ MonoBehaviour:
   weaponType: 1
   equipWeapon: {fileID: 6027967466017808991, guid: 7bc74981954bf324eada1a38e7d539d7, type: 3}
   overrideController: {fileID: 22100000, guid: 4be265ce6ff8f2e4391791423001a8fd, type: 2}
+  weaponAmmo: {fileID: 11400000, guid: 65fbc7229695d6249b7d02ea90948f4f, type: 2}
   minDamageAmount: 30
   maxDamageAmount: 40
   defenceFactor: 0
+  maxCombo: 4

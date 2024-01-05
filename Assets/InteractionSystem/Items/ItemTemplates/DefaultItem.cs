@@ -12,9 +12,4 @@ public class DefaultItem : ItemTemplate
     {
         ItemType = Type.Default;
     }
-    
-    public override float[] getAnimationMoveToMultipliers()
-    {
-        return animationMoveToMultipliers;
-    }
 }

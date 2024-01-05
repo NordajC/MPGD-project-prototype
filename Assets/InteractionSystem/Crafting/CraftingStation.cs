@@ -14,4 +14,8 @@ public class CraftingStation : BaseInteraction
     public override void onInteractSecondary()
     {
     }
+
+    public override void onInteractionEnd()
+    {
+    }
 }

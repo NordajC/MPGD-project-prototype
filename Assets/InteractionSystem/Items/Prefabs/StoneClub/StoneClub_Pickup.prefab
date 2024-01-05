@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 2776932182412438817, guid: 000467ea185af4147a6539ea48cde268, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: c54633aa16156234b842228c2ed6c626, type: 2}
+      objectReference: {fileID: 11400000, guid: fe29883fec9fdb84e8936b68b6248d3c, type: 2}
     - target: {fileID: 2776932182412438817, guid: 000467ea185af4147a6539ea48cde268, type: 3}
       propertyPath: inspectFOV
       value: 29

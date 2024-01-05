@@ -22,8 +22,8 @@ public class MovementStateManager : MonoBehaviour
     
     [Header("Jump/Air movement")]
     public float airSpeed = 1.5f;
-    [SerializeField] float gravity = -9.81f;
-    [SerializeField] float jumpForce = 10;
+    private float gravity = -9.81f;
+    [SerializeField] float jumpForce = 1;
     [HideInInspector] public bool jumped;
     Vector3 velocity;
 
@@ -46,10 +46,13 @@ public class MovementStateManager : MonoBehaviour
     public RunState run = new RunState();
     public JumpState jump = new JumpState();
 
-    [Header("Aiming")]
+    [Header("Camera")]
     public RotationMode rotationMode;
     public GameObject aimCamera;
     public bool canAim;
+    public Transform cameraFollowPos;
+    public float defaultHeight = 1.4f;
+    public float crouchHeight = 1.1f;
 
     [Header("Animations")]
     [HideInInspector] public Animator anim;
@@ -76,6 +79,7 @@ public class MovementStateManager : MonoBehaviour
         } else {
             hzInput = Mathf.Lerp(hzInput, 0f, 5f * Time.deltaTime);
             vInput = Mathf.Lerp(vInput, 0f, 5f * Time.deltaTime);
+            magnitude = Mathf.MoveTowards(magnitude, 0, 5f * Time.deltaTime);
         }    
 
         Gravity();
@@ -85,6 +89,7 @@ public class MovementStateManager : MonoBehaviour
         anim.SetFloat("hzInput", hzInput);
         anim.SetFloat("vInput", vInput);
         anim.SetFloat("RotationMode", (int)rotationMode);
+        anim.SetBool("aiming", rotationMode == RotationMode.Aiming);
         anim.SetFloat("magnitude", magnitude);
 
         currentState.UpdateState(this); // Setting the current movement state.
@@ -101,31 +106,31 @@ public class MovementStateManager : MonoBehaviour
     {
         // Called when right mouse button pressed. Switches to aiming mode.
 
-        // bool hasCameraInput = gameObject.GetComponent<AimStateManager>().enabled;
+        bool hasCameraInput = gameObject.GetComponent<AimStateManager>().enabled;
         
-        // // Can only aim if a ranged weapon is equipped.
-        // PlayerInventory playerInventory = GetComponent<PlayerInventory>();
-        // WeaponryItem weaponryItem = playerInventory.playerWeaponPrimary.itemTemplate as WeaponryItem;
-        // bool isRangedWeapon = false;
-        // if(weaponryItem != null)
-        // {
-        //     isRangedWeapon = weaponryItem.weaponType == WeaponType.Ranged;
-        // }
+        // Can only aim if a ranged weapon is equipped.
+        PlayerInventory playerInventory = GetComponent<PlayerInventory>();
+        WeaponryItem weaponryItem = playerInventory.playerWeaponPrimary.itemTemplate as WeaponryItem;
+        bool isRangedWeapon = false;
+        if(weaponryItem != null)
+            isRangedWeapon = weaponryItem.weaponType == WeaponType.Ranged;
         
-        // if(value.isPressed && canAim && hasCameraInput && isRangedWeapon)
-        // {
-        //     rotationMode = RotationMode.Aiming;
-        //     aimCamera.SetActive(true); // Sets the aim camera to be active which has higher priority than the default. Smoothly switches.
-        // } else {
-        //     rotationMode = RotationMode.Default;
-        //     aimCamera.SetActive(false);
-        // }
-        if(value.isPressed)
+        if(value.isPressed && canAim && hasCameraInput && isRangedWeapon)
         {
-            Time.timeScale = 0.2f;
+            rotationMode = RotationMode.Aiming;
+            aimCamera.SetActive(true); // Sets the aim camera to be active which has higher priority than the default. Smoothly switches.
+            RangedWeapon rangedWeapon = (RangedWeapon)GetComponent<PlayerInventory>().equippedPrimary;
+            rangedWeapon.tryReload();
+        } else if(!isRangedWeapon && playerInventory.playerShield.itemTemplate.ItemId != 0) {
+            GetComponent<PlayerCombat>().isBlocking = true;
         } else {
-            Time.timeScale = 1f;
+            rotationMode = RotationMode.Default;
+            aimCamera.SetActive(false);
+
+            GetComponent<PlayerCombat>().isBlocking = false;
         }
+        
+        anim.SetBool("blocking", GetComponent<PlayerCombat>().isBlocking);
     }
 
     void GetDirectionAndMove()
@@ -134,35 +139,30 @@ public class MovementStateManager : MonoBehaviour
         hzInput = Input.GetAxis("Horizontal");
         vInput = Input.GetAxis("Vertical");
         
-        Vector3 airDir = Vector3.zero;
+        // Sets rotation speed variable based on if grounded or not.
+        float rotationSpeed = IsGrounded() ? 15f : 1f;
+        
+        // Forward and right components of camera used so player moves in that direction.
+        Vector3 cameraForward = Camera.main.transform.forward;
+        cameraForward.y = 0;
+        Vector3 cameraRight = Camera.main.transform.right;
+        cameraRight.y = 0;
 
-        // Sets direction variable based on if grounded or not.
-        if (!IsGrounded())
-        {
-            airDir = transform.forward * vInput + transform.right * hzInput;
-        } else {
-            // Forward and right components of camera used so player moves in that direction.
-            Vector3 cameraForward = Camera.main.transform.forward;
-            cameraForward.y = 0;
-            Vector3 cameraRight = Camera.main.transform.right;
-            cameraRight.y = 0;
+        dir = cameraForward * vInput + cameraRight * hzInput; // Combines horizontal and vertical components.
 
-            dir = cameraForward * vInput + cameraRight * hzInput; // Combines horizontal and vertical components.
-        }
-
-        controller.Move((dir.normalized * currentMoveSpeed + airDir.normalized * airSpeed) * Time.deltaTime); // Moves the player.
+        controller.Move((dir.normalized * currentMoveSpeed) * Time.deltaTime); // Moves the player.
         
         if(rotationMode == RotationMode.Default && dir != Vector3.zero)
         {
             // If rotation mode is default, rotate to face movement direction.
             var targetRotation = Quaternion.LookRotation(dir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         } else if(rotationMode == RotationMode.Aiming) {
             // If rotation mode is aiming, rotate to face camera forward direction so player rotates with mouse movement.
             var targetRotation = Quaternion.LookRotation(Camera.main.transform.forward);
             targetRotation.x = 0;
             targetRotation.z = 0;
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 15f);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSpeed);
         }        
     }
 
@@ -196,7 +196,7 @@ public class MovementStateManager : MonoBehaviour
     void Falling()=>anim.SetBool("Falling", !IsGrounded());
 
     // Sets velocity for jumping. Only y component needed for vertical change.
-    public void JumpForce() => velocity.y += jumpForce;
+    public void JumpForce() => velocity.y += Mathf.Sqrt(jumpForce * -3.0f * gravity);
 
     // Sets jumped variable to true when play jumps.
     public void Jumped() => jumped = true;

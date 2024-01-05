@@ -42,11 +42,12 @@ public class PlayerCombat : MonoBehaviour
     public MovementStateManager movementStateManager;
     private int attackCounter = 0;
     public int maxCombo = 4;
-    private bool canAttack = true;
+    public bool canAttack = true;
     public string animationTriggerName;
     public string animationIntegerName;
     public float unarmedMinDamage = 8;
     public float unarmedMaxDamage = 10;
+    public bool isBlocking = false;
 
     [Header("Enemy detection")]
     public bool doMinDistanceCheck;
@@ -63,33 +64,15 @@ public class PlayerCombat : MonoBehaviour
     {
         PlayerInventory playerInventory = GetComponent<PlayerInventory>();
         WeaponryItem weaponryItem = playerInventory.playerWeaponPrimary.itemTemplate as WeaponryItem;
+
+        MovementStateManager movementStateManager = GetComponent<MovementStateManager>();
+
         if(playerInventory.playerWeaponPrimary.itemTemplate.ItemId == 0 || weaponryItem.weaponType == WeaponType.Melee)
         {
             closestEnemy = GetNearestEnemy(2);
             
             if(GetComponent<PlayerInventory>().currentScreen == CurrentScreen.None)
             {
-                if(closestEnemy != null && canAttack)
-                {
-                    Transform moveToPosition = closestEnemy.GetComponent<EnemyAi>().moveToPosition; // Gets the move to position based on the enemy.
-                    Vector3 direction = moveToPosition.transform.position - playerMain.transform.position; // Gets unit direction between player and enemy.
-                    direction.Normalize(); // Normalized as only direction needed, not magnitude.
-                    float moveToFactor = closestEnemy.GetComponent<EnemyAi>().moveToFactor; // Different enemies may be different sizes so the move to closeness needs to be different.
-                    float moveToFactorMultiplier = GetComponent<PlayerInventory>().playerWeaponPrimary.itemTemplate.getAnimationMoveToMultipliers()[attackCounter]; // Extra multiplier based on animation.
-                    Vector3 targetPosition = moveToPosition.transform.position + (direction * moveToFactor * moveToFactorMultiplier * -1); // Find final move to position.
-                    
-                    // Only if player is above a certain distance from the enemy should they move to them.
-                    if((Vector3.Distance(playerMain.transform.position, closestEnemy.transform.position) > closestEnemy.GetComponent<EnemyAi>().minMoveDistance && doMinDistanceCheck) || !doMinDistanceCheck)
-                    {
-                        StartCoroutine(SmoothMoveTo(playerMain, targetPosition, moveToEnemySpeed));
-                    }
-                    
-                    direction.y = 0f; // Zero out y before calling rotate coroutine.
-
-                    Quaternion targetRotation = Quaternion.LookRotation(direction); // Get the rotation for player to face the enemy.
-                    StartCoroutine(SmoothRotateTo(gameObject, targetRotation, moveToEnemySpeed));
-                }
-
                 if(canAttack)
                 {
                     if(weaponryItem == null)
@@ -101,11 +84,40 @@ public class PlayerCombat : MonoBehaviour
                     
                     startAttack();
                 }
-                
             }
+        } else if (playerInventory.playerWeaponPrimary.itemTemplate.ItemId == 0 || weaponryItem.weaponType == WeaponType.Ranged && movementStateManager.rotationMode == RotationMode.Aiming) {
+            RangedWeapon rangedWeapon = (RangedWeapon)GetComponent<PlayerInventory>().equippedPrimary;
+            rangedWeapon.tryShoot();
         }
     }
-    
+     
+    public void moveTowardsEnemy(float moveToFactorMultiplier)
+    {
+        // Parameter is extra multiplier based on animation.
+        if(closestEnemy != null)
+        {
+            Transform moveToPosition = closestEnemy.GetComponent<EnemyAi>().moveToPosition; // Gets the move to position based on the enemy.
+            Vector3 direction = moveToPosition.transform.position - playerMain.transform.position; // Gets unit direction between player and enemy.
+            direction.Normalize(); // Normalized as only direction needed, not magnitude.
+            float moveToFactor = closestEnemy.GetComponent<EnemyAi>().moveToFactor; // Different enemies may be different sizes so the move to closeness needs to be different.
+            Vector3 targetPosition = moveToPosition.transform.position + (direction * moveToFactor * moveToFactorMultiplier * -1); // Find final move to position.
+            
+            // Only if player is above a certain distance from the enemy should they move to them.
+            if((Vector3.Distance(playerMain.transform.position, closestEnemy.transform.position) > closestEnemy.GetComponent<EnemyAi>().minMoveDistance && doMinDistanceCheck) || !doMinDistanceCheck)
+            {
+                StartCoroutine(SmoothMoveTo(playerMain, targetPosition, moveToEnemySpeed));
+            }
+            
+            direction.y = 0f; // Zero out y before calling rotate coroutine.
+
+            Quaternion targetRotation = Quaternion.LookRotation(direction); // Get the rotation for player to face the enemy.
+            StartCoroutine(SmoothRotateTo(gameObject, targetRotation, moveToEnemySpeed));
+        }
+
+        // Scale hit detection box based on animation.
+        GameObject.Find("HitDetection").GetComponent<BoxCollider>().center = new Vector3(0f, 0f, moveToFactorMultiplier * 0.1f);
+        GameObject.Find("HitDetection").GetComponent<BoxCollider>().size = new Vector3(1f, 1.5f, 0.6f + (moveToFactorMultiplier * 0.4f));
+    }
     public GameObject GetNearestEnemy(float traceRadius)
     {
         List<GameObject> inRange = new List<GameObject>();
@@ -216,7 +228,6 @@ public class PlayerCombat : MonoBehaviour
     {
         // Called when next combo attack should be triggerable.
         canAttack = true;
-
     }
 
     public void resetCombo()
@@ -228,16 +239,34 @@ public class PlayerCombat : MonoBehaviour
         movementStateManager.enabled = true;
     }
 
+    public HitDirection getHitDirection(GameObject target)
+    {
+        // Calculate direction.
+        HitDirection hitDirection;
+        float forwardDir = Vector3.Dot((transform.position - target.transform.position).normalized, target.transform.forward);
+        float rightDir = Vector3.Dot((transform.position - target.transform.position).normalized, target.transform.right);
+        float angle = Mathf.Atan2(rightDir, forwardDir) * Mathf.Rad2Deg; // Find angle using forward and right components.
+        if(angle < 45 && angle > -45)
+        {
+            hitDirection = HitDirection.Front;
+        } else if(angle < -45 && angle > -135) {
+            hitDirection = HitDirection.Right;
+        } else if(angle < 135 && angle > 45) {
+            hitDirection = HitDirection.Left;
+        } else {
+            hitDirection = HitDirection.Back;
+        }
+
+        return hitDirection;
+    }
+
     public void onDealDamage(HitBone hitBone, bool heavyAttack, Vector3 hitLocation, HitHeight hitHeight)
     {
         // Get actors in collider range.
-        Vector3 origin = hitDetection.transform.position;
+        Vector3 origin = hitDetection.transform.position + hitDetection.center;
         Vector3 extent = hitDetection.size;
         Quaternion rotation = Quaternion.LookRotation(transform.forward);
-        Collider[] inRange = Physics.OverlapBox(origin, extent / 2, rotation, attackableLayers); // Overlap box using same parameters as box collider.
-
-        float dealDamage = 0;
-
+        Collider[] inRange = Physics.OverlapBox(origin, extent, rotation, attackableLayers); // Overlap box using same parameters as box collider.
 
         // Get enemy AI script of each game object in range. If it is not null, call hit reaction function.
         foreach(Collider collider in inRange)
@@ -246,32 +275,15 @@ public class PlayerCombat : MonoBehaviour
 
             if(enemyAi != null)
             {
-                // Calculate direction.
-                HitDirection hitDirection;
-                GameObject targetEnemy = collider.gameObject;
-                float forwardDir = Vector3.Dot((transform.position - targetEnemy.transform.position).normalized, targetEnemy.transform.forward);
-                float rightDir = Vector3.Dot((transform.position - targetEnemy.transform.position).normalized, targetEnemy.transform.right);
-                float angle = Mathf.Atan2(rightDir, forwardDir) * Mathf.Rad2Deg; // Find angle using forward and right components.
-                if(angle < 45 && angle > -45)
-                {
-                    hitDirection = HitDirection.Front;
-                } else if(angle < -45 && angle > -135) {
-                    hitDirection = HitDirection.Right;
-                } else if(angle < 135 && angle > 45) {
-                    hitDirection = HitDirection.Left;
-                } else {
-                    hitDirection = HitDirection.Back;
-                }
-                
                 float damageAmount = getDamageAmount(hitBone, heavyAttack);
-                enemyAi.onHitReaction(heavyAttack, hitLocation, hitDirection, hitHeight, gameObject, damageAmount);
+                enemyAi.onHitReaction(heavyAttack, hitLocation, getHitDirection(collider.gameObject), hitHeight, gameObject, damageAmount);
             }
         }
         
         attackCounter++; // After hit, increment attack counter for next combo.
 
         if(attackCounter >= maxCombo)
-            resetCombo(); // Reset attack counter if all combo animations have been cycled through.
+            attackCounter = 0; // Reset attack counter if all combo animations have been cycled through.
     }
 
     public float getDamageAmount(HitBone hitBone, bool heavyAttack)
@@ -283,8 +295,10 @@ public class PlayerCombat : MonoBehaviour
         {
             dealDamage = UnityEngine.Random.Range(unarmedMinDamage, unarmedMaxDamage);
             
-            if((hitBone == HitBone.PT_RightHand || hitBone == HitBone.PT_LeftHand) && playerInventory.playerGauntlets.itemTemplate.ItemId != 0)
+            if((hitBone == HitBone.PT_RightHand || hitBone == HitBone.PT_LeftHand) && playerInventory.playerGauntlets.itemTemplate.ItemId != 0 && playerInventory.playerShield.itemTemplate.ItemId == 0)
                 multiplier += playerInventory.playerGauntlets.itemTemplate.getAttackValue(); // If hit with hand and gauntlets equipped.
+            if(hitBone == HitBone.PT_LeftHand && playerInventory.playerShield.itemTemplate.ItemId != 0)
+                multiplier += playerInventory.playerShield.itemTemplate.getDefenceValue() / 2; // If hit with hand and shield equipped.
             if((hitBone == HitBone.PT_RightFoot || hitBone == HitBone.PT_LeftFoot) && playerInventory.playerBoots.itemTemplate.ItemId != 0)
                 multiplier += playerInventory.playerBoots.itemTemplate.getAttackValue(); // If hit with foot and boots equipped.
             multiplier += heavyAttack ? 0.1f : 0f; // If unarmed attack, if it was heavy attack then add small multiplier.
@@ -297,5 +311,50 @@ public class PlayerCombat : MonoBehaviour
         }
         
         return dealDamage;
+    }
+    
+    public void enableDisableShoot(string enable)
+    {
+        // Enables and disables ranged weapon shooting.
+        RangedWeapon rangedWeapon = (RangedWeapon)GetComponent<PlayerInventory>().equippedPrimary;
+        rangedWeapon.setCanShoot(enable.ToLower() != "false");
+    }
+
+    public void takeArrowVisual()
+    {
+        // Spawns the arrow visual in the player's hand.
+        RangedWeapon rangedWeapon = (RangedWeapon)GetComponent<PlayerInventory>().equippedPrimary;
+        Instantiate(rangedWeapon.ammoPrefab, GameObject.Find("Male_Weapon_Ammo_Left").transform);
+    }
+
+    public void placeArrowVisual()
+    {
+        // Places the arrow in the crossbow chamber.
+        Destroy(GameObject.Find("Male_Weapon_Ammo_Left ").transform.GetChild(0).gameObject);
+        RangedWeapon rangedWeapon = (RangedWeapon)GetComponent<PlayerInventory>().equippedPrimary;
+        rangedWeapon.toggleAmmoVisibility(true);
+        GetComponent<PlayerInventory>().reduceAmmo();
+    }
+    
+    public void arrowStringPull()
+    {
+        RangedWeapon rangedWeapon = (RangedWeapon)GetComponent<PlayerInventory>().equippedPrimary;
+        rangedWeapon.pullString();
+    }
+    
+    public void fireArrow()
+    {
+        RangedWeapon rangedWeapon = (RangedWeapon)GetComponent<PlayerInventory>().equippedPrimary;
+        rangedWeapon.shootArrow();
+    }
+
+    public void onFireEnd()
+    {
+        RangedWeapon rangedWeapon = (RangedWeapon)GetComponent<PlayerInventory>().equippedPrimary;
+        
+        // If still aiming when fire animation end, try reloading.
+        MovementStateManager movementStateManager = GetComponent<MovementStateManager>();
+        if(movementStateManager.rotationMode == RotationMode.Aiming)
+            rangedWeapon.tryReload();
     }
 }

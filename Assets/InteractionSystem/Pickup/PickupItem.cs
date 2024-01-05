@@ -39,4 +39,8 @@ public class PickupItem : BaseInteraction
             playerInventory.disableInput(true, true);
         }
     }
+    
+    public override void onInteractionEnd()
+    {
+    }
 }

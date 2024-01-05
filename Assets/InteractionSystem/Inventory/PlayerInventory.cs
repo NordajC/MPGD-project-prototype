@@ -83,9 +83,14 @@ public class PlayerInventory : MonoBehaviour
     public GameObject craftScreen;
 
     [Header("Weapon handling")]
+    public AnimatorOverrideController defaultAnimator;
+    [HideInInspector] public Weapon equippedPrimary;
+    [HideInInspector] public Weapon equippedSecondary;
+    [HideInInspector] public Weapon equippedShield;
     public GameObject primaryWeaponImage;
     public GameObject secondaryWeaponImage;
     public GameObject shieldWeaponImage;
+    public GameObject ammoWeaponImage;
 
     [Header("Stats bars")]
     public float lagSpeed = 1f;
@@ -184,7 +189,62 @@ public class PlayerInventory : MonoBehaviour
             }
         }
     }
+    
+    public int findAmmo(int ammoID)
+    {
+        int total = 0;
+        
+        // Find total ammo count of the currently equipped weapon using a running total.
+        foreach(InventoryItem item in playerInventory)
+        {
+            if(item.itemTemplate.ItemId == ammoID)
+                total += item.itemAmount;
+        }
+        
+        return total;
+    }
+    
+    public void updateAmmoDisplay()
+    {
+        WeaponryItem weaponryItem = playerWeaponPrimary.itemTemplate as WeaponryItem;
+        
+        ammoWeaponImage.transform.Find("Icon").GetComponent<Image>().sprite = weaponryItem.weaponAmmo.ItemIcon;
+        ammoWeaponImage.transform.Find("AmmoName").GetComponent<TextMeshProUGUI>().text = weaponryItem.weaponAmmo.ItemName;
+        
+        RangedWeapon rangedWeapon = (RangedWeapon)equippedPrimary; // Cast weapon type to ranged weapon.
+        rangedWeapon.totalAmmo = findAmmo(weaponryItem.weaponAmmo.ItemId);
+        
+        // Finds the current ammo of the ranged weapon. Text formatting used to show the ammo data.
+        TextMeshProUGUI ammoText = ammoWeaponImage.transform.Find("AmmoCount").GetComponent<TextMeshProUGUI>();
+        string currentAmmoText = rangedWeapon.inChamber.ToString();
+        string maxAmmoText = findAmmo(weaponryItem.weaponAmmo.ItemId).ToString("00");
+        string maxAmmoTextColour = findAmmo(weaponryItem.weaponAmmo.ItemId) != 0 ? "#E8FFFF" : "#FF0000";
+        ammoText.text = $"<b>{currentAmmoText}<sup><color={maxAmmoTextColour}>|{maxAmmoText}</color></sup></b>";
+    }
+    
+    public void reduceAmmo()
+    {
+        WeaponryItem weaponryItem = playerWeaponPrimary.itemTemplate as WeaponryItem;
+        int? ammoIndex = getItemSlotIndex(weaponryItem.weaponAmmo.ItemId, true);
 
+        // Similar code as in remove item but when reducing ammo we only want to update the inventory value and no re-initiate all equipped items.
+        if(ammoIndex != null)
+        {
+            if(playerInventory[ammoIndex.Value].itemTemplate.IsStackable && playerInventory[ammoIndex.Value].itemAmount > 1)
+            {
+                playerInventory[ammoIndex.Value].itemAmount --;
+            } else {
+                playerInventory[ammoIndex.Value] = getEmptyItem();
+            }
+            
+            // Same as in setInventorySlots() but only for modifying inventory value.
+            foreach (Transform obj in InventorySlots.transform)
+            {
+                setSlotVisuals(obj, playerInventory[obj.GetSiblingIndex()]);
+            }
+        }
+    }
+    
     public void updateWeapon(string typeName, ref InventoryItem itemToCheck, EquippedWeaponType equippedWeaponType, ref GameObject iconRef)
     {
         // Function to set weapon visuals by adding mesh.
@@ -202,21 +262,28 @@ public class PlayerInventory : MonoBehaviour
             {
                 case EquippedWeaponType.Primary:
                     spawnedVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("Male_Weapon_Primary_Right").transform);
+                    equippedPrimary = spawnedVisual.GetComponent<Weapon>();
                     UIWeaponVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("UI_Male_Weapon_Primary_Right").transform);
                     UIWeaponVisual.layer = LayerMask.NameToLayer("UICamera"); // Need to set layer so the UI one is only seen by the UI camera.
                     break;
                 case EquippedWeaponType.Secondary:
                         spawnedVisual = Instantiate(weaponryItem.equipWeapon);
-                        spawnedVisual.GetComponent<Weapon>().setWeaponSecondary(false);
+                        equippedSecondary = spawnedVisual.GetComponent<Weapon>();
+                        equippedSecondary.setWeaponSecondary(false);
+                        
                         UIWeaponVisual = Instantiate(weaponryItem.equipWeapon);
                         UIWeaponVisual.GetComponent<Weapon>().setWeaponSecondary(true);
                         UIWeaponVisual.layer = LayerMask.NameToLayer("UICamera");
+                        
                         iconRef.SetActive(true);
                     break;
                 case EquippedWeaponType.Shield:
                         spawnedVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("Male_Weapon_Primary_Left").transform);
+                        equippedShield = spawnedVisual.GetComponent<Weapon>();
+                        
                         UIWeaponVisual = Instantiate(weaponryItem.equipWeapon, GameObject.Find("UI_Male_Weapon_Primary_Left").transform);
                         UIWeaponVisual.layer = LayerMask.NameToLayer("UICamera");
+
                         iconRef.SetActive(true);
                     break;
             }
@@ -228,9 +295,27 @@ public class PlayerInventory : MonoBehaviour
             iconRef.transform.Find("DefaultIcon").GetComponent<Image>().enabled = true;
 
             // If secondary or shield item is empty, then hide the icon gameobject.
-            if(equippedWeaponType == EquippedWeaponType.Secondary || equippedWeaponType == EquippedWeaponType.Shield)
+            if(equippedWeaponType == EquippedWeaponType.Secondary && playerWeaponPrimary.itemTemplate.ItemId == 0 || equippedWeaponType == EquippedWeaponType.Shield)
+            {
                 iconRef.SetActive(false);
-            
+                Debug.Log("Test");
+            } else if (equippedWeaponType == EquippedWeaponType.Secondary) {
+                iconRef.SetActive(true);
+            }
+        }
+        
+        if(itemToCheck == playerWeaponPrimary && weaponryItem != null)
+        {
+            if(itemToCheck == playerWeaponPrimary && weaponryItem.weaponType == WeaponType.Ranged)
+            {
+                ammoWeaponImage.SetActive(true);
+                
+                updateAmmoDisplay();
+            } else {
+                ammoWeaponImage.SetActive(false);
+            }
+        } else if(itemToCheck == playerWeaponPrimary && weaponryItem == null) {
+            ammoWeaponImage.SetActive(false);
         }
     }
 
@@ -280,11 +365,17 @@ public class PlayerInventory : MonoBehaviour
         
         // Setting animation override based on equipped weapon.
         Animator animator = GetComponent<Animator>();
+        Animator uiAnimator = GameObject.Find("UICharacter").GetComponent<Animator>();
         if(playerShield.itemTemplate.ItemId != 0 && playerWeaponPrimary.itemTemplate.ItemId != 0)
         {
             animator.runtimeAnimatorController = playerShield.itemTemplate.getEquipOverride();
+            uiAnimator.SetBool("CloseHand", true);
         } else if (playerWeaponPrimary.itemTemplate.ItemId != 0) {
             animator.runtimeAnimatorController = playerWeaponPrimary.itemTemplate.getEquipOverride();
+            uiAnimator.SetBool("CloseHand", true);
+        } else {
+            animator.runtimeAnimatorController = defaultAnimator;
+            uiAnimator.SetBool("CloseHand", false);
         }
     }
     
@@ -357,8 +448,6 @@ public class PlayerInventory : MonoBehaviour
             originalDefenceColour.a = 0.2f + (defenceBarImage.fillAmount) * (0.8f)/(1.0f);
             defenceBarText.color = originalDefenceColour;
         }
-
-        Camera uiCamera = GameObject.Find("UICamera").GetComponent<Camera>();
     }
 
     public void disableInput(bool disableCamera, bool disableMovement)
@@ -376,9 +465,9 @@ public class PlayerInventory : MonoBehaviour
 
     private void OnToggleInventory()
     {
-
         // Player can toggle the inventory using the input.
-        if((currentScreen == CurrentScreen.None || currentScreen == CurrentScreen.Inventory) && gameObject.GetComponent<MovementStateManager>().rotationMode == RotationMode.Default)
+        if((currentScreen == CurrentScreen.None || currentScreen == CurrentScreen.Inventory) && GetComponent<MovementStateManager>().rotationMode == RotationMode.Default && GetComponent<PlayerCombat>().canAttack == true &&
+        GetComponent<MovementStateManager>().enabled)
         {
             // To toggle the inventory open, use a ternary operator that checks the current state of the current screen enum.
             currentScreen = currentScreen == CurrentScreen.None ? CurrentScreen.Inventory : CurrentScreen.None; 
@@ -435,7 +524,17 @@ public class PlayerInventory : MonoBehaviour
             checkAvailableSlot(itemToAdd);
         }
 
-        setInventorySlots(); // To reinitialise the inventory visuals after the update.
+        foreach (Transform obj in InventorySlots.transform)
+        {
+            setSlotVisuals(obj, playerInventory[obj.GetSiblingIndex()]);
+        }
+
+        // If ranged weapon equipped, then update ammo display. Only needs to be called if the picked up item is the ammo type but is not that performance heave anyway.
+        RangedWeapon rangedWeapon = equippedPrimary as RangedWeapon;
+        if(rangedWeapon != null)
+        {
+            updateAmmoDisplay();
+        }
     }
 
     public void updateSlotAmount(int targetSlot)
@@ -474,6 +573,29 @@ public class PlayerInventory : MonoBehaviour
         }
         
         return null;
+    }
+    
+    public int? getItemSlotIndex(int itemId, bool reverse)
+    {
+        // Finds the index of an item in the inventory. Can be searched for in forward or reverse.
+        if(!reverse)
+        {
+            for(int i = 0; i < InventoryAmount; i++)
+            {
+                if(playerInventory[i].itemTemplate.ItemId == itemId)
+                    return i;
+            }
+            
+            return null;
+        } else {
+            for(int i = InventoryAmount - 1; i >= 0; i--)
+            {
+                if(playerInventory[i].itemTemplate.ItemId == itemId)
+                    return i;
+            }
+            
+            return null;
+        }
     }
 
     public void changeItemSlot(int targetSlot)
@@ -687,6 +809,12 @@ public class PlayerInventory : MonoBehaviour
                             default:
                                 if(DropFromSlotName == "PrimaryWeaponSlot")
                                 {
+                                    RangedWeapon rangedWeapon = equippedPrimary as RangedWeapon;
+                                    if(rangedWeapon != null && rangedWeapon.inChamber > 0)
+                                    {
+                                        AddToInventory(weaponryItem.weaponAmmo);
+                                    }
+                                    
                                     unequipItemValue(ref playerWeaponPrimary, targetSlot, itemType, null);
                                 } else {
                                     unequipItemValue(ref playerWeaponSecondary, targetSlot, itemType, null);
@@ -776,12 +904,25 @@ public class PlayerInventory : MonoBehaviour
 
     public void swapPrimarySecondaryWeapon()
     {
-        // Swap primary and secondary weapons using a temp variable.
-        var temp = playerWeaponPrimary;
-        playerWeaponPrimary = playerWeaponSecondary;
-        playerWeaponSecondary = temp;
+        // Can only swap if not aiming and not attacking.
+        if(GetComponent<MovementStateManager>().rotationMode == RotationMode.Default && GetComponent<PlayerCombat>().canAttack == true &&
+        GetComponent<MovementStateManager>().enabled)
+        {
+            // If weapon is loaded when swapped, return that ammo back to the inventory.
+            RangedWeapon rangedWeapon = equippedPrimary as RangedWeapon;
+            if(rangedWeapon != null && rangedWeapon.inChamber > 0)
+            {
+                WeaponryItem weaponryItem = playerWeaponPrimary.itemTemplate as WeaponryItem;
+                AddToInventory(weaponryItem.weaponAmmo);
+            }
 
-        setInventorySlots();
+            // Swap primary and secondary weapons using a temp variable.
+            var temp = playerWeaponPrimary;
+            playerWeaponPrimary = playerWeaponSecondary;
+            playerWeaponSecondary = temp;
+
+            setInventorySlots();
+        }
     }
 
     private void OnChangeWeapon(InputValue value)

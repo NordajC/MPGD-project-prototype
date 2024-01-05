@@ -1,0 +1,131 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &7178236597253797990
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3334718419065775684, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334718419065775684, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 3973aea8b28e25b4e87ae4cc12764ee0, type: 2}
+    - target: {fileID: 3334718419065775684, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9e31afaf87cc7c640934608a96d606a5, type: 2}
+    - target: {fileID: 3474980515916749369, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_Name
+      value: Torch_Weapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015373560253385068, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015373560253385068, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015373560253385068, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015373560253385068, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015373560253385068, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015373560253385068, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015373560253385068, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015373560253385068, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015373560253385068, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015373560253385068, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6991352601416715684, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 4749707353668628313, guid: 7b7d566cc2ef57b49943443a1bba8e16, type: 3}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: equippedLocation.x
+      value: -0.014
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: equippedLocation.y
+      value: -0.206
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: equippedLocation.z
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: equippedRotation.w
+      value: 0.25566813
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: equippedRotation.x
+      value: 348
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: equippedRotation.y
+      value: 157
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: equippedRotation.z
+      value: 185
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: secondaryEquipPoint
+      value: Male_Weapon_Secondary_Back
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: secondaryEquippedLocation.x
+      value: -0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: secondaryEquippedLocation.y
+      value: 0.029
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: secondaryEquippedLocation.z
+      value: -0.047
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: secondaryEquippedRotation.x
+      value: 354
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: secondaryEquippedRotation.y
+      value: 331
+      objectReference: {fileID: 0}
+    - target: {fileID: 7232538633627754324, guid: b7acee0099953c94ba7299088aec2a31, type: 3}
+      propertyPath: secondaryEquippedRotation.z
+      value: 94
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b7acee0099953c94ba7299088aec2a31, type: 3}

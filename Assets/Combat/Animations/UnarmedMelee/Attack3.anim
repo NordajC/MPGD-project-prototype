@@ -63792,6 +63792,13 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 1
   m_Events:
+  - time: 0
+    functionName: moveTowardsEnemy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 1.4
+    intParameter: 0
+    messageOptions: 0
   - time: 0.31666666
     functionName: attackEvent
     data: PT_RightFoot,True,Upper

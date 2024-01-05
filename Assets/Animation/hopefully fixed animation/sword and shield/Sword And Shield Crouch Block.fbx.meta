@@ -15,14 +15,14 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
-    motionNodeName: 
+    motionNodeName: <Root Transform>
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -109,7 +109,577 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Sword And Shield Crouch Block(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_01_A_body
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_01_A_boots
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_01_A_cape
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_01_A_gauntlets
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_01_A_helmet
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_01_A_legs
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_05_C_body
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_05_C_boots
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_05_C_cape
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_05_C_gauntlets
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_05_C_helmet
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_05_C_legs
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_beard_01
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_beard_20
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_cloth_00_body
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_cloth_00_boots
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_cloth_00_gauntlets
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_cloth_00_legs
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_hair_01
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_hair_20
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_head_01
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_head_10
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_naked_00_body
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_naked_00_boots
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_naked_00_gauntlets
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Male_Armor_naked_00_legs
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Hips
+      parentName: Sword And Shield Crouch Block(Clone)
+      position: {x: 0.000000013969839, y: 1.0362353, z: -0.016039142}
+      rotation: {x: 0.4770844, y: -0.52191114, z: -0.47708374, w: 0.52191037}
+      scale: {x: 1.0000055, y: 1.0000032, z: 1.0000061}
+    - name: PT_Second_Weapon_slot
+      parentName: PT_Hips
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.99899477, y: -0.044826724, z: -0.00000002996028, w: 0.0000006676857}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Weapon_slot
+      parentName: PT_Hips
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.99899477, y: -0.044826724, z: -0.00000002996028, w: 0.0000006676857}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Left_Accessories_slot
+      parentName: PT_Hips
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.99899477, y: -0.044826724, z: -0.00000002996028, w: 0.0000006676857}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Right_Accessories_slot
+      parentName: PT_Hips
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.99899477, y: -0.044826724, z: -0.00000002996028, w: 0.0000006676857}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Spine
+      parentName: PT_Hips
+      position: {x: -0.083831996, y: 6.1578904e-16, z: -4.0837232e-17}
+      rotation: {x: -0.000000059604645, y: 0.000000059604645, z: 0.024711162, w: 0.9996947}
+      scale: {x: 1.0000095, y: 1.0000113, z: 1.0000092}
+    - name: PT_Spine2
+      parentName: PT_Spine
+      position: {x: -0.117776476, y: -3.8985658e-17, z: 3.811648e-23}
+      rotation: {x: -0.000000032619457, y: 0.000000027326795, z: 0.05681089, w: 0.998385}
+      scale: {x: 1.0000075, y: 1.0000056, z: 1.000006}
+    - name: PT_Spine3
+      parentName: PT_Spine2
+      position: {x: -0.09281013, y: -5.4253896e-17, z: -2.1175823e-24}
+      rotation: {x: -0.5424737, y: 0.31770563, z: 0.21268477, w: 0.74803126}
+      scale: {x: 0.999999, y: 1, z: 1.0000013}
+    - name: PT_Long_Bow_slot
+      parentName: PT_Spine3
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.73848, y: 0.2437897, z: -0.294735, w: 0.5552884}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Medium_Bow_slot
+      parentName: PT_Spine3
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.73848, y: 0.2437897, z: -0.294735, w: 0.5552884}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_Quiver_slot
+      parentName: PT_Spine3
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.73848, y: 0.2437897, z: -0.294735, w: 0.5552884}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_LeftShoulder
+      parentName: PT_Spine3
+      position: {x: -0.093022384, y: -3.5527135e-16, z: 2.4424906e-17}
+      rotation: {x: -0.036880605, y: 0.09780709, z: 0.39038107, w: 0.91470003}
+      scale: {x: 1.0000017, y: 0.99999756, z: 1.0000008}
+    - name: PT_LeftArm
+      parentName: PT_LeftShoulder
+      position: {x: -0.1204001, y: -1.7763567e-16, z: -6.9388935e-19}
+      rotation: {x: -0.0009888744, y: -0.018321855, z: 0.011123736, w: 0.99976987}
+      scale: {x: 0.99999946, y: 0.99999815, z: 0.9999986}
+    - name: PT_LeftForeArm
+      parentName: PT_LeftArm
+      position: {x: -0.27197617, y: 1.5987211e-16, z: 2.6128404e-16}
+      rotation: {x: 0.00154831, y: 0.046965934, z: -0.032049514, w: 0.9983811}
+      scale: {x: 0.9999997, y: 0.99999756, z: 0.9999998}
+    - name: PT_LeftHand
+      parentName: PT_LeftForeArm
+      position: {x: -0.26228172, y: -2.3092638e-16, z: 1.5543122e-16}
+      rotation: {x: -0.005459693, y: 0.109163664, z: -0.050511062, w: 0.99272466}
+      scale: {x: 1.0000024, y: 0.999999, z: 1.000001}
+    - name: PT_Left_Hand_Weapon_slot
+      parentName: PT_LeftHand
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.9228179, y: 0.3617962, z: -0.094281346, w: 0.0928531}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_LeftHandIndex1
+      parentName: PT_LeftHand
+      position: {x: -0.098944165, y: 1.2323476e-16, z: -6.661338e-18}
+      rotation: {x: 0.0010554568, y: -0.09696607, z: 0.08938121, w: 0.99126565}
+      scale: {x: 0.9999936, y: 1.0000064, z: 1.0000017}
+    - name: PT_LeftHandIndex2
+      parentName: PT_LeftHandIndex1
+      position: {x: -0.042776372, y: -1.3348697e-16, z: -6.4392934e-17}
+      rotation: {x: -0.0003332568, y: -0.00030679224, z: 0.03564225, w: 0.99936455}
+      scale: {x: 0.99999744, y: 1.0000015, z: 0.9999972}
+    - name: PT_LeftHandIndex3
+      parentName: PT_LeftHandIndex2
+      position: {x: -0.036915556, y: -9.381384e-17, z: 1.3322676e-17}
+      rotation: {x: -0, y: -0, z: -0.0000000010199409, w: 1}
+      scale: {x: 0.9999996, y: 0.9999997, z: 0.99999934}
+    - name: PT_LeftHandMiddle1
+      parentName: PT_LeftHand
+      position: {x: -0.101627626, y: -0.0043835514, z: -0.02964611}
+      rotation: {x: 0.0008599868, y: -0.10539428, z: 0.09628683, w: 0.9897576}
+      scale: {x: 0.9999917, y: 1.0000088, z: 1.0000014}
+    - name: PT_LeftHandMiddle2
+      parentName: PT_LeftHandMiddle1
+      position: {x: -0.043095797, y: -3.9968027e-17, z: -8.8817837e-17}
+      rotation: {x: 0.0066197813, y: 0.0025462934, z: 0.031841617, w: 0.99946773}
+      scale: {x: 1.0000002, y: 1.0000012, z: 0.9999991}
+    - name: PT_LeftHandMiddle3
+      parentName: PT_LeftHandMiddle2
+      position: {x: -0.03625977, y: -3.0033266e-16, z: -3.330669e-18}
+      rotation: {x: -0, y: -0, z: 0.0000000042418824, w: 1}
+      scale: {x: 1.0000012, y: 1.0000013, z: 1.0000024}
+    - name: PT_LeftHandPinky1
+      parentName: PT_LeftHand
+      position: {x: -0.07451835, y: -0.013314292, z: -0.071662284}
+      rotation: {x: 0.00095037, y: -0.18496156, z: 0.09387744, w: 0.9782512}
+      scale: {x: 0.9999921, y: 1.0000079, z: 1.0000018}
+    - name: PT_LeftHandPinky2
+      parentName: PT_LeftHandPinky1
+      position: {x: -0.02998228, y: -3.8410247e-16, z: -6.356027e-17}
+      rotation: {x: 0.004032239, y: 0.024676085, z: 0.032841258, w: 0.99914783}
+      scale: {x: 0.99999946, y: 1, z: 1.0000012}
+    - name: PT_LeftHandPinky3
+      parentName: PT_LeftHandPinky2
+      position: {x: -0.02510077, y: 1.5851035e-17, z: -9.020562e-18}
+      rotation: {x: -0, y: 0.0000000018626438, z: -9.604257e-10, w: 1}
+      scale: {x: 0.9999971, y: 0.9999991, z: 0.9999998}
+    - name: PT_LeftHandRing1
+      parentName: PT_LeftHand
+      position: {x: -0.08840657, y: -0.0044017676, z: -0.05399584}
+      rotation: {x: 0.00058120256, y: -0.13388623, z: 0.101835325, w: 0.9857504}
+      scale: {x: 0.9999892, y: 1.0000126, z: 1.0000011}
+    - name: PT_LeftHandRing2
+      parentName: PT_LeftHandRing1
+      position: {x: -0.04033898, y: -4.0620283e-16, z: -5.4400926e-17}
+      rotation: {x: 0.008586447, y: 0.008782214, z: 0.037047043, w: 0.9992381}
+      scale: {x: 1.0000026, y: 0.9999955, z: 1.0000023}
+    - name: PT_LeftHandRing3
+      parentName: PT_LeftHandRing2
+      position: {x: -0.037050046, y: -5.049433e-16, z: -4.9960034e-18}
+      rotation: {x: -0, y: -0, z: 3.0559008e-10, w: 1}
+      scale: {x: 0.99999994, y: 1.0000012, z: 0.99999875}
+    - name: PT_LeftHandThumb1
+      parentName: PT_LeftHand
+      position: {x: -0.04260052, y: -0.015449466, z: 0.029231247}
+      rotation: {x: -0.0007384025, y: 0.24272005, z: 0.10461888, w: 0.9644384}
+      scale: {x: 0.99999064, y: 1.0000167, z: 1.0000006}
+    - name: PT_LeftHandThumb2
+      parentName: PT_LeftHandThumb1
+      position: {x: -0.063977584, y: -2.176037e-16, z: -4.8849813e-17}
+      rotation: {x: -0.087969564, y: -0.032331698, z: -0.00007195866, w: 0.9955984}
+      scale: {x: 0.9999904, y: 1.0000011, z: 1.0000088}
+    - name: PT_LeftHandThumb3
+      parentName: PT_LeftHandThumb2
+      position: {x: -0.03966976, y: 5.4178885e-16, z: 3.2196467e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.9999983, y: 0.9999996, z: 0.99999934}
+    - name: PT_LeftArmTwist
+      parentName: PT_LeftArm
+      position: {x: -2.1065638e-16, y: 5.9947433e-16, z: 1.2293818e-17}
+      rotation: {x: -1.16415294e-10, y: -0, z: 8.6583873e-10, w: 1}
+      scale: {x: 0.9999992, y: 0.99999875, z: 1.0000005}
+    - name: PT_RightShoulder
+      parentName: PT_Spine3
+      position: {x: -0.00027545454, y: 0.08885514, z: -0.027529115}
+      rotation: {x: -0.35082924, y: 0.9303962, z: -0.04169305, w: -0.09769074}
+      scale: {x: 1.0000021, y: 0.9999966, z: 1.0000011}
+    - name: PT_RightArm
+      parentName: PT_RightShoulder
+      position: {x: -0.12040011, y: 2.3092638e-16, z: 5.412337e-17}
+      rotation: {x: 0.0009889676, y: 0.0183219, z: 0.011131196, w: 0.99976975}
+      scale: {x: 1.0000178, y: 0.9999997, z: 1.0000145}
+    - name: PT_RightForeArm
+      parentName: PT_RightArm
+      position: {x: -0.2719764, y: 1.7763568e-17, z: -1.0994677e-16}
+      rotation: {x: -0.0015482792, y: -0.046965826, z: -0.03206477, w: 0.99838054}
+      scale: {x: 1.0000054, y: 1.0000025, z: 1.0000056}
+    - name: PT_RightHand
+      parentName: PT_RightForeArm
+      position: {x: -0.26228175, y: -3.0198067e-16, z: -2.2204459e-17}
+      rotation: {x: 0.0054606292, y: -0.109163605, z: -0.05050324, w: 0.9927251}
+      scale: {x: 1.0000149, y: 0.999999, z: 1.0000076}
+    - name: PT_Right_Hand_Weapon_slot
+      parentName: PT_RightHand
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.361796, y: 0.92281795, z: 0.09285333, w: 0.09428143}
+      scale: {x: 1, y: 1, z: 1}
+    - name: PT_RightHandIndex1
+      parentName: PT_RightHand
+      position: {x: -0.098944165, y: -1.8596235e-16, z: -5.7731595e-17}
+      rotation: {x: -0.0010555186, y: 0.09696605, z: 0.08938108, w: 0.99126565}
+      scale: {x: 1.0000011, y: 1.000012, z: 1.0000267}
+    - name: PT_RightHandIndex2
+      parentName: PT_RightHandIndex1
+      position: {x: -0.042776372, y: 1.4342694e-16, z: 6.4392934e-17}
+      rotation: {x: 0.0003331971, y: 0.00030542136, z: 0.035645913, w: 0.9993644}
+      scale: {x: 1.0000215, y: 0.99996966, z: 0.99999684}
+    - name: PT_RightHandIndex3
+      parentName: PT_RightHandIndex2
+      position: {x: -0.036915556, y: -4.4408918e-17, z: -1.3322676e-17}
+      rotation: {x: -2.9103817e-11, y: -0, z: -9.20664e-10, w: 1}
+      scale: {x: 1.0000054, y: 0.99999815, z: 1}
+    - name: PT_RightHandMiddle1
+      parentName: PT_RightHand
+      position: {x: -0.101627626, y: -0.0043835524, z: 0.029646112}
+      rotation: {x: -0.00085993373, y: 0.10539387, z: 0.0962881, w: 0.9897576}
+      scale: {x: 0.9999923, y: 1.0000141, z: 1.0000161}
+    - name: PT_RightHandMiddle2
+      parentName: PT_RightHandMiddle1
+      position: {x: -0.043095797, y: 1.0616507e-16, z: 3.9968027e-17}
+      rotation: {x: -0.006619578, y: -0.0025483193, z: 0.031843446, w: 0.99946773}
+      scale: {x: 1.000066, y: 0.99995065, z: 1.0000196}
+    - name: PT_RightHandMiddle3
+      parentName: PT_RightHandMiddle2
+      position: {x: -0.03625977, y: -1.2902873e-16, z: -8.881784e-18}
+      rotation: {x: 4.6566107e-10, y: 0.0000000018626443, z: -0.0000000137733815, w: 1}
+      scale: {x: 1.0000113, y: 1.0000021, z: 1.0000179}
+    - name: PT_RightHandPinky1
+      parentName: PT_RightHand
+      position: {x: -0.07451835, y: -0.013314295, z: 0.071662284}
+      rotation: {x: -0.00095060247, y: 0.18496148, z: 0.093877316, w: 0.9782512}
+      scale: {x: 0.9999971, y: 1.0000122, z: 1.0000263}
+    - name: PT_RightHandPinky2
+      parentName: PT_RightHandPinky1
+      position: {x: -0.029982278, y: -8.357898e-17, z: 4.0523138e-17}
+      rotation: {x: -0.004032092, y: -0.024674809, z: 0.03284042, w: 0.9991479}
+      scale: {x: 1.0000107, y: 0.9999891, z: 1.0000043}
+    - name: PT_RightHandPinky3
+      parentName: PT_RightHandPinky2
+      position: {x: -0.025100768, y: 3.6070104e-16, z: 8.1185056e-18}
+      rotation: {x: -0, y: -0.000000001862644, z: 3.2014194e-10, w: 1}
+      scale: {x: 1.0000119, y: 0.9999997, z: 1.000005}
+    - name: PT_RightHandRing1
+      parentName: PT_RightHand
+      position: {x: -0.08840657, y: -0.004401771, z: 0.053995837}
+      rotation: {x: -0.00058084406, y: 0.13388582, z: 0.101838924, w: 0.98575}
+      scale: {x: 0.99999994, y: 1.0000216, z: 1.00003}
+    - name: PT_RightHandRing2
+      parentName: PT_RightHandRing1
+      position: {x: -0.04033898, y: 9.645062e-17, z: 5.8286706e-17}
+      rotation: {x: -0.008586292, y: -0.008781485, z: 0.037047822, w: 0.999238}
+      scale: {x: 1.0000368, y: 0.99995214, z: 0.9999947}
+    - name: PT_RightHandRing3
+      parentName: PT_RightHandRing2
+      position: {x: -0.037050046, y: -7.9380943e-17, z: 2.1649348e-17}
+      rotation: {x: -0, y: -0, z: 3.9290157e-10, w: 1}
+      scale: {x: 1.0000031, y: 0.9999995, z: 0.9999992}
+    - name: PT_RightHandThumb1
+      parentName: PT_RightHand
+      position: {x: -0.04260052, y: -0.015449466, z: -0.02923125}
+      rotation: {x: 0.00075302063, y: -0.24272342, z: 0.10456128, w: 0.9644438}
+      scale: {x: 0.9999955, y: 1.0000321, z: 1.0000038}
+    - name: PT_RightHandThumb2
+      parentName: PT_RightHandThumb1
+      position: {x: -0.06397758, y: 1.2878587e-16, z: 4.6629366e-17}
+      rotation: {x: 0.08796874, y: 0.032331806, z: -0.00007295906, w: 0.9955984}
+      scale: {x: 0.9999817, y: 1.000006, z: 1.0000085}
+    - name: PT_RightHandThumb3
+      parentName: PT_RightHandThumb2
+      position: {x: -0.03966976, y: -1.2656542e-16, z: -1.7763568e-17}
+      rotation: {x: -0, y: -0.000000014901156, z: -0, w: 1}
+      scale: {x: 1.0000007, y: 0.9999997, z: 0.99999696}
+    - name: PT_RightArmTwist
+      parentName: PT_RightArm
+      position: {x: 1.0488458e-16, y: -9.6077624e-17, z: 8.861016e-17}
+      rotation: {x: -0, y: -0, z: 4.5474725e-11, w: 1}
+      scale: {x: 1.0000046, y: 1, z: 1.0000025}
+    - name: PT_Neck
+      parentName: PT_Spine3
+      position: {x: -0.09197777, y: 0.090044595, z: -0.01924255}
+      rotation: {x: -0.6698782, y: 0.39503115, z: -0.1701112, w: 0.6052073}
+      scale: {x: 1.0000019, y: 0.9999985, z: 1.0000018}
+    - name: PT_Head
+      parentName: PT_Neck
+      position: {x: -0.094428204, y: 1.8962325e-17, z: -1.5173513e-17}
+      rotation: {x: -0.000000089406946, y: 0.00000007450579, z: -0.095068075, w: 0.99547076}
+      scale: {x: 1.0000013, y: 1.0000005, z: 0.99999934}
+    - name: PT_HeadTop
+      parentName: PT_Head
+      position: {x: -0.2037306, y: 1.7313021e-17, z: -3.3881317e-23}
+      rotation: {x: 0.94524693, y: -0.32635587, z: -0.00000023479248, w: 0.0000002424176}
+      scale: {x: 1.0000087, y: 0.99999446, z: 0.9999984}
+    - name: PT_HeadTopFeathers
+      parentName: PT_HeadTop
+      position: {x: -0.11695324, y: -3.5357855e-17, z: -5.717472e-23}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000023, y: 1, z: 1.000005}
+    - name: PT_LeftCape
+      parentName: PT_Spine3
+      position: {x: -0.07318415, y: 0.028553747, z: -0.15439864}
+      rotation: {x: -0.03884103, y: 0.09931681, z: 0.37910166, w: 0.9191896}
+      scale: {x: 1.0000015, y: 0.9999966, z: 0.99999887}
+    - name: PT_LeftCape2
+      parentName: PT_LeftCape
+      position: {x: -0.11147919, y: 0, z: 3.5527136e-17}
+      rotation: {x: 0.67137915, y: 0.6775086, z: -0.20748061, w: -0.2172185}
+      scale: {x: 0.99999994, y: 0.9999979, z: 1.0000008}
+    - name: PT_LeftCape3
+      parentName: PT_LeftCape2
+      position: {x: -0.36717218, y: -4.440892e-18, z: 5.939693e-17}
+      rotation: {x: -0.99902, y: -0.023894396, z: 0.00013260542, w: 0.037259232}
+      scale: {x: 0.9999992, y: 1.0000044, z: 0.9999997}
+    - name: PT_LeftCape4
+      parentName: PT_LeftCape3
+      position: {x: -0.3611782, y: -6.000755e-16, z: -1.0547119e-17}
+      rotation: {x: 0.99949545, y: 0.012401545, z: 0.00023238544, w: 0.029240865}
+      scale: {x: 1.0000076, y: 1.0000054, z: 1.0000112}
+    - name: PT_LeftCape5
+      parentName: PT_LeftCape4
+      position: {x: -0.32348844, y: -1.2043838e-15, z: -2.539635e-17}
+      rotation: {x: -0, y: 2.9103824e-11, z: 9.3132235e-10, w: 1}
+      scale: {x: 1.0000076, y: 1.0000074, z: 1.000014}
+    - name: PT_RightCape
+      parentName: PT_Spine3
+      position: {x: -0.07318412, y: 0.028553711, z: -0.15439864}
+      rotation: {x: -0.362241, y: 0.92625266, z: -0.039692093, w: -0.09623975}
+      scale: {x: 1.0000052, y: 0.99999684, z: 1.0000033}
+    - name: PT_RightCape2
+      parentName: PT_RightCape
+      position: {x: -0.11147919, y: -2.7755576e-17, z: 1.0061396e-18}
+      rotation: {x: 0.3211418, y: 0.3323618, z: 0.62578106, w: 0.6283324}
+      scale: {x: 0.9999971, y: 0.9999954, z: 0.9999986}
+    - name: PT_RightCape3
+      parentName: PT_RightCape2
+      position: {x: -0.36717215, y: 5.1070257e-17, z: -1.7763568e-17}
+      rotation: {x: -0.9990196, y: 0.00013255324, z: -0.02389445, w: -0.037266552}
+      scale: {x: 0.99999875, y: 1.0000008, z: 1.0000006}
+    - name: PT_RightCape4
+      parentName: PT_RightCape3
+      position: {x: -0.3611782, y: -6.1062266e-18, z: -5.7898127e-16}
+      rotation: {x: 0.9994948, y: 0.00023275545, z: 0.012401518, w: -0.029265007}
+      scale: {x: 1.0000104, y: 1.000007, z: 1.0000097}
+    - name: PT_RightCape5
+      parentName: PT_RightCape4
+      position: {x: -0.32348844, y: 4.635181e-17, z: -9.531265e-16}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1.0000031}
+    - name: PT_LeftUpLeg
+      parentName: PT_Hips
+      position: {x: 0.09699472, y: -0.019688422, z: 0.073511496}
+      rotation: {x: 0.011041075, y: 0.8703506, z: 0.4908502, w: 0.037869483}
+      scale: {x: 1.000006, y: 1.0000075, z: 1.0000007}
+    - name: PT_LeftLeg
+      parentName: PT_LeftUpLeg
+      position: {x: -0.4204908, y: -4.440892e-18, z: -9.7699626e-17}
+      rotation: {x: 0.92099285, y: 0.055278625, z: -0.0016831283, w: -0.38563412}
+      scale: {x: 1.0000092, y: 1.000026, z: 0.9999909}
+    - name: PT_LeftFoot
+      parentName: PT_LeftLeg
+      position: {x: -0.40447283, y: -1.6431301e-16, z: -3.5527136e-17}
+      rotation: {x: -0.8762625, y: -0.4659876, z: -0.05144212, w: 0.11123483}
+      scale: {x: 1.0000012, y: 1.0000081, z: 0.99996746}
+    - name: PT_LeftToe
+      parentName: PT_LeftFoot
+      position: {x: -0.14408492, y: -6.701236e-17, z: -5.884182e-17}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.9999985, y: 1.0000015, z: 0.99999833}
+    - name: PT_Left_BackCloth
+      parentName: PT_LeftUpLeg
+      position: {x: 0.026963577, y: -0.054737344, z: -0.1211017}
+      rotation: {x: -0.8506824, y: -0.04578482, z: 0.005521552, w: 0.5236533}
+      scale: {x: 1.0000117, y: 1.0000255, z: 0.9999966}
+    - name: PT_Left_BackCloth2
+      parentName: PT_Left_BackCloth
+      position: {x: -0.18268178, y: 7.216449e-18, z: 4.440892e-18}
+      rotation: {x: 0.052961312, y: 0.002442533, z: -0.002856273, w: 0.9985895}
+      scale: {x: 1.0000024, y: 1.0000067, z: 0.9999941}
+    - name: PT_Left_BackCloth3
+      parentName: PT_Left_BackCloth2
+      position: {x: -0.20419002, y: -6.7583885e-16, z: -7.1621914e-16}
+      rotation: {x: 0.0000000037252899, y: -0, z: 1.45519135e-11, w: 1}
+      scale: {x: 1.0000018, y: 1, z: 1.0000001}
+    - name: PT_Left_FrontCloth
+      parentName: PT_LeftUpLeg
+      position: {x: 0.017208314, y: 0.07715735, z: 0.09652176}
+      rotation: {x: 0.4915666, y: 0.027014822, z: 0.008192189, w: 0.87038237}
+      scale: {x: 1.0000119, y: 1.0000259, z: 0.99999446}
+    - name: PT_Left_FrontCloth2
+      parentName: PT_Left_FrontCloth
+      position: {x: -0.17507017, y: -7.4940055e-17, z: 6.661338e-17}
+      rotation: {x: -0, y: -0.000000005587935, z: 0.011519674, w: 0.9999337}
+      scale: {x: 1.0000006, y: 1.0000037, z: 1.000002}
+    - name: PT_Left_FrontCloth3
+      parentName: PT_Left_FrontCloth2
+      position: {x: -0.21644717, y: 1.388984e-16, z: -3.4666225e-18}
+      rotation: {x: -0, y: 4.440891e-16, z: -9.3132235e-10, w: 1}
+      scale: {x: 0.9999978, y: 1.0000008, z: 0.99999434}
+    - name: PT_RightUpLeg
+      parentName: PT_Hips
+      position: {x: 0.097075336, y: -0.018753791, z: -0.07351145}
+      rotation: {x: 0.011375687, y: 0.86388874, z: -0.50208074, w: -0.038492467}
+      scale: {x: 1.0000024, y: 1.0000021, z: 1.0000054}
+    - name: PT_RightLeg
+      parentName: PT_RightUpLeg
+      position: {x: -0.4204678, y: -2.176037e-16, z: -1.4210854e-16}
+      rotation: {x: -0.9156114, y: -0.054688375, z: -0.0014701575, w: -0.3983249}
+      scale: {x: 1.0000048, y: 1.0000136, z: 0.9999915}
+    - name: PT_RightFoot
+      parentName: PT_RightLeg
+      position: {x: -0.4044821, y: 6.5503156e-17, z: -1.7763568e-17}
+      rotation: {x: 0.8762538, y: 0.46621946, z: -0.051078126, w: 0.11049759}
+      scale: {x: 0.9999936, y: 1.0000004, z: 1.0000091}
+    - name: PT_RightToe
+      parentName: PT_RightFoot
+      position: {x: -0.14409086, y: -3.0201535e-17, z: -1.1990408e-16}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 0.99999934, y: 1.000001, z: 1.0000001}
+    - name: PT_Right_BackCloth
+      parentName: PT_RightUpLeg
+      position: {x: 0.0267368, y: -0.052072443, z: 0.12333866}
+      rotation: {x: 0.8438535, y: 0.045009255, z: 0.005379693, w: 0.5346556}
+      scale: {x: 1.0000013, y: 1.0000108, z: 0.9999935}
+    - name: PT_Right_BackCloth2
+      parentName: PT_Right_BackCloth
+      position: {x: -0.18268164, y: 1.1657341e-16, z: -8.881784e-18}
+      rotation: {x: -0.052960426, y: -0.0024423972, z: -0.0028562322, w: 0.9985896}
+      scale: {x: 1.000009, y: 1.000002, z: 1.0000123}
+    - name: PT_Right_BackCloth3
+      parentName: PT_Right_BackCloth2
+      position: {x: -0.20418984, y: 1.2595811e-15, z: -1.244081e-15}
+      rotation: {x: -0.98478943, y: -0.00999946, z: -0.057132572, w: 0.1637853}
+      scale: {x: 0.99999493, y: 0.9999984, z: 0.99999267}
+    - name: PT_Right_FrontCloth
+      parentName: PT_RightUpLeg
+      position: {x: 0.017468615, y: 0.07415585, z: -0.09764067}
+      rotation: {x: -0.5028092, y: -0.027389549, z: 0.0077148285, w: 0.863929}
+      scale: {x: 1.000008, y: 1.0000167, z: 0.9999983}
+    - name: PT_Right_FrontCloth2
+      parentName: PT_Right_FrontCloth
+      position: {x: -0.17507017, y: 3.8302694e-17, z: 6.217249e-17}
+      rotation: {x: 0.000000119209275, y: 0.00000002235174, z: 0.01151979, w: 0.99993366}
+      scale: {x: 1.0000002, y: 1.000002, z: 1.0000004}
+    - name: PT_Right_FrontCloth3
+      parentName: PT_Right_FrontCloth2
+      position: {x: -0.21644717, y: -7.2013566e-16, z: 8.343345e-18}
+      rotation: {x: 0.07300404, y: 0.06296228, z: 0.019755669, w: 0.9951462}
+      scale: {x: 1.0000105, y: 1.0000162, z: 1.0000066}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -120,13 +690,13 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0

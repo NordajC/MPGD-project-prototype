@@ -7,6 +7,7 @@ TagManager:
   - InventorySlot
   - CraftScreen
   - InventoryScreen
+  - InteractionBar
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - UICamera
   - Player
   - Post Process
-  - 
+  - Projectile
   - Ground
   - Enemy
   - PickUp

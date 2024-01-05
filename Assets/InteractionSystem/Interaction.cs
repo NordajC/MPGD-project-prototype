@@ -15,10 +15,12 @@ public class Interaction : MonoBehaviour
     
     [Header("Detection system")]
     public DetectMode detectMode;
+    public bool lockInteraction = false;
     public float minAngle = 15f;
     private List<BaseInteraction> itemsInRange = new List<BaseInteraction>();
     private BaseInteraction previousClosestItem;
     public BaseInteraction closestItem;
+    [HideInInspector] public BaseInteraction interactedItem;
     
     [Header("References")]
     public GameObject interactUI;
@@ -31,7 +33,12 @@ public class Interaction : MonoBehaviour
     
     void Update()
     {
-        closestItem = findClosestItem();
+        if(GetComponent<MovementStateManager>().rotationMode == RotationMode.Default && GetComponent<PlayerCombat>().canAttack == true && !lockInteraction)
+        {
+            closestItem = findClosestItem();
+        } else {
+            closestItem = null;
+        }
         
         if(closestItem != null)
         {
@@ -136,7 +143,7 @@ public class Interaction : MonoBehaviour
                     
         return null; // If no items in range, return null.
     }
-
+    
     private void OnInteractPrimary()
     {
         // If closest item is not null, call the primary interaction function which uses an interface.
