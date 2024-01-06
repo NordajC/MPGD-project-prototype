@@ -25,6 +25,9 @@ public class WeaponryItem : ItemTemplate
     public float maxDamageAmount;
     public float defenceFactor; // For shield.
     public int maxCombo = 4;
+    
+    [Header("Sounds")]
+    public AudioClip[] swingSounds;
 
     public void Awake()
     {

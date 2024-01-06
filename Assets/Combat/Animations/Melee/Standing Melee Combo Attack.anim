@@ -139939,6 +139939,13 @@ AnimationClip:
     floatParameter: 1.2
     intParameter: 0
     messageOptions: 0
+  - time: 0.41666666
+    functionName: playSwingSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.5
     functionName: attackEvent
     data: WeaponMelee,False,Upper
@@ -139953,9 +139960,9 @@ AnimationClip:
     floatParameter: 1.2
     intParameter: 0
     messageOptions: 0
-  - time: 0.81666666
-    functionName: attackEvent
-    data: WeaponMelee,False,Upper
+  - time: 0.73333335
+    functionName: playSwingSound
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -139965,6 +139972,20 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 1.4
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.81666666
+    functionName: attackEvent
+    data: WeaponMelee,False,Upper
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.2
+    functionName: playSwingSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.2833333

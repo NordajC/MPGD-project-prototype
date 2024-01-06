@@ -55,6 +55,10 @@ public class PlayerCombat : MonoBehaviour
     private GameObject closestEnemy;
     public BoxCollider hitDetection;
     
+    [Header("Sounds")]
+    public AudioSource audioSource;
+    public AudioClip[] punchSounds;
+    
     void Awake()
     {
         animator = GetComponent<Animator>();
@@ -357,5 +361,22 @@ public class PlayerCombat : MonoBehaviour
         MovementStateManager movementStateManager = GetComponent<MovementStateManager>();
         if(movementStateManager.rotationMode == RotationMode.Aiming)
             rangedWeapon.tryReload();
+    }
+
+    public void playSwingSound()
+    {
+        // Play swing sound based on current equipped weapon.
+        if(GetComponent<PlayerInventory>().playerWeaponPrimary.itemTemplate.ItemId != 0)
+        {
+            WeaponryItem weaponryItem = GetComponent<PlayerInventory>().playerWeaponPrimary.itemTemplate as WeaponryItem;
+            Manager.playRandomSound(ref audioSource, weaponryItem.swingSounds, 0.2f);
+        } else {
+            Manager.playRandomSound(ref audioSource, punchSounds, 0.2f);
+        }
+    }
+
+    public void playMeleeSwingSound()
+    {
+        Manager.playRandomSound(ref audioSource, punchSounds, 0.2f);
     }
 }

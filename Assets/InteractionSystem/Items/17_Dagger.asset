@@ -31,7 +31,11 @@ MonoBehaviour:
   weaponType: 0
   equipWeapon: {fileID: 6027967466017808991, guid: a14f40e88ee878d4490a77e74c9e0140, type: 3}
   overrideController: {fileID: 22100000, guid: e6c14b4b2f01eab44966bcf2b3958f83, type: 2}
+  weaponAmmo: {fileID: 0}
   minDamageAmount: 15
   maxDamageAmount: 25
   defenceFactor: 0
   maxCombo: 5
+  swingSounds:
+  - {fileID: 8300000, guid: eee0d38b6373d70408377044d374f247, type: 3}
+  - {fileID: 8300000, guid: 3d12e4d5d69946a4695d088fa56b855f, type: 3}

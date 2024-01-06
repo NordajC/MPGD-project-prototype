@@ -19,7 +19,7 @@ MonoBehaviour:
   ItemDescription: Used to store water.
   IsStackable: 0
   maxItemCount: 1
-  canUse: 1
+  canUse: 0
   pickupPrefab: {fileID: 8735415533478434179, guid: 51c9dab2c630d144c94fd32d599bf721, type: 3}
   craftingRequirements:
   - item: {fileID: 11400000, guid: 0d6f5ec1aa9c9c84891dd094c53a5814, type: 2}

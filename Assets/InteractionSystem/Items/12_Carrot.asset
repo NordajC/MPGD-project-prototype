@@ -25,3 +25,5 @@ MonoBehaviour:
   restoreHealth: 10
   restoreHunger: 25
   restoreHydration: 10
+  consumedSounds:
+  - {fileID: 8300000, guid: 2674493c438d03742822849a9b07017b, type: 3}

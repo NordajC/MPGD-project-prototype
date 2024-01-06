@@ -61585,6 +61585,13 @@ AnimationClip:
     floatParameter: 1.6
     intParameter: 0
     messageOptions: 0
+  - time: 0.44
+    functionName: playSwingSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.48
     functionName: attackEvent
     data: WeaponMelee,False,Upper

@@ -39895,6 +39895,13 @@ AnimationClip:
     floatParameter: 1.2
     intParameter: 0
     messageOptions: 0
+  - time: 0.275
+    functionName: playMeleeSwingSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.35
     functionName: attackEvent
     data: PT_RightHand,False,Upper
