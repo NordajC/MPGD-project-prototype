@@ -47,7 +47,7 @@ public class EnemyAi : MonoBehaviour, ICombat
     private Transform cameraRotation;
 
     [Header("Animations")]
-    private Animator animator;
+    [HideInInspector] public Animator animator;
 
     [Header("Effects")]
     private GameObject hitParticle;
@@ -240,6 +240,17 @@ public class EnemyAi : MonoBehaviour, ICombat
     {
         currentHealth -= amount;
         HPBar.updateStatBarValue(currentHealth);
+        
+        if(currentHealth <= 0)
+        {
+            onDeath();
+        }
+    }
+
+    public virtual void onDeath()
+    {
+        // Marked as virtual so different enemies can have different death effects.
+        Destroy(transform.Find("EnemyUI").gameObject);
     }
 
     public void onHitReaction(bool heavyAttack, Vector3 hitLocation, HitDirection hitDirection, HitHeight hitHeight, GameObject receivedFrom, float damage)
@@ -282,7 +293,6 @@ public class EnemyAi : MonoBehaviour, ICombat
             if (playerHealth != null)
                 playerHealth.adjustHealth(attackDamage, false);
         }
-
     }
 
     //delete this if not working
