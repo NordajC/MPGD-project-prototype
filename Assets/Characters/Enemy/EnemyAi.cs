@@ -50,7 +50,7 @@ public class EnemyAi : MonoBehaviour, ICombat
     [HideInInspector] public Animator animator;
 
     [Header("Effects")]
-    private GameObject hitParticle;
+    public GameObject hitParticle;
 
     //delete difficulty settings if not working
     [System.Serializable]
@@ -273,7 +273,7 @@ public class EnemyAi : MonoBehaviour, ICombat
             }
         }
 
-        //Instantiate(hitParticle, hitLocation, Quaternion.identity);
+        // Instantiate(hitParticle, hitLocation, Quaternion.identity);
 
         // Add knockback to enemy by adding force.
         Rigidbody rb = GetComponent<Rigidbody>();

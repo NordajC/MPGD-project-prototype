@@ -3843,6 +3843,8 @@ MonoBehaviour:
   waterBar: {fileID: 0}
   thirstDecreaseTime: 10
   thirstDecreaseAmount: 1
+  audioSource: {fileID: 6227837572531989252}
+  injuredSound: {fileID: 8300000, guid: 2b5ab7630f73600468ea009e9e5d258a, type: 3}
 --- !u!114 &8868754679602417761
 MonoBehaviour:
   m_ObjectHideFlags: 0

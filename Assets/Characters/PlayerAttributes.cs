@@ -29,6 +29,10 @@ public class PlayerAttributes : MonoBehaviour
     [Header("Other")]
     private Vector3 lastPosition;
 
+    [Header("Sounds")]
+    public AudioSource audioSource;
+    public AudioClip injuredSound;
+    
     private void Start()
     {
         // Setting default values.
@@ -79,6 +83,8 @@ public class PlayerAttributes : MonoBehaviour
         if(!regen)
         {
             Instantiate(screenDamage, GameObject.Find("ScreenDamage").transform);
+            Manager.playSound(ref audioSource, injuredSound, 0.1f);
+
         } else {
             // Add healing effect.
         }

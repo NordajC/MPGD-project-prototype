@@ -101,6 +101,7 @@ public class PlayerCombat : MonoBehaviour
         // Parameter is extra multiplier based on animation.
         if(closestEnemy != null)
         {
+            Debug.Log(closestEnemy);
             Transform moveToPosition = closestEnemy.GetComponent<EnemyAi>().moveToPosition; // Gets the move to position based on the enemy.
             Vector3 direction = moveToPosition.transform.position - playerMain.transform.position; // Gets unit direction between player and enemy.
             direction.Normalize(); // Normalized as only direction needed, not magnitude.

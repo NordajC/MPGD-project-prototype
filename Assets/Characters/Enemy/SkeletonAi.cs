@@ -35,6 +35,7 @@ public class SkeletonAi : EnemyAi
             meshCollider.sharedMesh = mesh;
             
             Rigidbody rb = obj.AddComponent<Rigidbody>();
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         }
         
         Destroy(GetComponent<CapsuleCollider>());
