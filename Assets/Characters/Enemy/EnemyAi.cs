@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.Rendering.RayTracingAccelerationStructure;
 
 public class EnemyAi : MonoBehaviour, ICombat
 {
@@ -18,7 +17,7 @@ public class EnemyAi : MonoBehaviour, ICombat
 
     [Header("References")]
     public NavMeshAgent agent;
-    private Transform player;
+    public Transform player;
     public LayerMask whatIsGround, whatIsPlayer;
     public Transform moveToPosition;
     public float moveToFactor = 1;
@@ -38,7 +37,7 @@ public class EnemyAi : MonoBehaviour, ICombat
     public bool playerInAttackRange;
     public int attackDamage = 10;
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    public bool alreadyAttacked;
 
     [Header("Health")]
     public float maxHealth = 100;
@@ -103,7 +102,7 @@ public class EnemyAi : MonoBehaviour, ICombat
         HPBar.maxValue = maxHealth;
     }
 
-    private void Update()
+    public void Update()
     {
         // Check if enemy in range of player for sight and attacking.
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
@@ -134,10 +133,12 @@ public class EnemyAi : MonoBehaviour, ICombat
 
         float speed = agent.velocity.magnitude;
         animator.SetFloat("magnitude", speed);
+        
     }
 
     private void Patrolling()
     {
+        Debug.Log("patrolling");
         if (isIdling)
         {
             animator.SetBool("IsIdling", true);
@@ -187,14 +188,15 @@ public class EnemyAi : MonoBehaviour, ICombat
 
     private void ChasePlayer()
     {
+        Debug.Log("chasing");
         if (Vector3.Distance(player.position, transform.position) > 2)
             agent.SetDestination(player.position);
     }
 
-    private void AttackPlayer()
+    public virtual void AttackPlayer()
     {
         // Stop the enemy from moving while attacking
-
+        Debug.Log("attacking");
         agent.SetDestination(transform.position);
         agent.isStopped = true;
 
@@ -219,7 +221,7 @@ public class EnemyAi : MonoBehaviour, ICombat
         }
     }
 
-    private void ResetAttack()
+    public void ResetAttack()
     {
         alreadyAttacked = false;
         agent.isStopped = false; // Allow the enemy to move again
@@ -258,20 +260,23 @@ public class EnemyAi : MonoBehaviour, ICombat
         // Play hit reaction based on direction and height.
         if (heavyAttack)
         {
-            // animator.Play("Heavy" + hitDirection.ToString(), 0, 0);
+            animator.CrossFade("Heavy" + hitDirection.ToString(), 0.1f);
         }
         else
         {
             if (hitDirection == HitDirection.Front)
             {
                 // Only front reaction animations have varying ones for lower and upper.
-                // animator.Play("Light" + hitDirection.ToString() + hitHeight.ToString(), 0, 0);
+                animator.CrossFade("Light" + hitDirection.ToString() + hitHeight.ToString(), 0.1f);
+                Debug.Log("Light" + hitDirection.ToString() + hitHeight.ToString());
             }
             else
             {
-                // animator.Play("Light" + hitDirection.ToString(), 0, 0);
+                animator.CrossFade("Light" + hitDirection.ToString(), 0.1f);
+                Debug.Log("Light" + hitDirection.ToString());
             }
         }
+
 
         // Instantiate(hitParticle, hitLocation, Quaternion.identity);
 
