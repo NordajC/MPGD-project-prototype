@@ -21,8 +21,12 @@ public class ObjectInteract : MonoBehaviour
 
     private GameObject currentTool; // To keep track of the currently equipped tool
 
+    public GameObject player; // Public reference to the player object
+    private Animator playerAnimator;// Player animator
+
     private void Start()
     {
+
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         interactionText.gameObject.SetActive(false);
 
@@ -30,6 +34,12 @@ public class ObjectInteract : MonoBehaviour
         if (rockScript != null)
         {
             rockScript.OnRockBreak += HandleRockBreak; // Subscribe to the OnRockBreak event
+        }
+        // Ensure the player reference is not null
+        if (player != null)
+        {
+            // Get the Animator component from the player
+            playerAnimator = player.GetComponent<Animator>();
         }
     }
 
@@ -56,6 +66,7 @@ public class ObjectInteract : MonoBehaviour
                 if (rockScript != null)
                 {
                     rockScript.AttemptToDamageRock();
+                    playerAnimator.SetTrigger("Mining");
                 }
             }
         }

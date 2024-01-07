@@ -2,102 +2,62 @@ using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class SkyboxDayNightCycle : MonoBehaviour
+public class SimpleDayNightCycle : MonoBehaviour
 {
-    public Material daySkybox;
-    public Material blendSkybox;
-    public Material nightSkybox;
+    public Material skyboxMaterial; // Assign your single skybox material here
     public Light directionalLight; // Assign your directional light representing the sun
     public TextMeshProUGUI dayCountText; // UI Text element to display day count
-    public int dayCount = 0; // Start at day 1
+    public float maxLightIntensity = 1f; // Maximum intensity of the directional light
+    public float minExposure = 0.2f; // Minimum exposure for the skybox at night
+    public float dayCycleDuration = 120f; // Total duration of a day in seconds
+    public Vector3 rotationAxis = new Vector3(1, 0, 0); // Axis around which the light will rotate, typically X-axis for day/night
+    public float rotationSpeed = 15f; // Speed at which the directional light will rotate, you can adjust this value as needed
 
-    public float transitionDuration = 2.0f; // Duration of the transition between skyboxes
-    public float dayDuration = 120.0f; // Total duration of a day in seconds
-
-    private Material currentSkybox;
-    private Material targetSkybox;
+    private float currentExposure; // Current exposure value
+    private float dayCount = 0; // Start at day 0
+    private float cycleTimer = 0; // Timer to track the cycle duration
 
     private void Start()
     {
-        // Start with the day skybox
-        currentSkybox = daySkybox;
-        RenderSettings.skybox = currentSkybox;
-        dayCountText.text = $"Day: {dayCount}";
-
-        StartCoroutine(DayNightCycle());
+        // Set the initial exposure to the skybox's "_Exposure" if it exists or to a default value
+        currentExposure = skyboxMaterial.HasProperty("_Exposure") ? skyboxMaterial.GetFloat("_Exposure") : 1f;
+        RenderSettings.skybox = skyboxMaterial;
+        UpdateDayCount();
     }
 
-    private IEnumerator DayNightCycle()
+    private void Update()
     {
-        while (true)
+        // Update the cycle timer
+        cycleTimer += Time.deltaTime;
+
+        // Calculate the percentage of the day cycle completed
+        float cycleProgress = cycleTimer / dayCycleDuration;
+        // Use a sine wave to get a smooth transition for the exposure and light intensity
+        float exposure = minExposure + (Mathf.Sin(cycleProgress * Mathf.PI * 2) * 0.5f + 0.5f) * (maxLightIntensity - minExposure);
+        float intensity = Mathf.Sin(cycleProgress * Mathf.PI * 2) * 0.5f + 0.5f; // Ranges from 0 to 1
+
+        // Set the exposure and intensity based on the sine wave
+        skyboxMaterial.SetFloat("_Exposure", exposure);
+        directionalLight.intensity = intensity * maxLightIntensity;
+
+        // Rotate the directional light around the specified axis
+        directionalLight.transform.Rotate(rotationAxis, rotationSpeed * Time.deltaTime * intensity);
+
+        // Check if a full day cycle has passed
+        if (cycleTimer >= dayCycleDuration)
         {
-            // Wait for the daytime duration
-            yield return new WaitForSeconds(dayDuration - transitionDuration);
-            // Start the transition to blend skybox
-            targetSkybox = blendSkybox;
-            StartCoroutine(TransitionSkybox());
-
-            // Wait for the transition to complete
-            yield return new WaitForSeconds(transitionDuration);
-
-            // Increment day count after the full day cycle
+            // Increment the day count
             dayCount++;
-            dayCountText.text = $"Day: {dayCount}";
-
-            // Wait for the nighttime duration
-            yield return new WaitForSeconds(dayDuration - transitionDuration);
-            // Start the transition to night skybox
-            targetSkybox = nightSkybox;
-            StartCoroutine(TransitionSkybox());
-
-            // Wait for the transition to complete
-            yield return new WaitForSeconds(transitionDuration);
-
-            // Prepare for the transition back to day skybox after the night cycle
-            currentSkybox = nightSkybox;
-            targetSkybox = daySkybox;
+            // Reset the timer for the next day
+            cycleTimer = 0;
+            UpdateDayCount();
         }
     }
 
-    private IEnumerator TransitionSkybox()
+    private void UpdateDayCount()
     {
-        float elapsedTime = 0.0f;
-
-        // Get initial light intensity and exposure
-        float initialIntensity = directionalLight.intensity;
-        float initialExposure = currentSkybox.GetFloat("_Exposure");
-
-        // Calculate target exposure based on whether we are transitioning to day or night
-        float targetExposure = targetSkybox == daySkybox ? daySkybox.GetFloat("_Exposure") : 0f; // Set to 0 for night
-
-        // Calculate target intensity for the light
-        float targetIntensity = targetSkybox == daySkybox ? 1f : 0f; // Full intensity for day, 0 for night
-
-        while (elapsedTime < transitionDuration)
-        {
-            elapsedTime += Time.deltaTime;
-            float blend = elapsedTime / transitionDuration;
-
-            // Interpolate the exposure and light intensity
-            float exposure = Mathf.Lerp(initialExposure, targetExposure, blend);
-            float intensity = Mathf.Lerp(initialIntensity, targetIntensity, blend);
-
-            // Assign the interpolated values
-            RenderSettings.skybox.SetFloat("_Exposure", exposure);
-            directionalLight.intensity = intensity;
-
-            // For debugging
-            Debug.Log($"Transitioning Skybox: {blend * 100}% complete");
-
-            yield return null;
-        }
-
-        // Ensure we end with the exact target skybox and settings
-        RenderSettings.skybox = targetSkybox;
-        currentSkybox = targetSkybox;
-        directionalLight.intensity = targetIntensity;
-
-        // For debugging
-        Debug.Log("Transition complete");
+        // Update the day count UI text
+        dayCountText.text = $"Day: {dayCount + 1}";
     }
 }
+
