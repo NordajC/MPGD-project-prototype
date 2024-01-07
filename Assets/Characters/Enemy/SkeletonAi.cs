@@ -40,6 +40,7 @@ public class SkeletonAi : EnemyAi
         
         Destroy(GetComponent<CapsuleCollider>());
         Destroy(gameObject, 10f); // Destroy the game object after a short delay.
+        Enemies.Remove(this); // Remove this enemy from the list when destroyed
         Destroy(this);
     }
 }
