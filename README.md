@@ -29,7 +29,10 @@ Open Craft Screen: F <br>
 Select an Item to Craft: Click on an item to select it. <br>
 Craft the Item: If you have the necessary resources, press the 'Craft' button to create the selected item. <br>
 
-COMBAT
-Left mouse: Melee attack
-Right mouse: Aim (with crossbow equipped)
-Left mouse (with crossbow): Fire weapon
+COMBAT<br>
+Left mouse: Melee attack<br>
+Right mouse: Aim (with crossbow equipped)<br>
+Left mouse (with crossbow): Fire weapon<br>
+
+INTERACTION<br>
+E: Will interact with item
