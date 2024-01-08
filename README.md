@@ -28,3 +28,8 @@ Rotate player model: Right-click & Drag. <br>
 Open Craft Screen: F <br>
 Select an Item to Craft: Click on an item to select it. <br>
 Craft the Item: If you have the necessary resources, press the 'Craft' button to create the selected item. <br>
+
+COMBAT
+Left mouse: Melee attack
+Right mouse: Aim (with crossbow equipped)
+Left mouse (with crossbow): Fire weapon
