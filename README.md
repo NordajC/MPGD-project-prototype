@@ -1,5 +1,6 @@
 # MPGD-group-project <br>
 Group F Game <br>
+Group F - Noshad Boksh, Jun Hann Chong, Senthuran Krishnakumar, Shahn Naseem <br>
 
 <b>Welcome to The Survivalist! Here's a quick guide on how to control your character within the game world. </b>
 
@@ -28,3 +29,18 @@ Rotate player model: Right-click & Drag. <br>
 Open Craft Screen: F <br>
 Select an Item to Craft: Click on an item to select it. <br>
 Craft the Item: If you have the necessary resources, press the 'Craft' button to create the selected item. <br>
+<br>
+
+List of used assets: <br>
+Character Model, Armour Models, Shield Model: <br> 
+https://assetstore.unity.com/packages/3d/characters/lowpoly-modular-armors-free-medieval-fantasy-series-199890 <br>
+<br>
+Crossbow and Arrow Model: <br> 
+https://assetstore.unity.com/packages/3d/props/weapons/low-poly-medieval-weapons-melee-ranged-208981 <br>
+<br>
+Outline Effect: <br> 
+https://assetstore.unity.com/packages/tools/particles-effects/quick-outline-115488 <br>
+<br>
+Skybox: <br>
+https://assetstore.unity.com/packages/vfx/shaders/free-skybox-extended-shader-107400 <br>
+<br>
