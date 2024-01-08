@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56afa41a62497754da667d06ad6aa42f, type: 3}
+  m_Name: 17_Dagger
+  m_EditorClassIdentifier: 
+  ItemId: 17
+  ItemName: Dagger
+  ItemType: 4
+  ItemIcon: {fileID: -745779110, guid: e7cea53c0cd0d114bb4814faf69bf9fd, type: 3}
+  ItemDescription: <b>Powerful close range</b> weapon to slay your enemies
+  IsStackable: 0
+  maxItemCount: 1
+  canUse: 1
+  pickupPrefab: {fileID: 8735415533478434179, guid: 5af3ac916c93f7844b23165e33f3412f, type: 3}
+  craftingRequirements:
+  - item: {fileID: 11400000, guid: c6abc9e539e43e04882afb0f93959aec, type: 2}
+    requiredAmount: 2
+  - item: {fileID: 11400000, guid: 0d6f5ec1aa9c9c84891dd094c53a5814, type: 2}
+    requiredAmount: 4
+  - item: {fileID: 11400000, guid: 5a5e7b43ccb777b4b984aa22d95ccc94, type: 2}
+    requiredAmount: 4
+  weaponType: 0
+  equipWeapon: {fileID: 6027967466017808991, guid: a14f40e88ee878d4490a77e74c9e0140, type: 3}
+  overrideController: {fileID: 22100000, guid: e6c14b4b2f01eab44966bcf2b3958f83, type: 2}
+  weaponAmmo: {fileID: 0}
+  minDamageAmount: 15
+  maxDamageAmount: 25
+  defenceFactor: 0
+  maxCombo: 5
+  swingSounds:
+  - {fileID: 8300000, guid: eee0d38b6373d70408377044d374f247, type: 3}
+  - {fileID: 8300000, guid: 3d12e4d5d69946a4695d088fa56b855f, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: 1ff707fb28d71674494f2d43e734b485, type: 3}
+  - {fileID: 8300000, guid: c201dcde779b6bd449907af4a8de7e43, type: 3}

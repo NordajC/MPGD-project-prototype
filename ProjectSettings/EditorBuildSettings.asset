@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/MainMenu/Main Menu.unity
+    guid: bb3999521b2c344e0b82281712065b46
+  - enabled: 1
+    path: Assets/Scenes/Terrain.unity
+    guid: 0cd1353e715d3df478378a24ad887c62
+  - enabled: 1
+    path: Assets/GameEnd/GameOver.unity
+    guid: eade7d75481b5794f84f507164200b08
+  - enabled: 1
+    path: Assets/GameEnd/GameWon.unity
+    guid: a91574d0672e32943b82cec7a729cbe6
+  m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

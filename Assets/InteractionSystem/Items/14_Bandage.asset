@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6c89d738e9bf3a4f8b85a855137c928, type: 3}
+  m_Name: 14_Bandage
+  m_EditorClassIdentifier: 
+  ItemId: 14
+  ItemName: Bandage
+  ItemType: 1
+  ItemIcon: {fileID: 1668285249, guid: e7cea53c0cd0d114bb4814faf69bf9fd, type: 3}
+  ItemDescription: Will restore a substantial amount of <b>health</b>.
+  IsStackable: 1
+  maxItemCount: 8
+  canUse: 1
+  pickupPrefab: {fileID: 8735415533478434179, guid: 3506c94af162ff84d8923666724030b5, type: 3}
+  craftingRequirements:
+  - item: {fileID: 11400000, guid: 5a5e7b43ccb777b4b984aa22d95ccc94, type: 2}
+    requiredAmount: 5
+  - item: {fileID: 11400000, guid: e790f935673747e478736c6b6d8eee1c, type: 2}
+    requiredAmount: 2
+  restoreHealth: 25
+  restoreHunger: 0
+  restoreHydration: 0
+  consumedSounds:
+  - {fileID: 8300000, guid: 96dedad39002a5c4d8bdb7e7c4ec2fb1, type: 3}

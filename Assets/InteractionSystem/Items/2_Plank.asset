@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d587fae374b65549a054fcd71a0b897, type: 3}
+  m_Name: 2_Plank
+  m_EditorClassIdentifier: 
+  ItemId: 2
+  ItemName: Plank
+  ItemType: 2
+  ItemIcon: {fileID: 1438667149, guid: e7cea53c0cd0d114bb4814faf69bf9fd, type: 3}
+  ItemDescription: Useful for <b>crafting</b> various items.
+  IsStackable: 1
+  maxItemCount: 16
+  canUse: 0
+  pickupPrefab: {fileID: 8735415533478434179, guid: 139aca671cad43f40811366a7546ec85, type: 3}
+  craftingRequirements:
+  - item: {fileID: 11400000, guid: f437ae50dc9b9b7438725b1e79c9a7be, type: 2}
+    requiredAmount: 5
