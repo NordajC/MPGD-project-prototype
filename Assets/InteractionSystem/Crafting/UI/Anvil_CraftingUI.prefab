@@ -12,6 +12,50 @@ PrefabInstance:
       propertyPath: m_text
       value: FORGING
       objectReference: {fileID: 0}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: items.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b4b0a31e5f570f846aea32028edc5320, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 067d34f4874f8bf488db48e373771da2, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: f3e998b2a9aac6f43ad758b5bedc2764, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: a4c086307761a7344a4959cbba1425a7, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 149d09afee06a2b458a4bd5b43104745, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c0324540985ccc4f9bd3c4922ac01fa, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 58c02002220746f40a63143926577b36, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 9515b702980d62e4fb6cfd2481dd1f11, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 7522ef84fb2347a41b8621d3ba5ad707, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[9]'
+      value: 
+      objectReference: {fileID: 11400000, guid: e401ad27a8847a94bab0f2c981892b4e, type: 2}
     - target: {fileID: 7075769488532286644, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
       propertyPath: m_Name
       value: Anvil_CraftingUI

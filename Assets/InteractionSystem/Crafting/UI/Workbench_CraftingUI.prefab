@@ -18,6 +18,30 @@ PrefabInstance:
       propertyPath: sharedProfile
       value: 
       objectReference: {fileID: 11400000, guid: 98c15309dae766d4e8922123aeb37655, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: items.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: eed9f225ce33fb94f85e8f8f3b82388e, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c54633aa16156234b842228c2ed6c626, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: fe29883fec9fdb84e8936b68b6248d3c, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 3a2195f0eb6806f4892cb650ac281c50, type: 2}
+    - target: {fileID: 3613796533917855538, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
+      propertyPath: 'items.Array.data[6]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bb6e64f7e09583d41b0d02004cfa9106, type: 2}
     - target: {fileID: 7075769488532286644, guid: 4d796eba3b82cfb4ea37ee4724b7baba, type: 3}
       propertyPath: m_Name
       value: Workbench_CraftingUI

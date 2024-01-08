@@ -7,6 +7,8 @@ using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour, ICombat
 {
+    public static List<EnemyAi> Enemies = new List<EnemyAi>(); // List to store all enemy instances
+
     //delete this if not working
     public enum Difficulty
     {
